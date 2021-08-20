@@ -1,0 +1,235 @@
+<!DOCTYPE HTML>
+<!--
+  Editorial by HTML5 UP
+  html5up.net | @ajlkn
+  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    <title>Project 4: Machine Learning - ROB 102</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="shortcut icon" type="image/png" href="../images/mbot_overhead.png"/>
+
+    <!-- Syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/stackoverflow-light.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/languages/julia.min.js"></script>
+
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body class="is-preload">
+
+    <!-- Wrapper -->
+      <div id="wrapper">
+
+        <!-- Main -->
+          <div id="main">
+            <div class="inner">
+
+              <!-- Header -->
+                <header id="header">
+                  <a href="../index.html" class="logo"><strong>ROB 102:</strong> Introduction to AI and Programming</a>
+                  <ul class="icons">
+                    <li><a href="#" class="icon brands fa-slack"><span class="label">Slack</span></a></li>
+                    <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+                  </ul>
+                </header>
+
+              <!-- Content -->
+                <section>
+                  <header class="main project">
+                    <strong>Project 4:</strong> Machine Learning for Image Classification
+                  </header>
+
+                  <p>In this project, we will use machine learning algorithms to perform <strong>image classification</strong>. Image classification is the task of predicting the class, or label, of an image out of a set of known images. This is a type of <em>supervised learning</em>, which refers to algorithms that learn a function from labelled datasets.</p>
+
+                  <p>We will be writing algorithms to do image classification on the <a href="https://www.cs.toronto.edu/~kriz/cifar.html">CIFAR-10</a> dataset. CIFAR-10 consists of tiny 32&#215;32 pixel images from 10 classes. The classes and a few example images from each are shown below.</p>
+
+                  <span class="image main"><img src="../images/p4/cifar10.png" alt="" style="max-width:550px;"/></span>
+
+                  <p>CIFAR-10 has 50,000 images to train a classification algorithm, each labelled with one of the classes shown above. In addition, there are 10,000 images which are used for testing the accuracy of the algorithm. We will implement three machine learning algorithms to classify images: <a href="#nearest_neighbor">nearest neighbors</a>, <a href="#linear_classifier">linear classification</a>, and a <a href="#neural_net">neural network</a>.</p>
+
+                  <p>This project is implemented using the programming language <a href="https://julialang.org/"  target="_blank">Julia</a>. Before you start, make sure you have followed the <a href="../tutorials/setup.html#install_julia">Julia install instructions</a> to install Julia locally on your computer. The following topics are covered on this page:</p>
+
+                  <ul>
+                    <li><a href="#intro_julia">Part 0: Intro to Julia</a></li>
+                    <li><a href="#proj_desc">Project Description</a>
+                      <ul>
+                        <li><a href="#nearest_neighbor">Part 1: Nearest Neighbors</a></li>
+                        <li><a href="#linear_classifier">Part 2: Linear Classifiers</a></li>
+                        <li><a href="#neural_net">Part 3: Neural Networks</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="#tasks">Task Summary</a></li>
+                    <li><a href="#adv_ext">Advanced Extensions</a></li>
+                  </ul>
+
+                  <hr class="major" />
+
+                  <h2 id="intro_julia">Part 0: Introduction to Julia</h2>
+
+                  <p>To get familiar with using Jupyter notebooks and programming in Julia, we have created an introductory notebook. Use the following invite link to accept the assignment on the Github Classroom (Berea):</p>
+
+                  <ul class="link-box">
+                    <li class="icon solid fa-link">
+                      <strong>Accept the assignment:</strong>
+                      <a href="https://classroom.github.com/a/MqUJ4129" target="_blank">https://classroom.github.com/a/MqUJ4129</a>
+                    </li>
+                  </ul>
+
+                  <p>Once you have accepted the assignment and created a repository, clone your repository onto your computer, substituting the address to your repo:</p>
+                  <pre><code class="language-bash">git clone &lt;ADDRESS&gt;</code></code></pre>
+
+                    <h3 id="run_jupyter">Launching a Jupyter Notebook</h3>
+
+                    <p>We will use <em>Jupyter notebooks</em> to write code in Julia quickly and easily visualize outputs. To launch a Jupyter notebook which uses Julia, open a Julia interpreter and enter the following commands:</p>
+                    <pre><code class="language-julia">using IJulia
+notebook()</code></pre>
+                    <p>A webpage should open on your default browser with the home page for the Jupyter notebook server you just launched. Navigate to the repository you just cloned for Project 4. The page will look something like this:</p>
+
+                    <span class="image main"><img src="../images/p4/jupyter_server.png" alt="" style="max-width:800px;"/></span>
+
+                    <p>Click on the notebook file, <code>intro_to_julia.ipynb</code> to launch it. To stop the Jupyter notebook server, do <code>Ctrl-C</code> (on Mac, do <code>Cmd-C</code>).</p>
+
+                  <ul class="todo">
+                    <li class="icon solid fa-laptop-code">
+                      <strong id="todo4_0">4.0:</strong> Read through the Intro to Julia Jupyter notebook and complete the exercises.
+                    </li>
+                  </ul>
+
+                  <ul class="hint">
+                    <li class="icon solid fa-cogs">
+                      <strong>Hint:</strong> The Julia documentation is a great resource for more details about syntax, built-in functions, and best practices: <a href="https://docs.julialang.org/" target="_blank">https://docs.julialang.org/</a>
+                    </li>
+                  </ul>
+
+                  <hr class="major" />
+
+                  <h2 id="proj_desc">Project Description</h2>
+
+                  <p>In this project, you will develop three algorithms for image classification on the CIFAR-10 dataset:</p>
+                    <ul>
+                      <li><a href="#nearest_neighbor">Part 1: Nearest Neighbors</a></li>
+                      <li><a href="#linear_classifier">Part 2: Linear Classifier</a></li>
+                      <li><a href="#neural_net">Part 3: Neural Network</a></li>
+                    </ul>
+
+
+                  <h3 id="nearest_neighbor">Part 1: Nearest Neighbors</h3>
+
+                    <p>Coming soon!</p>
+
+                  <h3 id="linear_classifier">Part 2: Linear Classifiers</h3>
+
+                    <p>Coming soon!</p>
+
+                  <h3 id="neural_net">Part 3: Neural Network</h3>
+
+                    <p>Coming soon!</p>
+
+                  <hr class="major" />
+
+                  <h2 id="tasks">Task Summary</h2>
+
+                  <h3>Part 0: Intro to Julia</h3>
+
+                  <ul class="todo">
+                    <li class="icon solid fa-laptop-code">
+                      <strong><a href="#todo4_0">4.0</a>:</strong> Read through the Intro to Julia Jupyter notebook and complete the exercises.
+                    </li>
+                  </ul>
+
+                  <h3>Part 1: Nearest Neighbors</h3>
+
+                  <h3>Part 2: Linear Classifiers</h3>
+
+                  <h3>Part 3: Neural Network</h3>
+
+                  <hr class="major" />
+
+                  <h2 id="adv_ext">Advanced Extensions</h2>
+
+                </section>
+
+            </div>
+          </div>
+
+        <!-- Sidebar -->
+          <div id="sidebar">
+            <div class="inner">
+
+              <!-- Menu -->
+                <nav id="menu">
+                  <header class="major">
+                    <h2>Menu</h2>
+                  </header>
+                  <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li>
+                      <span class="opener">Course Information</span>
+                      <ul>
+                        <li><a href="../index.html#sec_syllabus">Syllabus</a></li>
+                        <li><a href="../index.html#sec_schedule">Schedule</a></li>
+                        <li><a href="../index.html#sec_course_staff">Course Staff</a></li>
+                        <li><a href="../index.html#sec_policies">Course Policies</a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <span class="opener active">Projects</span>
+                      <ul>
+                        <li><a href="a0.html">Project 0: Intro to C++</a></li>
+                        <li><a href="a1.html">Project 1: Wall Following</a></li>
+                        <li><a href="a2.html">Project 2: Potential Field Control</a></li>
+                        <li><a href="a3.html">Project 3: Path Planning</a></li>
+                        <li><a href="a4.html">Project 4: Machine Learning</a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <span class="opener">Tutorials</span>
+                      <ul>
+                        <li><a href="../tutorials/setup.html">Computer Setup</a></li>
+                        <li><a href="../tutorials/git.html">Github</a></li>
+                        <li><a href="../tutorials/robot.html">Using the MBot-Omni</a></li>
+                        <li><a href="../tutorials/app.html">Using the Webapp</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </nav>
+
+              <!-- Section -->
+                <section>
+                  <header class="major">
+                    <h2>Course Times</h2>
+                  </header>
+                  <p>Lectures, labs and office hours.</p>
+                  <ul class="contact">
+                    <li class="icon solid fa-chalkboard-teacher">MW 10-11:30 AM @ GFL 107</li>
+                    <li class="icon solid fa-vials">F 12-2 PM (002) @ FRB 1060 <br/>F 2-4 PM (003)  @ FRB 1060</li>
+                    <li class="icon solid fa-users">TBD</li>
+                  </ul>
+                </section>
+
+              <!-- Footer -->
+                <!-- <footer id="footer">
+                  <p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+                </footer> -->
+
+            </div>
+          </div>
+
+      </div>
+
+    <!-- Scripts -->
+      <script src="../assets/js/jquery.min.js"></script>
+      <script src="../assets/js/browser.min.js"></script>
+      <script src="../assets/js/breakpoints.min.js"></script>
+      <script src="../assets/js/util.js"></script>
+      <script src="../assets/js/main.js"></script>
+      <script>hljs.highlightAll();</script>
+
+  </body>
+</html>

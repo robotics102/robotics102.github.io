@@ -1287,6 +1287,9 @@ ul {
   padding-left: 1em; }
   ul li {
     padding-left: 0.5em; }
+  ul li ul {
+    margin: 0em;
+  }
   ul.alt {
     list-style: none;
     padding-left: 0; }
@@ -1505,6 +1508,50 @@ ul.hint {
       color: inherit; }
     ul.hint li pre {
       margin: 0.5em 0;
+    }
+
+/* HINT */
+ul.link-box {
+  background: #c4ddf5;
+  border: solid 1px #7d91a5;
+  border-radius: 0.375em;
+  color: #00274C;
+  list-style: none;
+  padding: 1em;
+  margin: 0 2em 2em 2em; }
+  ul.link-box li {
+    text-decoration: none;
+    margin: 0;
+    padding-left: 3em;
+    position: relative; }
+    ul.link-box li:before {
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing: antialiased;
+      display: inline-block;
+      font-style: normal;
+      font-variant: normal;
+      text-rendering: auto;
+      line-height: 1;
+      text-transform: none !important;
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 400; }
+    ul.link-box li:before {
+      color: #00274C;
+      display: inline-block;
+      font-size: 1.5em;
+      height: 1.125em;
+      left: 0;
+      line-height: 1.125em;
+      position: absolute;
+      text-align: center;
+      width: 1.5em; }
+    ul.link-box li a {
+      color: inherit;
+      font-family: "Courier New", monospace;
+      margin: 0 1em;
+    }
+    ul.link-box li strong {
+      color: inherit;
     }
 
 /* Pagination */
