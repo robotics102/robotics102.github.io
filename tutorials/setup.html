@@ -1,0 +1,260 @@
+<!DOCTYPE HTML>
+<!--
+  Editorial by HTML5 UP
+  html5up.net | @ajlkn
+  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    <title>Computer Setup - ROB 102</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="shortcut icon" type="image/png" href="../images/mbot_overhead.png"/>
+
+    <!-- Syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/stackoverflow-light.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/languages/julia.min.js"></script>
+  </head>
+  <body class="is-preload">
+
+    <!-- Wrapper -->
+      <div id="wrapper">
+
+        <!-- Main -->
+          <div id="main">
+            <div class="inner">
+
+              <!-- Header -->
+                <header id="header">
+                  <a href="../index.html" class="logo"><strong>ROB 102:</strong> Introduction to AI and Programming</a>
+                  <ul class="icons">
+                    <li><a href="#" class="icon brands fa-slack"><span class="label">Slack</span></a></li>
+                    <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+                  </ul>
+                </header>
+
+              <!-- Content -->
+                <section>
+                  <header class="main project">
+                    <strong>Tutorial:</strong> Computer Setup
+                  </header>
+
+                  <p>This page contains instructions for installing software needed for ROB 102. For Projects 0, 1, 2 and 3, you will need Git, VSCode, and Docker. For Project 4, you will need Julia.</p>
+
+                  <ul>
+                    <li><a href="#install_git">Git</a></li>
+                    <li><a href="#install_vscode">VSCode</a></li>
+                    <li><a href="#install_docker">Docker</a></li>
+                    <li><a href="#install_julia">Julia</a></li>
+                  </ul>
+
+                  <hr class="major" />
+
+                  <!-- GIT -->
+
+                  <h2 id="install_git">Git</h2>
+
+                  <p>This section guides you through the installation and setup procedure for Git. We will use GitHub to manage our code. If you do not have a Github account, go to <a href="https://github.com/">github.com</a> and create one.</p>
+
+                  <h3>Installing Git</h3>
+
+                    <h4>Windows</h4>
+
+                    <p>We will use Git Bash to interface with Github on Windows. We will also use Git Bash as our terminal when we are developing code. Install Git and Git Bash from <a href="https://git-scm.com/downloads" target="_blank">here</a>.</p>
+
+                    <h4>Mac</h4>
+
+                    <p>Open a command prompt and type <code>git --version</code> on the command line. The version will print if Git is installed. If Git is not installed, you will be prompted to install it. Follow the instructions to do so.</p>
+
+                    <h4>Linux</h4>
+
+                    <p>Check if Git is installed by opening a command prompt and typing <code>git --version</code> on the command line. The version will print if Git is installed. If you get a message saying the command <code>git</code> does not exist, install as follows:</p>
+                    <pre><code class="language-bash">sudo apt install git-all</code></pre>
+
+                  <h3>Configuring Git</h3>
+
+                  <p>Once Git is installed, you should configure it with your name and email. This will help identify you as the author of code you commit. This only has to be done once. <i>You should only do this on your own computer, not a shared computer.</i> To set your name and email, open a terminal and enter the following two commands, substituting your name and email:</p>
+                  <pre><code class="language-bash">git config --global user.name "Your Name"
+git config --global user.email your@email.com</code></pre>
+                  <p>Use the email associated with your GitHub account.</p>
+
+                  <hr class="major" />
+
+                  <!-- VSCODE -->
+
+                  <h2 id="install_vscode">Install VSCode</h2>
+
+                  <p>Install the Visual Studio Code IDE using the instructions for your OS <a href="https://code.visualstudio.com/download" target="_blank">here</a>. Note that VSCode is different from Visual Studio.</p>
+
+                  <p>If you're using Windows, you should set your default terminal to use Git Bash. To do this, open VSCode and open the command pallette by pressing <code>F1</code> (or <code>Ctrl-Shift-P</code>). Search for the option &quot;Terminal: Select Default Profile&quot;:</p>
+                  <span class="image main"><img src="../images/setup/terminal-cmd.png" alt="" style="max-width:800px;"/></span>
+
+                  <p>Select the option &quot;Git Bash&quot;:</p>
+                  <span class="image main"><img src="../images/setup/terminal-select.png" alt="" style="max-width:800px;"/></span>
+
+                  <p>Next time you open a terminal, it should be a Git Bash terminal by default.</p>
+
+                  <hr class="major" />
+
+                  <!-- DOCKER -->
+
+                  <h2 id="install_docker">Docker</h2>
+
+                  <p>Coming soon!</p>
+
+                  <hr class="major" />
+
+                  <!-- JULIA -->
+
+                  <h2 id="install_julia">Julia</h2>
+
+                  <p>Julia is needed for <a href="../projects/a4.html">Project 4</a>.</p>
+
+                  <h3>Installing Julia</h3>
+
+                    <h4>Windows</h4>
+
+                    <p>Download the 64-bit installer for the current stable release from the <a href="https://julialang.org/downloads/#current_stable_release" target="_blank">Julia downloads page</a>. Run the installer and follow the instructions to install Julia.</p>
+
+                    <span class="image main"><img src="../images/setup/julia_win/julia_install.png" alt="" style="max-width:800px;"/></span>
+
+                    <p>Select the install executable and follow the instructions. You can select the default install location and options. On the page about additional tasks, you can choose whether you want to add a destop icon and start menu entry. It might be helpful to add Julia to your <code>PATH</code> variable at this step (optional):</p>
+
+                    <span class="image main"><img src="../images/setup/julia_win/julia_tasks.png" alt="" style="max-width:500px;"/></span>
+
+                    <p>When the installation is complete, you should see a window that looks like the one below. You can now exit out of the installer.</p>
+
+                    <span class="image main"><img src="../images/setup/julia_win/julia_success.png" alt="" style="max-width:500px;"/></span>
+
+                    <p>To open the Julia interpreter, search for &quot;Julia&quot; and select the Julia application.</p>
+
+                    <span class="image main"><img src="../images/setup/julia_win/search_julia.png" alt="" style="max-width:700px;"/></span>
+
+                    <p>When you launch Julia, you should see an interpreter like this one:</p>
+
+                    <span class="image main"><img src="../images/setup/julia_win/julia_interpreter.png" alt="" style="max-width:800px;"/></span>
+
+                    <h4>Mac</h4>
+
+                    <p>Go to the <a href="https://julialang.org/downloads/#current_stable_release" target="_blank">Julia downloads page</a>. Click the download next to macOS:</p>
+                    <span class="image main"><img src="../images/setup/download_page.png" alt="" style="max-width:800px;"/></span>
+
+                    <p>Find the downloaded .dmg file:</p>
+                    <span class="image main"><img src="../images/setup/downloaded_dmg.png" alt="" style="max-width:800px;"/></span>
+
+                    <p>Double click the downloaded file in your Finder:</p>
+                    <span class="image main"><img src="../images/setup/found_download.png" alt="" style="max-width:400px;"/></span>
+
+                    <p>Click and drag the Julia logo into your Applications folder:</p>
+                    <span class="image main"><img src="../images/setup/drag_app.png" alt="" style="max-width:500px;"/></span>
+
+                    <p>Find the Julia application in your Launchpad:</p>
+                    <span class="image main"><img src="../images/setup/applications.png" alt="" style="max-width:500px;"/></span>
+
+                    <p>This will open the Julia interpreter. You may have to give your computer permission to use Julia, or give Julia permission to use your terminal. </p>
+                    <span class="image main"><img src="../images/setup/julia.png" alt="" style="max-width:600px;"/></span>
+
+                    <h4>Linux</h4>
+
+                    <p>Open a terminal and navigate to the directory where you want to put Julia. Then do:</p>
+                    <pre><code class="language-bash">wget https://julialang-s3.julialang.org/bin/linux/x64/1.6/julia-1.6.2-linux-x86_64.tar.gz
+tar zxvf julia-1.6.2-linux-x86_64.tar.gz</code></pre>
+
+                    <p>You can launch Julia from the directory that you downloaded it in the terminal by doing <code>./bin/julia</code>. Or, to launch from any directory, do:</p>
+                    <pre><code class="language-bash">export PATH="$PATH:[/path/to/julia-1.6.2]/bin"</code></pre>
+                    <p>then run <code>julia</code>. You can add the above line to the end of the <code>.bashrc</code> file so it runs each time you open a new terminal. To quit the Julia interpreter, type <code>exit()</code>.</p>
+
+                  <h3>Installing package dependencies</h3>
+
+                  <p>You will need to install some packages that we will need to complete <a href="../projects/a4.html">Project 4</a>. Open the Julia interpreter and enter the following lines, one at a time:</p>
+                  <pre><code class="language-julia">using Pkg
+Pkg.add("IJulia")
+Pkg.add("Plots")
+Pkg.add("Images")
+Pkg.add("MosaicViews")
+Pkg.add("MLDatasets")</code></pre>
+
+                  <p>It might take some time to install all the packages! You can add other packages you might want to use this way as well.</p>
+
+                </section>
+
+            </div>
+          </div>
+
+        <!-- Sidebar -->
+          <div id="sidebar">
+            <div class="inner">
+
+              <!-- Menu -->
+                <nav id="menu">
+                  <header class="major">
+                    <h2>Menu</h2>
+                  </header>
+                  <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li>
+                      <span class="opener">Course Information</span>
+                      <ul>
+                        <li><a href="../index.html#sec_syllabus">Syllabus</a></li>
+                        <li><a href="../index.html#sec_schedule">Schedule</a></li>
+                        <li><a href="../index.html#sec_course_staff">Course Staff</a></li>
+                        <li><a href="../index.html#sec_policies">Course Policies</a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <span class="opener">Projects</span>
+                      <ul>
+                        <li><a href="../coming_soon.html">Project 0: Intro to C++</a></li>
+                        <li><a href="../coming_soon.html">Project 1: Wall Following</a></li>
+                        <li><a href="../coming_soon.html">Project 2: Potential Field Control</a></li>
+                        <li><a href="../coming_soon.html">Project 3: Path Planning</a></li>
+                        <li><a href="../coming_soon.html">Project 4: Machine Learning</a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <span class="opener">Tutorials</span>
+                      <ul>
+                        <li><a href="#">Computer Setup</a></li>
+                        <li><a href="../coming_soon.html">Github</a></li>
+                        <li><a href="../coming_soon.html">Using the MBot-Omni</a></li>
+                        <li><a href="../coming_soon.html">Using the Planning Webapp</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </nav>
+
+              <!-- Section -->
+                <section>
+                  <header class="major">
+                    <h2>Course Times</h2>
+                  </header>
+                  <p>Lectures, labs and office hours.</p>
+                  <ul class="contact">
+                    <li class="icon solid fa-chalkboard-teacher">MW 10-11:30 AM @ GFL 107</li>
+                    <li class="icon solid fa-vials">F 12-2 PM (002) @ FRB 1060 <br/>F 2-4 PM (003)  @ FRB 1060</li>
+                    <li class="icon solid fa-users">TBD</li>
+                  </ul>
+                </section>
+
+              <!-- Footer -->
+                <!-- <footer id="footer">
+                  <p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+                </footer> -->
+
+            </div>
+          </div>
+
+      </div>
+
+    <!-- Scripts -->
+      <script src="../assets/js/jquery.min.js"></script>
+      <script src="../assets/js/browser.min.js"></script>
+      <script src="../assets/js/breakpoints.min.js"></script>
+      <script src="../assets/js/util.js"></script>
+      <script src="../assets/js/main.js"></script>
+      <script>hljs.highlightAll();</script>
+
+  </body>
+</html>
