@@ -118,14 +118,241 @@ notebook()</code></pre>
                       <li><a href="#neural_net">Part 3: Neural Network</a></li>
                     </ul>
 
+                    <p>Use the following link to accept the assignment in Github Classrooms:</p>
+                    <ul class="link-box">
+                      <li class="icon solid fa-link">
+                        <strong>Accept the assignment:</strong>
+                        <a href="https://classroom.github.com/a/njQD6RaC" target="_blank">https://classroom.github.com/a/njQD6RaC</a>
+                      </li>
+                    </ul>
 
                   <h3 id="nearest_neighbor">Part 1: Nearest Neighbors</h3>
 
-                    <p>Coming soon!</p>
+                    <p>In Part 1 of this project, you will implement a Nearest Neighbor classifier. The nearest neighbor algorithm takes a test image and finds the <em>closest</em> train image, which we call the image's nearest neighbor. Then, it assigns the test image the same label as its nearest neighbor. Here is an example of some CIFAR-10 images and their nearest neighbors:</p>
+
+                    <span class="image main"><img src="../images/p4/nearest_neighbor.png" alt="" style="max-width:600px;"/></span>
+
+                    <h4>Notebook setup</h4>
+
+                    <p>Open the notebook <code>nearest_neighbors.ipynb</code> by double-clicking it in the web browser. The notebook is made up of <em>cells</em>, which can be text cells (in Markdown) or code cells (in Julia). You can run a cell by selecting the cell and pressing &nbsp;<i class="fas fa-play"></i>&nbsp;<b>Run</b>.</p>
+
+                    <span class="image main"><img src="../images/p4/run_cell.png" alt=""/></span>
+
+                    <p>You need to run a cell before you use anything it defines in another cell. For example, you should always run the imports cell when you start the notebook. Similarly, you must run a cell which defines a variable or function before running a cell that uses it. Start by running the import cell at the top of the notebook <code>nearest_neighbors.ipynb</code> to import some dependencies we'll need later on.</p>
+
+                    <h4>The CIFAR-10 data</h4>
+
+                    <p>The second cell in the notebook loads the CIFAR-10 data, provided by the &quot;MLDatasets&quot; Julia library. Run this cell now. The first time you load the data, you'll see a message like this:</p>
+
+                    <span class="image main"><img src="../images/p4/download_cifar.png" alt="" style="max-width:800px;"/></span>
+
+                    <p>Type <code>y</code> into the box that appears at the top and press enter to download the data in
+                    the default directory. It will take a few minutes for the data to download.</p>
+
+                    <p>Let's take a look at how the image data is represented. This code loads the CIFAR-10 data:</p>
+                    <pre><code class="language-julia">x_train, y_train = CIFAR10.traindata(Float32, train_idx)
+x_test,  y_test  = CIFAR10.testdata(Float32, test_idx)</code></pre>
+
+                    <p>
+                      The variable <code>x_train</code> holds the training images, and <code>x_test</code> holds the testing images. Each image has size <code>(32,&nbsp;32,&nbsp;3)</code>. There are <code>N_train</code> training images, and <code>N_test</code> testing images, so the variables <code>x_train</code> and <code>x_test</code> are size <code>(N_train,&nbsp;32,&nbsp;32,&nbsp;3)</code> and <code>(N_test,&nbsp;32,&nbsp;32,&nbsp;3)</code> respectively. Each pixel value is a float between 0 and 1.
+                      The variables <code>y_train</code> and <code>y_test</code> contain integers corresponding to the labels for each of the images. For example, the label 1 corresponds to &quot;airplane&quot;, 2 corresponds to &quot;automobile&quot;, etc. <code>y_train</code> and <code>y_test</code> are vectors of length <code>N_train</code> and <code>N_test</code> respectively.
+                    </p>
+
+                    <p>The data loading code does some processing on the data to prepare it for use in this assignment. Notably, it flattens the image data into vectors of length <code>32&#215;32&#215;3&nbsp;=&nbsp;3072</code>. The images which we will use in this project are stored in matrices, <code>x_train</code> and <code>x_test</code>, with the data for each image stored in one row of the matrix.</p>
+
+                    <ul class="hint">
+                      <li class="icon solid fa-cogs">
+                        <strong>Hint:</strong> The following Julia code would get the vector of image data and the label for that image for the training image at index <code>i</code>:
+                        <pre><code class="language-julia">img = x_train[i, :]
+label = y_train[i]</code></pre>
+                      </li>
+                    </ul>
+
+                    <h4>Computing distance between images</h4>
+
+                    <p>The nearest neighbors algorithm requires a measure of <em>distance</em> between two images. We will use the \(n\)-dimensional Euclidean distance. Given two vectors of length \(n\), \(\textbf{u}\) and \(\textbf{v}\), the Euclidean distance between them is:</p>
+
+                    <p>$$
+                      d(\textbf{u}, \textbf{v}) = \sqrt{(u_1 - v_1)^2 + (u_2 - v_2)^2 + \dots + (u_n - v_n)^2}
+                    $$</p>
+
+                    <p>The function <code>compute_distance()</code> in the provided notebook should compute the distance between two image vectors.</p>
+
+                    <ul class="todo">
+                      <li class="icon solid fa-laptop-code">
+                        <strong id="todo4_1_1">4.1.1:</strong> Complete the function <code>compute_distance()</code> so that it returns the distance between two flattened images.
+                      </li>
+                    </ul>
+
+                    <p>To find the nearest neighbors of a test image, we need to find the distances between the image and every image in the training set of images. The function <code>compute_distances()</code> should find the distance between a test image and each of the training images. Use the provided test cells to check that your functions are working correctly.</p>
+
+                    <ul class="todo">
+                      <li class="icon solid fa-laptop-code">
+                        <strong id="todo4_1_2">4.1.2:</strong> Complete the function <code>compute_distances()</code> so that it returns a vector containing the distance from a test image to each training image.
+                      </li>
+                    </ul>
+
+                    <ul class="hint">
+                      <li class="icon solid fa-cogs">
+                        <strong>Hint:</strong> You should reuse <code>compute_distance()</code> when implementing the <code>compute_distances()</code> function.
+                      </li>
+                    </ul>
+
+                    <h4>Finding nearest neighbors</h4>
+
+                    <p>We want to find the nearest neighbor of a test image in the training set. The nearest neighbor of an image is the image with the <em>smallest</em> distance. The function <code>nearest_neighbor()</code> should find the index of the nearest training image to a given test image.</p>
+
+                    <ul class="todo">
+                      <li class="icon solid fa-laptop-code">
+                        <strong id="todo4_1_3">4.1.3:</strong> Complete the function <code>nearest_neighbor()</code> so that it returns an integer corresponding to the index of the nearest neighbor to a test image in the training set.
+                      </li>
+                    </ul>
+
+                    <ul class="hint">
+                      <li class="icon solid fa-cogs">
+                        <strong>Hint:</strong> You should reuse <code>compute_distances()</code> when implementing the <code>nearest_neighbor()</code> function.
+                      </li>
+                      <li class="icon solid fa-cogs">
+                        <strong>Hint:</strong> Why do we want the index of the nearest neighbor instead of the image itself? Think of the index as a unique ID for a data point. We can use the index to access the image or its label. We'll see why this is useful later.
+                      </li>
+                    </ul>
+
+                    <p>We need to classify all <code>N_test</code> images in the test set. The function <code>nearest_neighbors_multi()</code> should return a vector of indices corresponding to the nearest training image for each test image. Again, the notebook contains test cells to help you check that your functions are implemented correctly.</p>
+
+                    <ul class="todo">
+                      <li class="icon solid fa-laptop-code">
+                        <strong id="todo4_1_4">4.1.4:</strong> Complete the function <code>nearest_neighbors_multi()</code> so that it returns a vector of integers corresponding to the indices of the nearest neighbor to each test image in the training set.
+                      </li>
+                    </ul>
+
+                    <ul class="hint">
+                      <li class="icon solid fa-cogs">
+                        <strong>Hint:</strong> You should reuse <code>nearest_neighbor()</code> when implementing the <code>nearest_neighbors_multi()</code> function.
+                      </li>
+                    </ul>
+
+                    <p>Now, we have the functions we need to implement a Nearest Neighbors image classifier. The function <code>predict_nn_labels()</code> should use the training data <code>x_train</code> and <code>y_train</code> to predict the labels for each test image in <code>x_test</code>.</p>
+
+                    <ul class="todo">
+                      <li class="icon solid fa-laptop-code">
+                        <strong id="todo4_1_5">4.1.5:</strong> Complete the function <code>predict_nn_labels()</code> so that it returns a vector of integers corresponding to the class labels for each test image.
+                      </li>
+                    </ul>
+
+                    <ul class="hint">
+                      <li class="icon solid fa-cogs">
+                        <strong>Hint:</strong> You might consider using <code>nearest_neighbors_multi()</code> when implementing the <code>predict_nn_labels()</code> function.
+                      </li>
+                    </ul>
+
+                    <p>Congratulations! You just implemented a machine learning algorithm for image classification. Use the provided cell to check the accuracy of your algorithm. How did you do? What happens to the accuracy when you change the number of training images, <code>N_train</code>? (Remember to rerun the necessary cells when you change the values).</p>
+
+                    <ul class="todo">
+                      <li class="icon solid fa-laptop-code">
+                        <strong id="todo4_1_6">4.1.6:</strong> Change the value of <code>N_train</code> and rerun the prediction step. The value should be between 1 and 50,000. Record your observations.
+                      </li>
+                    </ul>
+
+                    <ul class="hint">
+                      <li class="icon solid fa-cogs">
+                        <strong>Hint:</strong> How do different values of <code>N_train</code> affect the prediction accuracy? The computation time?
+                      </li>
+                      <li class="icon solid fa-cogs">
+                        <strong>Hint:</strong> For very large values of <code>N_train</code>, you might run out of time (or even memory). Use your reason when deciding which values to try. You will not have time to try them all!
+                      </li>
+                    </ul>
+
+                    <h4><em>Advanced Extension:</em> k-Nearest Neighbors</h4>
+
+                    <p>In k-nearest neighbors, we try to improve our prediction by finding the \(k\) nearest neighbors to a test image. We perform prediction by letting the neighbors vote on the label for the test image. As an advanced extension, you may complete the k-nearest neighbors algorithm using the template code in the notebook.</p>
+
+                    <ul class="todo">
+                      <li class="icon solid fa-laptop-code">
+                        <strong id="todoAE_4i">Advanced Extension 4.i:</strong> Implement k-nearest neighbors in the provided notebook cells.
+                      </li>
+                      <li class="icon solid fa-laptop-code">
+                        <strong id="todoAE_4ii">Advanced Extension 4.ii:</strong> Experiment with different values of \(k\) and report how \(k\) affects the accuracy. Select a value of \(k\) and compare the accuracy to that of nearest neighbors.
+                      </li>
+                    </ul>
 
                   <h3 id="linear_classifier">Part 2: Linear Classifiers</h3>
 
-                    <p>Coming soon!</p>
+                    <p>Let's see if we can do a bit better at classifying images by <em>learning</em> the parameters for a linear function. This assignment will walk you through implementing a linear classification algorithm for the CIFAR-10 dataset. We will try to find a set of weights so that the following linear relation gives a vector containing a score for each image class:</p>
+
+                    <p>$$
+                      f(X) = X \times W
+                    $$</p>
+
+                    <p>\(X\) is a vector of image features, \(W\) is a matrix containing the weights to learn, and \(f(X)\) is the vector of class scores. During test time, we will label an image with the class with the highest score. In this section, you will complete the notebook <code>linear_classifier.ipnyb</code>.</p>
+
+                    <h4>Forward Pass</h4>
+
+                    <p>The <em>forward pass</em> provides the scores for each class for a given image, using a given set of weights. The forward pass is used at testing time to get the scores used to perform classification. It is also used at training time, to compute the loss for the current best set of weights. In the provided notebook cell, implement the forward pass of a linear classifier now.</p>
+
+                    <ul class="todo">
+                      <li class="icon solid fa-laptop-code">
+                        <strong id="todo4_2_1">4.2.1:</strong> Complete the function <code>linear_forward()</code> so that it returns the class score for each image.
+                      </li>
+                    </ul>
+
+                    <h4>Backward Pass</h4>
+
+                    <p>The <em>backward pass</em> calculates the loss and gradients for a batch of images, given the correct labels for those images and a set of weights. In the notebook, the gradient computation is given. You will implement the support vector machine (SVM) loss computation.</p>
+
+                    <ul class="todo">
+                      <li class="icon solid fa-laptop-code">
+                        <strong id="todo4_2_2">4.2.2:</strong> Complete the function <code>svm_loss()</code> to calculate the support vector machine (SVM) loss given the class scores.
+                      </li>
+                    </ul>
+
+                    <ul class="hint">
+                      <li class="icon solid fa-cogs">
+                        <strong>Hint:</strong> You should use <code>linear_forward()</code> to get the scores needed to compute the loss.
+                      </li>
+                      <li class="icon solid fa-cogs">
+                        <strong>Hint:</strong> Don't forget the regularization loss!
+                      </li>
+                    </ul>
+
+                    <h4>Training the network</h4>
+
+                    <p>Now, we will use the functions we developed to train a linear classifier. Implement a training loop in the provided function which first samples a random batch of images, uses <code>svm_loss()</code> to calculate the loss and gradients, then updates the weight matrix. Loop for the given number of iterations. The number of iterations, learning rate, batch size, and regularization coefficient are given (see the function documentation for details).</p>
+
+                    <ul class="todo">
+                      <li class="icon solid fa-laptop-code">
+                        <strong id="todo4_2_3">4.2.3:</strong> Complete the function <code>train_svm()</code> to train the linear classifier.
+                      </li>
+                    </ul>
+
+                    <h4>Testing the network</h4>
+
+                    <p>Once we have found a set of weights, we can use them to test our algorithm. Code has been provided to test the accuracy of the network. You need to write the test loop that returns class labels for each test image, using the weights found in training.</p>
+
+                    <ul class="todo">
+                      <li class="icon solid fa-laptop-code">
+                        <strong id="todo4_2_4">4.2.4:</strong> Complete the function <code>test_svm()</code> to use the forward pass function to predict a label for each image.
+                      </li>
+                    </ul>
+
+                    <ul class="hint">
+                      <li class="icon solid fa-cogs">
+                        <strong>Hint:</strong> The <code>linear_forward()</code> function might come in handy again.
+                      </li>
+                    </ul>
+
+                    <p>We're done! But, you might notice that the learning rate and regularization coefficient have an impact on how good the network does. Try tuning them, and report on how they affect the performance of the classifier and which values work best.</p>
+
+                    <ul class="todo">
+                      <li class="icon solid fa-laptop-code">
+                        <strong id="todo4_2_5">4.2.5:</strong> Tune the learning rate and the regularization coefficient. See how high you can get your accuracy. Report on your observations.
+                      </li>
+                    </ul>
+
+                    <ul class="hint">
+                      <li class="icon solid fa-cogs">
+                        <strong>Hint:</strong> You might consider implementing cross validation to tune these parameters, as discussed in lecture.
+                      </li>
+                    </ul>
 
                   <h3 id="neural_net">Part 3: Neural Network</h3>
 
@@ -145,13 +372,61 @@ notebook()</code></pre>
 
                   <h3>Part 1: Nearest Neighbors</h3>
 
-                  <h3>Part 2: Linear Classifiers</h3>
+                    <ul class="todo">
+                      <li class="icon solid fa-laptop-code">
+                        <strong><a href="#todo4_1_1">4.1.1</a>:</strong> Complete the function <code>compute_distance()</code> so that it returns the distance between two images.
+                      </li>
+                      <li class="icon solid fa-laptop-code">
+                        <strong><a href="#todo4_1_2">4.1.2</a>:</strong> Complete the function <code>compute_distances()</code> so that it returns a vector of distances between an image and a matrix of training images.
+                      </li>
+                      <li class="icon solid fa-laptop-code">
+                        <strong><a href="#todo4_1_3">4.1.3</a>:</strong> Complete the function <code>nearest_neighbor()</code> so that it returns the index of the nearest neighbor to a test image in the training set.
+                      </li>
+                      <li class="icon solid fa-laptop-code">
+                        <strong><a href="#todo4_1_4">4.1.4</a>:</strong> Complete the function <code>nearest_neighbors_multi()</code> so that it returns a vector of indices of the nearest neighbors of each test image in the training set.
+                      </li>
+                      <li class="icon solid fa-laptop-code">
+                        <strong><a href="#todo4_1_5">4.1.5</a>:</strong> Complete the function <code>predict_nn_labels()</code> to predict labels for a set of test images using nearest neighbors.
+                      </li>
+                      <li class="icon solid fa-laptop-code">
+                        <strong><a href="#todo4_1_6">4.1.6</a>:</strong> Experiment with the value of <code>N_train</code> and record your observations.
+                      </li>
+                    </ul>
 
-                  <h3>Part 3: Neural Network</h3>
+                    <h3>Part 2: Linear Classifiers</h3>
+
+                    <ul class="todo">
+                      <li class="icon solid fa-laptop-code">
+                        <strong><a href="#todo4_2_1">4.2.1</a>:</strong> Complete the function <code>linear_forward()</code> so that it returns the class score for each image.
+                      </li>
+                      <li class="icon solid fa-laptop-code">
+                        <strong><a href="#todo4_2_2">4.2.2</a>:</strong> Complete the function <code>svm_loss()</code> to calculate the SVM loss given the class scores.
+                      </li>
+                      <li class="icon solid fa-laptop-code">
+                        <strong><a href="#todo4_2_3">4.2.3</a>:</strong> Complete the function <code>train_svm()</code> to train the linear classifier.
+                      </li>
+                      <li class="icon solid fa-laptop-code">
+                        <strong><a href="#todo4_2_4">4.2.4</a>:</strong> Complete the function <code>test_svm()</code> to use the forward pass function to predict a label for each image.
+                      </li>
+                      <li class="icon solid fa-laptop-code">
+                        <strong><a href="#todo4_2_5">4.2.5</a>:</strong> Tune the learning rate and the regularization coefficient and report your observations.
+                      </li>
+                    </ul>
+
+                    <h3>Part 3: Neural Network</h3>
 
                   <hr class="major" />
 
                   <h2 id="adv_ext">Advanced Extensions</h2>
+
+                    <ul class="todo">
+                      <li class="icon solid fa-laptop-code">
+                        <strong><a href="#todoAE_4i">Advanced Extension 4.i</a>:</strong> Implement the k-nearest neighbors algorithm.
+                      </li>
+                      <li class="icon solid fa-laptop-code">
+                        <strong><a href="#todoAE_4ii">Advanced Extension 4.ii</a>:</strong> Experiment with different values of \(k\).
+                      </li>
+                    </ul>
 
                 </section>
 
