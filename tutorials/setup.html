@@ -123,6 +123,13 @@
                         Now, in a terminal, when you type <code>git --version</code>, version information should print out:
                         <span class="image main"><img src="../images/setup/git/mac/git-success.png" alt="" style="max-width:500px;"/></span>
                       </li>
+                      <li><strong>Install Git Credential Manager:</strong>
+                        We need one more tool to let us log into Git from a laptop so we can clone and push to Git repositories. Git Credential Manager lets you log in to GitHub and it will remember you so you don't have to put in your password every time you interact with Git. First, install <a href="https://brew.sh/" target="_blank">Brew</a>, a package manager for Mac. Open a terminal and type:
+                        <pre><code class="language-bash">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>
+                        Enter your password when prompted, and press Return to allow the install to start. When it finishes, in the terminal, install Git Credential Manager by entering these commands, one at a time:
+                        <pre><code class="language-bash">brew tap microsoft/git
+brew install --cask git-credential-manager-core</code></pre>
+                      </li>
                       <li>Configure Git using the <a href="#sec_config_git">configuration instructions</a>.</li>
                     </ol>
 
