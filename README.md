@@ -22,7 +22,7 @@ Robotics 102 is a new course being offered as part of the emerging Michigan Robo
 | Lecture | Topic                                                              | Materials                                                                                            | Textbook Chapters        | Assignments due                                                                          |
 |---------|--------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|--------------------------|------------------------------------------------------------------------------------------|
 | 0       | Initialization                                                     | Slides     |                 |                                                                                          |
-| 1       | Hello World - Our first C++ Program                                | [Video](https://www.youtube.com/watch?v=itP15hjoLcg&list=PLdPQZLMHRjDK8ZbLIcq1Q2PQobIi68dpv&index=2)  |                 |                                                                                          |
+| 1       | Hello World - Our first C++ Program                                | [Video](https://youtu.be/nKu9H-CeptI)  |                 |                                                                                          |
 |         |                                                                   |   |                 |                                                                                          |
 
 ## For more
