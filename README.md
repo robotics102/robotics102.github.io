@@ -25,6 +25,18 @@ Robotics 102 is a new course being offered as part of the emerging Michigan Robo
 | 1       | Hello World - Our first C++ Program                                | [Video](https://youtu.be/nKu9H-CeptI)  |                 |                                                                                          |
 |         |                                                                   |   |                 |                                                                                          |
 
+## Credits
+- Chad Jenkins, Associate Director of Undergraduate Programs, Michigan Robotics
+- Jana Pavlasek, Director, Michigan Robotics
+- Jasmine Jones, Berea College
+- Jan Pearce, Berea College
+- Tom Gao
+- Brody Riopelle
+- Max Topping
+- Madhav Achar
+- Liz Olson
+- Tommy Cohn
+
 ## For more
 - [ROB 102 Course Information for those at U-M](https://robotics.umich.edu/academic-program/course-offerings/rob102/)
 - [University of Michigan Robotics Institute](https://robotics.umich.edu)
