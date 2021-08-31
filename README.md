@@ -1,6 +1,7 @@
 # Robotics 102: Introduction to AI and Programming
 
 http://robotics102.github.io
+
 http://robotics102.org
 
 The objective for Robotics 102 is the implementation and understanding of autonomous navigation algorithms for mobile robots. Through building autonomous navigation algorithms for an omni-drive robot, students in Robotics 102 will be introduced to the foundations of AI and how to program computers for AI algorithms. Students will gain exposure to modeling AI problems as graphs and performing inference though graph algorithms in C++ and Julia.
