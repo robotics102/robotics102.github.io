@@ -40,10 +40,13 @@
                     <strong>Project 0:</strong> Introduction to Programming in C++
                   </header>
 
+                  <p><font size="+2"><strong>Due September 20th, 2021 at 11:59 PM.</strong></font></p>
+
                   <p>Before you start, make sure you have followed the <a href="../tutorials/setup.html">Setup Instructions</a>. You will need to have VSCode, Docker and Git installed in order to complete this project. The following topics are covered on this page:</p>
 
                   <ul>
                     <li><a href="#getting_code">Getting the code</a></li>
+                    <li><a href="#submitting">Submitting your assignment</a></li>
                     <li><a href="#run_docker">Running a Docker container</a></li>
                     <li><a href="#proj_desc">Project description</a>
                       <ul>
@@ -53,6 +56,8 @@
                     </li>
                     <li><a href="#tasks">Task Summary</a></li>
                   </ul>
+
+                  <hr class="major" />
 
                   <h2 id="getting_code">Getting the code</h2>
 
@@ -89,12 +94,39 @@
                   <p>Open a terminal (in Windows, open Git Bash). Navigate to the folder where you want to store the code for this course with the command <code>cd</code>. For example, you might create a folder called &quot;rob102-code&quot;. Make sure to take note of where you are storing the code so you can find it later! After this folder is created, in the terminal, type:</p>
                   <pre><code>cd Documents/rob102-code</code></pre>
                   <p>You will now be in a terminal inside the folder you just created. Now, in the same terminal, type the following command to clone your repository:</p>
-                  <pre><code class="language-bash">git clone &lt;ADDRESS&gt;</code></code></pre>
+                  <pre><code class="language-bash">git clone &lt;ADDRESS&gt;</code></pre>
                   <p>Substitute the address to your repository, which you just copied. The first time you use Git, a window should appear asking you to log in. Click the option to log in from your browser and enter your username and password. When you're done, the repository should clone from your terminal. If you type <code>ls</code> into your terminal, you will see the folder containing the code you just cloned.</p>
 
                   <span class="image main"><img src="../images/p0/git-clone.png" alt="" style="max-width:600px;"/></span>
 
                   <p>Once you have the code on your computer, open VSCode and select &quot;File&quot; &gt; &quot;Open Folder...&quot; and navigate to where you stored your code. Select the folder and click &quot;Select Folder&quot;. Now you should see all the files in VSCode in the file explorer on the left. You can click on any file to view and edit it.</p>
+
+                  <hr class="major" />
+
+                  <h2 id="submitting">Submitting your assignment</h2>
+
+                    <p>You will submit your assignment by committing your code to your GitHub repository on the <code>main</code> branch. The instructors have access to the repository and they will pull and run your code.</p>
+
+                    <p>You will indicate which version of the code you want graded through a Git feature called <em>tagging</em>. Once your code is ready to go, you can tag the current version by typing the following command in a terminal, from inside the repository directory:</p>
+                    <pre><code class="language-bash">git tag p0-v1</code></pre>
+
+                    <p>You can look at the tag and check that your most recent code is included with the following command:</p>
+                    <pre><code class="language-bash">git show p0-v1</code></pre>
+
+                    <span class="image main"><img src="../images/p0/git-tag-show.png" alt="" style="max-width:600px;"/></span>
+
+                    <p>Finally, push your tag to GitHub:</p>
+                    <pre><code class="language-bash">git push origin p0-v1</code></pre>
+
+                    <p><strong>Make sure your tag was pushed correctly.</strong> You can do this by navigating to the repository in your browser and clicking on the tag icon:</p>
+                    <span class="image main"><img src="../images/p0/git-nav-tag.png" alt=""/></span>
+
+                    <p>You can also view the code associated with the tag by selecting it from the &quot;Code&quot; tab of the repository:</p>
+                    <span class="image main"><img src="../images/p0/git-view-code-tag.png" alt="" style="max-width:400px;"/></span>
+
+                    <h3>Updating your submission</h3>
+
+                    <p>If you want to change your submission before the deadline, simply add a new tag and increment the version number. For example, if you want to submit a second time, tag your new commit with tag <code>p0-v2</code>.</p>
 
                   <hr class="major" />
 
