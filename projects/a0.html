@@ -50,11 +50,11 @@
                     <li><a href="#run_docker">Running a Docker container</a></li>
                     <li><a href="#proj_desc">Project description</a>
                       <ul>
-                        <li><a href="#proj_desc_hello_world">Hello World!</a></li>
-                        <li><a href="#proj_desc_calc">Pocket Calculator</a></li>
+                        <li><a href="#proj_desc_hello_world">Hello World! (0 points)</a></li>
+                        <li><a href="#proj_desc_calc">Pocket Calculator (15 points)</a></li>
                       </ul>
                     </li>
-                    <li><a href="#tasks">Task Summary</a></li>
+                    <li><a href="#features">Feature Summary</a></li>
                   </ul>
 
                   <hr class="major" />
@@ -158,11 +158,11 @@
 
                     <p>This project is divided into 2 parts:</p>
                     <ul>
-                      <li><a href="#proj_desc_hello_world">Hello World!</a></li>
-                      <li><a href="#proj_desc_calc">Pocket Calculator</a></li>
+                      <li><a href="#proj_desc_hello_world">Hello World! (0 points)</a></li>
+                      <li><a href="#proj_desc_calc">Pocket Calculator (15 points)</a></li>
                     </ul>
 
-                  <h3 id="proj_desc_hello_world">Hello World!</h3>
+                  <h3 id="proj_desc_hello_world">Hello World! (0 points)</h3>
 
                     <p>In this part, you will get familiar with the structure of a C++ program and learn how to compile and execute code.</p>
 
@@ -214,11 +214,11 @@ ls</code></pre>
 
                     <ul class="todo">
                       <li class="icon solid fa-laptop-code">
-                        <strong id="todo0_1">0.1:</strong> Complete the code in the file <code>hello_world.cpp</code> so that it prints the message &quot;Hello World! My name is [YOUR NAME].&quot;
+                        <strong id="todo0_1">P0.0.1 (0 points):</strong> Complete the code in the file <code>hello_world.cpp</code> so that it prints the message &quot;Hello World! My name is [YOUR NAME].&quot;
                       </li>
                     </ul>
 
-                  <h3 id="proj_desc_calc">Programming a Pocket Calculator</h3>
+                  <h3 id="proj_desc_calc">Programming a Pocket Calculator (15 points)</h3>
 
                     <p>During lecture, we will go through how to program a pocket calculator in C++. You should implement the calculator in the provided template file, which you can find in <code>src/pocket_calc/pocket_calc.cpp</code>. To compile and run it, we will do the same thing as in the Hello World exercise. In the terminal in the Docker container, do:</p>
                     <pre><code class="language-bash">cd /code/src/hello_world/
@@ -226,13 +226,107 @@ g++ pocket_calc.cpp -o pocket_calc
 ./pocket_calc</code></pre>
                     <p>Remember to recompile the code every time you make a change. We will implement this program in multiple steps. A list of each step to complete will be available on this page.</p>
 
-                  <hr class="major" />
+                    <h4>Features: Pocket Calculator</h4>
 
-                  <h2 id="tasks">Task Summary</h2>
+                    <p>
+                      <strong>We will go through implementing these features to build up our pocket calculator together in class.</strong>
+                      The list of features below summarizes the steps we will cover in class (see the <a href="../index.html#sec_schedule">schedule</a> for links to lecture content). Use them as a checklist before <a href="#submitting">submitting your assignment</a>.
+                      You are welcome to work on the assignment on your own time if you would like.
+                    </p>
 
                     <ul class="todo">
-                      <li class="icon solid fa-laptop-code"><strong><a href="#todo0_1">0.1</a>:</strong> Print the message &quot;Hello World! My name is [YOUR NAME].&quot;</li>
+                      <li class="icon solid fa-laptop-code">
+                        <strong id="todo1_1">P0.1.1 (2 points):</strong>
+                        Write statements that perform arithmetic operations for addition, subtraction, multiplication, and division for two integers stored in variables. The result of each operation must be a number.
+                      </li>
+                      <li class="icon solid fa-laptop-code">
+                        <strong id="todo1_2">P0.1.2 (2 points):</strong>
+                        Create a function that can prompt a user to enter a real number and have the function return this number.
+                      </li>
+                      <li class="icon solid fa-laptop-code">
+                        <strong id="todo1_3">P0.1.3 (3 points):</strong>
+                        Create a function with four parameters that performs a single arithmetic operation on two floating point operands based on the operator specified in a character variable.  The result of the operation is returned in a parameter that is passed by reference.  The program must quit if non arithmetic operation is specified.
+                      </li>
+                      <li class="icon solid fa-laptop-code">
+                        <strong id="todo1_4">P0.1.4 (3 points):</strong>
+                        Develop an execution loop that performs an infinite number of subsequent arithmetic operations from user input, until the user specifies the operator &apos;q&apos; for quit.
+                      </li>
+                      <li class="icon solid fa-laptop-code">
+                        <strong id="todo1_5">P0.1.5 (3 points):</strong>
+                        Output the result accumulated over subsequently performed operations as an equation that conforms to infix notation.
+                      </li>
+                      <li class="icon solid fa-laptop-code">
+                        <strong id="todo1_6">P0.1.6 (2 points):</strong>
+                        Enable the user to undo their last operation by specifying &apos;u&apos; as the operator.
+                      </li>
                     </ul>
+
+                    <h4>Advanced Extensions: Pocket Calculator</h4>
+
+                    <p>Advanced extensions are optional features which you may complete for up to 4 additional points in the course. They are due by the <strong>final grading deadline (December 10, 2021)</strong>. They do not need to be completed by the deadline for this project. See the <a href="../syllabus.html#sec_adv_ext">syllabus</a> for details.</p>
+
+                    <ul class="todo">
+                      <li class="icon solid fa-laptop-code">
+                        <strong id="todoAE_1_i">Advanced Extension P0.1.i (1 extension point):</strong>
+                        Enable the user to clear the calculator by specifying &apos;c&apos; as the operator.
+                      </li>
+                      <li class="icon solid fa-laptop-code">
+                        <strong id="todoAE_1_ii">Advanced Extension P0.1.ii (2 extension points):</strong>
+                        Enable the user to store and load their current set of operations through a file named &quot;resultcalc.txt&quot; such that this equation can be used across multiple program executions.
+                      </li>
+                    </ul>
+
+                  <hr class="major" />
+
+                  <h2 id="features">Feature Summary</h2>
+
+                  <h3>Hello World!</h3>
+
+                    <ul class="todo">
+                      <li class="icon solid fa-laptop-code"><strong><a href="#todo0_1">P0.0.1</a> (0 points):</strong> Print the message &quot;Hello World! My name is [YOUR NAME].&quot;</li>
+                    </ul>
+
+                  <h3>Pocket Calculator</h3>
+
+                  <ul class="todo">
+                    <li class="icon solid fa-laptop-code">
+                      <strong><a href="#todo1_1">P0.1.1</a> (2 points):</strong>
+                      Write statements that perform arithmetic operations for addition, subtraction, multiplication, and division for two integers stored in variables. The result of each operation must be a number.
+                    </li>
+                    <li class="icon solid fa-laptop-code">
+                      <strong><a href="#todo1_2">P0.1.2</a> (2 points):</strong>
+                      Create a function that can prompt a user to enter a real number and have the function return this number.
+                    </li>
+                    <li class="icon solid fa-laptop-code">
+                      <strong><a href="#todo1_3">P0.1.3</a> (3 points):</strong>
+                      Create a function with four parameters that performs a single arithmetic operation on two floating point operands based on the operator specified in a character variable.  The result of the operation is returned in a parameter that is passed by reference.  The program must quit if non arithmetic operation is specified.
+                    </li>
+                    <li class="icon solid fa-laptop-code">
+                      <strong><a href="#todo1_4">P0.1.4</a> (3 points):</strong>
+                      Develop an execution loop that performs an infinite number of subsequent arithmetic operations from user input, until the user specifies the operator &apos;q&apos; for quit.
+                    </li>
+                    <li class="icon solid fa-laptop-code">
+                      <strong><a href="#todo1_5">P0.1.5</a> (3 points):</strong>
+                      Output the result accumulated over subsequently performed operations as an equation that conforms to infix notation.
+                    </li>
+                    <li class="icon solid fa-laptop-code">
+                      <strong><a href="#todo1_6">P0.1.6</a> (2 points):</strong>
+                      Enable the user to undo their last operation by specifying &apos;u&apos; as the operator.
+                    </li>
+                  </ul>
+
+                  <h4>Advanced Extensions: Pocket Calculator</h4>
+
+                  <ul class="todo">
+                    <li class="icon solid fa-laptop-code">
+                      <strong><a href="#todoAE_1_i">Advanced Extension P0.1.i</a> (1 extension point):</strong>
+                      Enable the user to clear the calculator by specifying &apos;c&apos; as the operator.
+                    </li>
+                    <li class="icon solid fa-laptop-code">
+                      <strong><a href="#todoAE_1_ii">Advanced Extension P0.1.ii</a> (2 extension points):</strong>
+                      Enable the user to store and load their current set of operations through a file named &quot;resultcalc.txt&quot; such that this equation can be used across multiple program executions.
+                    </li>
+                  </ul>
 
                 </section>
 
