@@ -1601,6 +1601,11 @@ ul.pagination {
   -webkit-overflow-scrolling: touch;
   overflow-x: auto; }
 
+.table-wrapper.schedule table tbody tr:nth-child(2n + 1){
+  background-color: #ffffff; }
+.table-wrapper.schedule table tbody tr.week{
+    background-color: rgba(230, 235, 237, 0.25); }
+
 table {
   margin: 0 0 2em 0;
   width: 100%; }
@@ -1612,6 +1617,10 @@ table {
       background-color: rgba(230, 235, 237, 0.25); }
   table td {
     padding: 0.75em 0.75em; }
+  table td ul {
+    margin: 0;
+    padding-left: 3em;
+  }
   table th {
     color: #3d4449;
     font-size: 0.9em;
