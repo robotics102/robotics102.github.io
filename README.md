@@ -25,10 +25,10 @@ Robotics 102 is a new course being offered as part of the emerging Michigan Robo
 ## Course Plan
 | Lecture | Topic                                                              | Materials                                                                                            | In-Class Activity        | Assignments Due                                                                          |
 |---------|--------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|--------------------------|------------------------------------------------------------------------------------------|
-| 0       | Initialization                         | Slides     |    |    |
-| 1       | Hello World - Our first C++ Program    | [Video](https://youtu.be/nKu9H-CeptI)  |    |    |
-| 2       | C++ Operators and Variables            | [Video](https://youtu.be/Vvys7lZa764)  |    |    |
-| 3       | C++ Functions.                         | [Video](https://youtu.be/ZarKDScV_DQ)  |    |    |
+| 0       | Initialization                         | [Slides](https://github.com/robotics102/robotics102.github.io/blob/main/lectures/rob102_00_initialization_compressed.pdf)     |    |    |
+| 1       | Hello World - Our first C++ Program    | [Video](https://youtu.be/nKu9H-CeptI) [Slides](https://github.com/robotics102/robotics102.github.io/blob/main/lectures/rob102_01_helloworld_compresed.pdf)  |    |    |
+| 2       | C++ Operators and Variables            | [Video](https://youtu.be/Vvys7lZa764) [Slides](https://drive.google.com/file/d/1qU9Q2rwbDCqP-k8oOfH-e7AnPy5AmhsO/view?usp=sharing) |    |    |
+| 3       | C++ Functions.                         | [Video](https://youtu.be/ZarKDScV_DQ) [Slides](https://github.com/robotics102/robotics102.github.io/blob/main/lectures/rob102_03_functions_selected_compressed.pdf)  |    |    |
 
 ## Credits
 - Chad Jenkins, Associate Director of Undergraduate Programs, Michigan Robotics
