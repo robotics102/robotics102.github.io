@@ -23,11 +23,12 @@ In the context of autonomous navigation, Robotics 102 will provide concrete exam
 Robotics 102 is a new course being offered as part of the emerging Michigan Robotics Undergraduate Program. Robotics 102 for Fall 2021 is part of a new Distributed Teaching Collaborative offered in collaboration with Berea College. 
 
 ## Course Plan
-| Lecture | Topic                                                              | Materials                                                                                            | Textbook Chapters        | Assignments due                                                                          |
+| Lecture | Topic                                                              | Materials                                                                                            | In-Class Activity        | Assignments Due                                                                          |
 |---------|--------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|--------------------------|------------------------------------------------------------------------------------------|
-| 0       | Initialization                                                     | Slides     |                 |                                                                                          |
-| 1       | Hello World - Our first C++ Program                                | [Video](https://youtu.be/nKu9H-CeptI)  |                 |                                                                                          |
-|         |                                                                   |   |                 |                                                                                          |
+| 0       | Initialization                         | Slides     |    |    |
+| 1       | Hello World - Our first C++ Program    | [Video](https://youtu.be/nKu9H-CeptI)  |    |    |
+| 2       | C++ Operators and Variables            | [Video](https://youtu.be/Vvys7lZa764)  |    |    |
+| 3       | C++ Functions.                         | [Video](https://youtu.be/ZarKDScV_DQ)  |    |    |
 
 ## Credits
 - Chad Jenkins, Associate Director of Undergraduate Programs, Michigan Robotics
