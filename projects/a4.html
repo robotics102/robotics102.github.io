@@ -31,13 +31,13 @@
             <div class="inner">
 
               <!-- Header -->
-              <header id="header">
-                <a href="../index.html" class="logo"><strong>ROB 102:</strong> Introduction to AI and Programming</a>
-                <ul class="icons">
-                  <li><a href="https://um-fa21-rob102.slack.com" class="icon brands fa-slack" target="_blank"><span class="label">Slack</span></a></li>
-                  <li><a href="https://github.com/robotics102" class="icon brands fa-github" target="_blank"><span class="label">Github</span></a></li>
-                </ul>
-              </header>
+                <header id="header">
+                  <a href="../index.html" class="logo"><strong>ROB 102:</strong> Introduction to AI and Programming</a>
+                  <ul class="icons">
+                    <li><a href="https://um-fa21-rob102.slack.com" class="icon brands fa-slack" target="_blank"><span class="label">Slack</span></a></li>
+                    <li><a href="https://github.com/robotics102" class="icon brands fa-github" target="_blank"><span class="label">Github</span></a></li>
+                  </ul>
+                </header>
 
               <!-- Content -->
                 <section>
@@ -56,6 +56,8 @@
                   <p>This project is implemented using the programming language <a href="https://julialang.org/"  target="_blank">Julia</a>. Before you start, make sure you have followed the <a href="../tutorials/setup.html#install_julia">Julia install instructions</a> to install Julia locally on your computer. The following topics are covered on this page:</p>
 
                   <ul>
+                    <!-- <li><a href="#getting_code">Getting the code</a></li> -->
+                    <!-- <li><a href="#run_jupyter">Launching a Jupyter Notebook</a></li> -->
                     <li><a href="#intro_julia">Part 0: Intro to Julia</a></li>
                     <li><a href="#proj_desc">Project Description</a>
                       <ul>
@@ -68,9 +70,20 @@
                     <li><a href="#adv_ext">Advanced Extensions</a></li>
                   </ul>
 
-                  <hr class="major" />
+                  <!-- <hr class="major" /> -->
 
-                  <h2 id="intro_julia">Part 0: Introduction to Julia</h2>
+                  <!-- <h2 id="getting_code">Getting the code</h2> -->
+
+                  <!-- <p>You will create a Git repository to store your code based off the provided template, as in previous projects. Navigate to the template code <a href="https://github.com/rob102-staff/machine-learning">here</a> and create a repository using the template. Remember to <b>make sure it is set to private</b>. Storing your assignment solutions in a public repository is a violation of the honor code. Give Prof. Jenkins and Jana access to your code using their usernames, <code>ohseejay</code> and <code>janapavlasek</code>. Finally, clone your new repository on your computer, substituting the address to your repo:</p> -->
+                  <!-- <pre><code class="language-bash">git clone &lt;ADDRESS&gt;</code></code></pre> -->
+                  <!-- <p>If you need to refresh your memory, refer to the <a href="a0.html#getting_code">instructions from Project 0</a> for more details about this step.</p> -->
+
+                </section>
+
+                <section id="intro_julia">
+                    <header class="major">
+                      <h2><a href="#intro_julia">Part 0: Introduction to Julia</a></h2>
+                    </header>
 
                   <p>To get familiar with using Jupyter notebooks and programming in Julia, we have created an introductory notebook. Use the following invite link to accept the assignment on the Github Classroom (Berea):</p>
 
@@ -106,10 +119,12 @@ notebook()</code></pre>
                       <strong>Hint:</strong> The Julia documentation is a great resource for more details about syntax, built-in functions, and best practices: <a href="https://docs.julialang.org/" target="_blank">https://docs.julialang.org/</a>
                     </li>
                   </ul>
+                </section>
 
-                  <hr class="major" />
-
-                  <h2 id="proj_desc">Project Description</h2>
+                <section id="proj_desc">
+                    <header class="major">
+                      <h2><a href="#proj_desc">Project Description</a></h2>
+                    </header>
 
                   <p>In this project, you will develop three algorithms for image classification on the CIFAR-10 dataset:</p>
                     <ul>
@@ -314,7 +329,7 @@ label = y_train[i]</code></pre>
                       </li>
                     </ul>
 
-                    <h4>Training the network</h4>
+                    <h4>Training the classifier</h4>
 
                     <p>Now, we will use the functions we developed to train a linear classifier. Implement a training loop in the provided function which first samples a random batch of images, uses <code>svm_loss()</code> to calculate the loss and gradients, then updates the weight matrix. Loop for the given number of iterations. The number of iterations, learning rate, batch size, and regularization coefficient are given (see the function documentation for details).</p>
 
@@ -324,7 +339,7 @@ label = y_train[i]</code></pre>
                       </li>
                     </ul>
 
-                    <h4>Testing the network</h4>
+                    <h4>Testing the classifier</h4>
 
                     <p>Once we have found a set of weights, we can use them to test our algorithm. Code has been provided to test the accuracy of the network. You need to write the test loop that returns class labels for each test image, using the weights found in training.</p>
 
@@ -356,11 +371,89 @@ label = y_train[i]</code></pre>
 
                   <h3 id="neural_net">Part 3: Neural Network</h3>
 
-                    <p>Coming soon!</p>
+                    <p>Our linear classifier can only represent <em>linear</em> functions. A two-layer neural network can represent more complicated functions with a different forward model and a few more learnable parameters. You will implement your own two-layer neural network from scratch in the notebook <code>two_layer_neural_net.ipnyb</code>.</p>
 
-                  <hr class="major" />
+                    <h4>Forward Pass</h4>
 
-                  <h2 id="tasks">Task Summary</h2>
+                    <p>Like in the linear classifier, we will compute the forward pass through the neural network, which calculates the class scores for each image in a batch. In the provided cell, implement the forward pass for a two-layer neural network in the function <code>nn_forward()</code>.</p>
+
+                    <ul class="todo">
+                      <li class="icon solid fa-laptop-code">
+                        <strong id="todo4_3_1">4.3.1:</strong> Complete the function <code>nn_forward()</code> so that it returns the class scores for each image in the batch, and the hidden layer outputs.
+                      </li>
+                    </ul>
+
+                    <h4>Backward Pass</h4>
+
+                    <p>Next, we will compute the SVM loss for the current parameters. This will look very similar to the loss computation in the linear classifier! The gradient computation is provided for you.</p>
+
+                    <ul class="todo">
+                      <li class="icon solid fa-laptop-code">
+                        <strong id="todo4_3_2">4.3.2:</strong> Complete the function <code>nn_svm_loss()</code> so that it computes the average SVM loss for the batch of images, and saves it to the variable <code>loss</code>.
+                      </li>
+                    </ul>
+
+                    <ul class="hint">
+                      <li class="icon solid fa-cogs">
+                        <strong>Hint:</strong> Use the <code>nn_forward()</code> function to get the scores and hidden layer outputs.
+                      </li>
+                    </ul>
+
+                    <h4>Training the network</h4>
+
+                    <p>Now it's time to train our neural network! The function <code>train_nn()</code> should sample a batch of images, call <code>nn_svm_loss()</code> to compute the loss and gradients for the current parameters, then update all the weights and biases using gradient descent.</p>
+
+                    <ul class="todo">
+                      <li class="icon solid fa-laptop-code">
+                        <strong id="todo4_3_3">4.3.3:</strong> Complete the training loop in the function <code>train_nn()</code> so that it samples a batch, calculates the loss and gradients, and updates the parameters.
+                      </li>
+                    </ul>
+
+                    <ul class="hint">
+                      <li class="icon solid fa-cogs">
+                        <strong>Hint:</strong> You should update both sets of weights and biases. In the code, these are called <code>W1</code>, <code>W2</code>, <code>b1</code>, and <code>b2</code>.
+                      </li>
+                      <li class="icon solid fa-cogs">
+                        <strong>Hint:</strong> The weights and biases are stored in <code>params</code>. Access them using <code>params[&quot;W1&quot;]</code>, <code>params[&quot;b1&quot;]</code>, etc. Make sure to save the updated parameters back in <code>params</code>. The gradients are stored similarly. If you save them in a variable called <code>grads</code>, you would access them with <code>grads[&quot;W1&quot;]</code>, <code>grads[&quot;b1&quot;]</code>, etc.
+                      </li>
+                    </ul>
+
+                    <h4>Testing the network</h4>
+
+                    <p>Now that we've trained our model, we can test the accuracy of our network. Complete the function <code>test_nn()</code> so that it computes the class scores for a batch of images, then returns the predicted class label for each image.</p>
+
+                    <ul class="todo">
+                      <li class="icon solid fa-laptop-code">
+                        <strong id="todo4_3_4">4.3.4:</strong> Complete the function <code>test_nn()</code> to compute the class scores for each image and return the predicted label for the images.
+                      </li>
+                    </ul>
+
+                    <ul class="hint">
+                      <li class="icon solid fa-cogs">
+                        <strong>Hint:</strong> The <code>nn_forward()</code> function might come in handy again.
+                      </li>
+                    </ul>
+
+                    <p>Just like in the linear classifier, there are some hyperparameters that we can tune to improve our results. Try changing the learning rate, regularization coefficient, and number of hidden neurons to improve your network's performance.</p>
+
+                    <ul class="todo">
+                      <li class="icon solid fa-laptop-code">
+                        <strong id="todo4_3_5">4.3.5:</strong> Tune the learning rate, regularization coefficient, and number of hidden neurons. See how high you can get your accuracy. Report on your observations.
+                      </li>
+                    </ul>
+
+                    <ul class="hint">
+                      <li class="icon solid fa-cogs">
+                        <strong>Hint:</strong> You might consider implementing cross validation to tune these parameters, as discussed in lecture.
+                      </li>
+                    </ul>
+
+                </section>
+
+                <section id="tasks">
+                  <header class="major">
+                    <h2><a href="#tasks">Task Summary</a></h2>
+                  </header>
 
                   <h3>Part 0: Intro to Julia</h3>
 
@@ -415,9 +508,30 @@ label = y_train[i]</code></pre>
 
                     <h3>Part 3: Neural Network</h3>
 
-                  <hr class="major" />
+                    <ul class="todo">
+                      <li class="icon solid fa-laptop-code">
+                        <strong><a href="#todo4_3_1">4.3.1</a>:</strong> Complete the function <code>nn_forward()</code> so that it returns the class score and hidden layer outputs for each image.
+                      </li>
+                      <li class="icon solid fa-laptop-code">
+                        <strong><a href="#todo4_3_2">4.3.2</a>:</strong> Complete the function <code>nn_svm_loss()</code> to calculate the SVM loss given the class scores.
+                      </li>
+                      <li class="icon solid fa-laptop-code">
+                        <strong><a href="#todo4_3_3">4.3.3</a>:</strong> Complete the function <code>train_nn()</code> to train the neural network.
+                      </li>
+                      <li class="icon solid fa-laptop-code">
+                        <strong><a href="#todo4_3_4">4.3.4</a>:</strong> Complete the function <code>test_nn()</code> to use the forward pass function to predict a label for each image.
+                      </li>
+                      <li class="icon solid fa-laptop-code">
+                        <strong><a href="#todo4_3_5">4.3.5</a>:</strong> Tune the learning rate, regularization coefficient, and number of hidden neurons, and report your observations.
+                      </li>
+                    </ul>
 
-                  <h2 id="adv_ext">Advanced Extensions</h2>
+                  </section>
+
+                  <section id="adv_ext">
+                    <header class="major">
+                      <h2><a href="#adv_ext">Advanced Extensions</a></h2>
+                    </header>
 
                     <ul class="todo">
                       <li class="icon solid fa-laptop-code">
