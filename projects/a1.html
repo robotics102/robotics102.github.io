@@ -99,13 +99,19 @@
 
                     <ul class="todo">
                       <li class="icon solid fa-laptop-code">
-                        <strong id="todo0">P1.0 (0 points):</strong> In the file <code>LICENSE.txt</code>, replace <code>&lt;COPYRIGHT HOLDER&gt;</code> with the names of all teammates, separated by commas. Replace <code>&lt;YEAR&gt;</code> with the current year.
+                        <strong id="todo1">P1.0 (1 point):</strong> In the file <code>LICENSE.txt</code>, replace <code>&lt;COPYRIGHT HOLDER&gt;</code> with the names of all teammates, separated by commas. Replace <code>&lt;YEAR&gt;</code> with the current year.
                       </li>
                     </ul>
 
                     <p><strong>Submitting the code:</strong> Tag the verion of the code you wish to submit, just like you did for <a href="a0.html#submitting">Project 0</a>.</p>
 
                     <p><strong>Submitting the video:</strong> Modify the file <code>README.md</code> to include a link to a video demonstrating all three parts of the project. You can submit one video for all the parts, or one video for each part. Commit the changes to <code>README.md</code>.</p>
+
+                    <ul class="todo">
+                      <li class="icon solid fa-laptop-code">
+                        <strong id="todo0">P1.1 (1 point):</strong> Add a link to a video demonstration of Parts 1, 2 and 3 to the <code>README.md</code> file in your repository.
+                      </li>
+                    </ul>
 
                     <p><em>Note:</em> Consider uploading your video to YouTube. You can make it public or unlisted if you prefer. Alternatively, you can upload your video to Google Drive (you have unlimited storage through your UM account). If you do this, make sure the link is accessible to the instructors.</p>
 
@@ -233,11 +239,11 @@ make</code></pre>
 
                   <h3 id="sec_square">Part 1: Drive Square</h3>
 
-                  <p>We will start by driving the robot in a square without any sensor feedback. For this part, you will write your code in the file <code>wall-follower/src/drive_square.cpp</code>. In the <code>main</code> function, write code to make the robot drive in a square three times.</p>
+                  <p>We will start by driving the robot in a square without any sensor feedback. For this part, you will write your code in the file <code>wall-follower/src/drive_square.cpp</code>. In the <code>main</code> function, write code to make the robot drive in a 1 meter by 1 meter square three times.</p>
 
                   <ul class="todo">
                     <li class="icon solid fa-laptop-code">
-                      <strong id="todo1_1">P1.1.1 (2 points):</strong> In the file <code>drive_square.cpp</code>, write code to drive the robot in a square three times.
+                      <strong id="todo1_1">P1.1.1 (2 points):</strong> In the file <code>drive_square.cpp</code>, write code to drive the robot in a 1m by 1m square three times.
                     </li>
                   </ul>
 
@@ -267,11 +273,11 @@ make</code></pre>
                     <li class="icon solid fa-cogs"><strong>Hint:</strong> Remember to ignore rays with zero intensity when finding the minimum range value. Rays with zero intensity have length zero by default. If you forget to check the intensity, the minimum range will always be zero.</li>
                   </ul>
 
-                  <p>For this part, the robot should drive forward. If the robot gets too close to an obstacle, it should stop. If the obstacle moves away, it should continue to drive. If the robot stops when it gets too close to a wall, you should be able to pick it up and move it somewhere else, and it should keep moving forward again. The code should continue forever, until you quit with Ctrl-C. Write your code to accomplish this in the file <code>wall-follower/src/drive_safe.cpp</code>.</p>
+                  <p>For this part, the robot should drive forward. If the robot gets within 35 cm from an obstacle, it should stop. If the obstacle moves away, it should continue to drive. If the robot stops when it gets too close to a wall, you should be able to pick it up and move it somewhere else, and it should keep moving forward again. The code should continue forever, until you quit with Ctrl-C. Write your code to accomplish this in the file <code>wall-follower/src/drive_safe.cpp</code>.</p>
 
                   <ul class="todo">
                     <li class="icon solid fa-laptop-code">
-                      <strong id="todo2_2">P1.2.2 (1 point):</strong> In the file <code>drive_safe.cpp</code>, write code to make the robot drive forward and stop if an obstacle gets too close. You should use the Lidar scan and your function, <code>findMinDist()</code>, to find the distance to the nearest obstacle.
+                      <strong id="todo2_2">P1.2.2 (1 point):</strong> In the file <code>drive_safe.cpp</code>, write code to make the robot drive forward and stop if an obstacle gets within 35 cm. You should use the Lidar scan and your function, <code>findMinDist()</code>, to find the distance to the nearest obstacle.
                     </li>
                   </ul>
 
@@ -301,7 +307,7 @@ make</code></pre>
                       <strong id="todo3_1">P1.3.1 (2 points):</strong> In the file <code>common/utils.cpp</code>, complete the function <code>crossProduct()</code> to find the cross product between two vectors.
                     </li>
                     <li class="icon solid fa-laptop-code">
-                      <strong id="todo3_2">P1.3.2 (8 points):</strong> In the file <code>wall_follower.cpp</code>, write a program that follows a wall using the procedure outlined above. You will need to use your functions <code>findMinDist()</code> and <code>crossProduct()</code>.
+                      <strong id="todo3_2">P1.3.2 (6 points):</strong> In the file <code>wall_follower.cpp</code>, write a program that follows a wall using the procedure outlined above. You will need to use your functions <code>findMinDist()</code> and <code>crossProduct()</code>.
                     </li>
                   </ul>
 
@@ -336,7 +342,7 @@ make</code></pre>
 
                   <ul class="todo">
                     <li class="icon solid fa-laptop-code">
-                      <strong><a href="#todo0">P1.0</a> (0 points):</strong>
+                      <strong><a href="#todo0">P1.0</a> (1 point):</strong>
                       In the file <code>LICENSE.txt</code>, replace <code>&lt;COPYRIGHT HOLDER&gt;</code> with the names of all teammates, separated by commas. Replace <code>&lt;YEAR&gt;</code> with the current year.
                     </li>
                     <li class="icon solid fa-laptop-code">
@@ -356,8 +362,12 @@ make</code></pre>
                       In the file <code>common/utils.cpp</code>, complete the function <code>crossProduct()</code> to find the cross product between two vectors.
                     </li>
                     <li class="icon solid fa-laptop-code">
-                      <strong><a href="#todo3_2">P1.3.2</a> (8 points):</strong>
+                      <strong><a href="#todo3_2">P1.3.2</a> (6 points):</strong>
                       In the file <code>wall_follower.cpp</code>, write a program that follows a wall using the procedure outlined above. You will need to use your functions <code>findMinDist()</code> and <code>crossProduct()</code>.
+                    </li>
+                    <li class="icon solid fa-laptop-code">
+                      <strong><a href="#todo1">P1.1</a> (1 point):</strong>
+                      Add a link to a video demonstration of Parts 1, 2 and 3 to the <code>README.md</code> file in your repository.
                     </li>
                   </ul>
 
