@@ -47,7 +47,12 @@
                     <p>This page has the following parts:</p>
                     <ul>
                       <li><a href="#sec_robot_care">Robot Usage &amp; Care</a></li>
-                      <li><a href="#sec_robot_prog">Programming the Robot</a></li>
+                      <li><a href="#sec_robot_prog">Programming the Robot</a>
+                        <ul>
+                          <li><a href="#sec_conn_robot">Connecting to the robot</a></li>
+                          <li><a href="#sec_code_robot">Coding on the robot</a></li>
+                        </ul>
+                      </li>
                     </ul>
                   </div>
                 </section>
@@ -94,6 +99,8 @@
 
                     <p>This tutorial assumes you have followed the instructions for installing <a href="setup.html#install_git">Git</a> and <a href="setup.html#install_vscode">VSCode</a>.</p>
 
+                    <h2 id="sec_conn_robot">Connecting to the robot</h2>
+
                     <h3>1. Add the Remote Development extension</h3>
 
                     <p>First, we need the VSCode Remote Development extension, which will allow us to connect VSCode to the robot's environment. Open VSCode and click on the &quot;Extensions&quot; icon <span><img src="https://raw.githubusercontent.com/microsoft/vscode-icons/master/icons/light/extensions.svg?sanitize=true"></span> in the toolbar on the left. Search for &quot;Remote Development&quot; and select the extension called &quot;Remote Development.&quot; Click &quot;Install&quot; to install it.</p>
@@ -137,11 +144,59 @@
 
                     <span class="image main"><img src="../images/tutorials/robot/remote-connect-vsc.png" alt="" style="max-width:800px;"/></span>
 
-                    <h3>5. Opening a folder for editing in VSCode</h3>
+                    <h2 id="sec_code_robot">Coding on the robot</h2>
 
-                    <p>You can open a folder on the robot for editing in VSCode, like you do for folders on your own computer. To do this, in the VSCode remote window, go to the explorer, or do &quot;File&quot; &gt; &quot;Open Folder...&quot;. In the command pallette that opens, type the path to the folder to open <em>on the Raspberry Pi</em> (for example, <code>/home/pi/my-code-folder</code>).</p>
+                    <h3>1. Generate SSH keys for the robot</h3>
 
-                    <p>When using the robot, you will first clone your Git repository for the appropriate project onto the Raspberry Pi. This will then be the folder you open in VSCode. When you first get your robot, there won't be any project code on it yet.</p>
+                    <p>We will clone repositories onto the robot using SSH. This means that you allow the robot's computer to connect to your GitHub account without entering your username and password (or access token) each time. The robot needs to have <em>SSH keys</em> to do this. First, check if there are SSH keys already by listing all the keys in the folder <code>.ssh/</code>. In the robot terminal in the VSCode remote window, type:</p>
+                    <pre><code class="language-bash">ls ~/.ssh/</code></pre>
+
+                    <p>
+                      <strong>If the file <code>~/.ssh/id_rsa.pub</code> exists:</strong>
+                      Go to step 2.
+                    </p>
+
+                    <p>
+                      <strong>If the file <code>~/.ssh/id_rsa.pub</code> does not exist:</strong>
+                      We need to generate SSH keys. In the robot terminal in the VSCode remote window, type:
+                    </p>
+                    <pre><code class="language-bash">ssh-keygen</code></pre>
+                    <p>Leave the default file paths as is, and leave the passphrase blank. You will just be pressing &quot;Enter&quot; (or &quot;Return&quot; on Mac) for every option that shows up.</p>
+
+                    <span class="image main"><img src="../images/tutorials/robot/robot-ssh-keygen.png" alt="" style="max-width:500px;"/></span>
+
+                    <h3>2. Copy the robot's public key</h3>
+
+                    <p>In the robot's terminal, type:</p>
+                    <pre><code class="language-bash">cat ~/.ssh/id_rsa.pub</code></pre>
+
+                    <p>The <code>cat</code> command prints the contents of a file to the terminal. Copy the contents of the file that prints out. Remember, Ctrl-C means <em>quit</em> in the terminal. Right-click to copy, or use Ctrl-Shit-C.</p>
+
+                    <span class="image main"><img src="../images/tutorials/robot/robot-cat-ssh.png" alt="" style="max-width:500px;"/></span>
+
+                    <h3>3. Add the robot's public key to your GitHub account</h3>
+
+                    <p>Connect back to your regular WiFi access point. Go to GitHub, and click on your profile picture in the top right corner, then click &quot;Settings&quot;. Select &quot;SSH and GPG keys&quot;, then click the green &quot;New SSH key&quot; button:</p>
+
+                    <span class="image main"><img src="../images/tutorials/robot/git-ssh-add.png" alt="" style="max-width:800px;"/></span>
+
+                    <p>Copy the full contents of the key you printed out in step 2 into the box and add the key.</p>
+
+                    <span class="image main"><img src="../images/tutorials/robot/add-ssh-key.png" alt="" style="max-width:800px;"/></span>
+
+                    <h3>4. Clone a repository on the robot</h3>
+
+                    <p>Connect back to the robot's WiFi access point. You may need to reload the remote VSCode window, or close it and reconnect. Open a terminal to the robot in VSCode and clone the relevant repository in the home directory. <em>You must use the SSH address to the repository.</em> When you get the address on the repository page, click the &quot;SSH&quot; option.</p>
+
+                    <span class="image main"><img src="../images/tutorials/robot/git-ssh-address.png" alt="" style="max-width:600px;"/></span>
+
+                    <p>The address should be of the form <code>git@github.com:robotics102/REPO-NAME.git</code>.</p>
+
+                    <p>Since you added the key to your GitHub account, you will not be asked for your password when cloning. If you can't clone the repository after adding the SSH keys to your account, see the course staff.</p>
+
+                    <h3>5. Open the repository for editing in VSCode</h3>
+
+                    <p>You can open a folder on the robot for editing in VSCode, like you do for folders on your own computer. To do this, in the VSCode remote window, go to the explorer, or do &quot;File&quot; &gt; &quot;Open Folder...&quot; (just &quot;Open...&quot; on Mac). In the command pallette that opens, type the path to the repository you cloned <em>on the Raspberry Pi</em> (for example, <code>/home/pi/my-code-folder</code>).</p>
                   </div>
                 </section>
 
