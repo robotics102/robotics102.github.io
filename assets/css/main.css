@@ -1631,6 +1631,9 @@ table {
     margin: 0;
     padding-left: 3em;
   }
+  table td pre {
+    margin-bottom: 0.5em;
+  }
   table th {
     color: #3d4449;
     font-size: 0.9em;
