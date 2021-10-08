@@ -44,7 +44,7 @@
 
                   <p>In <a href="a1.html">Project 1</a>, we saw that we can control the robot to maintain a goal distance to the wall by correcting the control signals based on the observed sensor data. Now, we want the robot to be able to autonomously navigate to a goal location.</p>
 
-                  <p><span class="image left"><img src="../images/potential_field.png" alt=""/></span>
+                  <p><span class="image left"><img src="../images/p2/potential_field.png" alt=""/></span>
                     In Project 2, we will accomplish autonomous navigation using <strong>potential field control</strong>. We can imagine that our goal is a magnet, pulling the robot towards it. We can treat obstacles like repelling forces, pushing the robot away. If we combine these two forces, we might get a potential field that looks like the example on the left. To get to the goal, our robot can follow the path of least resistance, moving in the direction of the strongest force at its location at each time step.</p>
 
                   <p>For this project, you will write code in C++ to calculate the potential fields the robot needs to reach a goal without colliding with any obstacles. You will be given a map which tells you where the obstacles are, along with a start and goal position. </p>
@@ -209,7 +209,7 @@
 
                   <p>In this part, you will implement a distance transform, which will calculate the distance from each cell to the nearest obstacle. This part can be implemented entirely on your computer in the Docker, using the web app (no robot needed). It should look something like the image below. The grey cells represent smaller distances to the nearest obstacle, and the white cells represent higher distances.</p>
 
-                  <span class="image main"><img src="../images/dist_tf.png" alt="" style="max-width:600px;"/></span>
+                  <span class="image main"><img src="../images/p2/dist_tf.png" alt="" style="max-width:600px;"/></span>
 
                   <p>We will be implementing a <strong>binary distance transform</strong>, which calculates the distance from each cell to the nearest occupied cell. For occupied cells, the distance should be zero.</p>
 
