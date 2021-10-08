@@ -6,11 +6,15 @@
 -->
 <html>
   <head>
-    <title>Project 2: Potential Field Control - ROB 102</title>
+    <title>Project 2: Potential Field Navigation - ROB 102</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="../assets/css/main.css" />
     <link rel="shortcut icon" type="image/png" href="../images/mbot_overhead.png"/>
+
+    <!-- Syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/stackoverflow-light.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
   </head>
   <body class="is-preload">
 
@@ -22,23 +26,349 @@
             <div class="inner">
 
               <!-- Header -->
-              <header id="header">
-                <a href="../index.html" class="logo"><strong>ROB 102:</strong> Introduction to AI and Programming</a>
-                <ul class="icons">
-                  <li><a href="https://um-fa21-rob102.slack.com" class="icon brands fa-slack" target="_blank"><span class="label">Slack</span></a></li>
-                  <li><a href="https://github.com/robotics102" class="icon brands fa-github" target="_blank"><span class="label">Github</span></a></li>
-                </ul>
-              </header>
+                <header id="header">
+                  <a href="../index.html" class="logo"><strong>ROB 102:</strong> Introduction to AI and Programming</a>
+                  <ul class="icons">
+                    <li><a href="https://um-fa21-rob102.slack.com" class="icon brands fa-slack" target="_blank"><span class="label">Slack</span></a></li>
+                    <li><a href="https://github.com/robotics102" class="icon brands fa-github" target="_blank"><span class="label">Github</span></a></li>
+                  </ul>
+                </header>
 
               <!-- Content -->
                 <section>
                   <header class="main project">
-                    Coming Soon!
+                    <strong>Project 2:</strong> Potential Field Navigation
                   </header>
 
-                  <p>Check back later.</p>
+                  <p><font size="+2"><strong>Due October 25th, 2021 at 11:59 PM.</strong></font></p>
+
+                  <p>In <a href="a1.html">Project 1</a>, we saw that we can control the robot to maintain a goal distance to the wall by correcting the control signals based on the observed sensor data. Now, we want the robot to be able to autonomously navigate to a goal location.</p>
+
+                  <p><span class="image left"><img src="../images/potential_field.png" alt=""/></span>
+                    In Project 2, we will accomplish autonomous navigation using <strong>potential field control</strong>. We can imagine that our goal is a magnet, pulling the robot towards it. We can treat obstacles like repelling forces, pushing the robot away. If we combine these two forces, we might get a potential field that looks like the example on the left. To get to the goal, our robot can follow the path of least resistance, moving in the direction of the strongest force at its location at each time step.</p>
+
+                  <p>For this project, you will write code in C++ to calculate the potential fields the robot needs to reach a goal without colliding with any obstacles. You will be given a map which tells you where the obstacles are, along with a start and goal position. </p>
+                  <!-- We've made a web app which you can use to develop your code on your computer (see the <a href="../tutorials/app.html">webapp tutorial</a> to get started. -->
+
+                  <p>This project will be done in teams of two. The instructors will assign teammates.</p>
+
+                  <ul>
+                    <li><a href="#getting_code">Getting the Code</a>
+                    <li><a href="#submitting">Submitting the Assignment</a></li>
+                    <!-- <li><a href="#code">Code Overview</a></li> -->
+                    <li><a href="#proj_desc">Project Description</a>
+                      <ul>
+                        <li><a href="#sec_graph">Part 0: Grid Graph</a></li>
+                        <li><a href="#sec_goal">Part 1: The Goal Field</a></li>
+                        <li><a href="#sec_dt">Part 2: Distance Transform</a></li>
+                        <li><a href="#sec_pfield">Part 3: Potential Field Navigation</a></li>
+                        <li><a href="#sec_euclidean_dt">Advanced Extension: Euclidean Distance Transform</a></li>
+                        <li><a href="#sec_results">Project Webpage: Results &amp; Reflection Questions</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="#tasks">Task Summary</a></li>
+                    <li><a href="#adv_ext">Advanced Extensions</a></li>
+                  </ul>
+
+                  <hr class="major" />
+
+                  <h2 id="getting_code">Getting the Code</h2>
+
+                  <p>One repository per team will be created for this project. Both teammates will have access to the repository and will be able to view it and make changes. Both teammates will share ownership of the code and receive credit for writing the code through the license file.</p>
+
+                  <p><strong>The invite link to accept the assignment on Github Classroom can be found on Slack.</strong></p>
+
+                  <p>Create a GitHub Classroom team named <strong>P2 UM Team &#35;</strong> for UM students, and <strong>P2 Berea Team &#35;</strong> for Berea students. Replace <strong>&#35;</strong> with the team number assigned to you. See <a href="a1.html#getting_code">Project 1 instructions</a> for more details.</p>
+
+                  <p>Some parts of the provided code run on your comupter, in a Docker container. Others run on the robot. You will be cloning the repository on both your computer and the robot. This command clones the repository:</p>
+                  <pre><code class="language-bash">git clone &lt;ADDRESS&gt;</code></pre>
+                  <p>Substitute the address to your repository. On the robot, run this command in the home directory of the Raspberry Pi, in a terminal opened in a VSCode remote session to the robot (see the <a href="../tutorials/robot.html#sec_conn_robot">robot tutorial</a>). <strong>Use the SSH address to clone the repository on the robot</strong> (see instructions <a href="../tutorials/robot.html#sec_code_robot">here</a>).</p>
+
+                  <p>On your computer, run the clone command <strong>in the folder you created for ROB 102 code in Project 0</strong>. For most of you, that is a folder called &quot;rob102-code&quot;, or something similar, in your Documents folder. Use <code>cd</code> in your terminal to go to this folder before running the clone command.</p>
+
+                  <hr class="major" />
+
+                  <h2 id="submitting">Submitting the Assignment</h2>
+
+                  <p>Your submission for this assignment should include your code and a project webpage. You should make one submission for your team. Teammates will be graded together.</p>
+
+                  <p><strong>Modify the LICENSE.txt file to include the names of all teammates.</strong> Make sure the change is committed to your repository. </p>
+
+                  <ul class="todo">
+                    <li class="icon solid fa-laptop-code">
+                      <strong id="todo1">P2.0 (1 point):</strong> In the file <code>LICENSE.txt</code>, replace <code>&lt;COPYRIGHT HOLDER&gt;</code> with the names of all teammates, separated by commas. Replace <code>&lt;YEAR&gt;</code> with the current year.
+                    </li>
+                  </ul>
+
+                  <p><strong>Submitting the code:</strong> Tag the verion of the code you wish to submit See instructions from <a href="a0.html#submitting">Project 0</a>.</p>
+
+                  <p><strong>Submitting the web page:</strong> Create a web page for your implementation of the potential field navigation algorithm. You can use Google Sites, create a project page on a GitHub repository, or use your favorite method to create a website. Note that if you chose to use GitHub pages, you will need to create a separate, public repository. Include at least one video demo as well as a brief summary and discussion of your algorithm. Details about what to include can be found <a href="#sec_results">at the end of the project description</a>. Include the link to your project page in the <code>README.md</code> file.</p>
+
+                  <ul class="todo">
+                    <li class="icon solid fa-laptop-code">
+                      <strong id="todo1">P2.1 (4 points):</strong>
+                      Create a web page for your implementation of the potential field navigation algorithm. Include the link to your project page in the <code>README.md</code> file. Include at least one video demo as well as a brief summary and discussion of your algorithm.
+                    </li>
+                  </ul>
 
                 </section>
+
+                <section id="proj_desc">
+                  <header class="major">
+                    <h2><a href="#proj_desc">Project Description</a></h2>
+                  </header>
+
+                  <p>This assignment has the following parts:</p>
+
+                  <ol>
+                    <li><a href="#sec_graph">Part 0</a>: Indexing into the Grid Graph</li>
+                    <li><a href="#sec_goal">Part 1</a>: Creating an attractive goal potential field</li>
+                    <li><a href="#sec_dt">Part 2</a>: Implementing the Distance Transform algorithm</li>
+                    <li><a href="#sec_pfield">Part 3</a>: Creating a potential field and performing navigation</li>
+                  </ol>
+
+                  <p>We also provide an advanced extension to implement the <a href="#sec_euclidean_dt">distance transform with Euclidean distance</a>, as discussed in lecture. Most of your time should be spent on Parts 2 and 3.</p>
+
+                  <p>We will be compiling and executing all the code written on your computer in a Docker container. We have created a web app which you can use to visualize your code. Review the <a href="../tutorials/app.html">webapp tutorial</a> and make sure that you can run the webapp in the Docker container before continuing with this assignment.</p>
+
+                  <h3 id="sec_graph">Part 0: Grid Graph</h3>
+
+                  <p>Information about the map for a particular environment is stored in a provided struct called <code>GridGraph</code>. You can visualize the available maps using the <a href="../tutorials/app.html">web app</a>. The struct is defined in the header file <code>include/autonomous_navigation/utils/graph_utils.h</code>. The template code looks like this:</p>
+                  <pre><code class="language-cpp">struct GridGraph
+{
+    GridGraph() :
+        width(-1),
+        height(-1),
+        origin_x(0),
+        origin_y(0),
+        meters_per_cell(0),
+        collision_radius(0.15),
+        threshold(-100)
+    {
+    };
+
+    int width, height;                      // Width and height of the map in cells.
+    float origin_x, origin_y;               // The (x, y) coordinate corresponding to cell (0, 0) in meters.
+    float meters_per_cell;                  // Width of a cell in meters.
+    float collision_radius;                 // The radius to use to check collisions.
+    int8_t threshold;                       // Threshold to check if a cell is occupied or not.
+
+    std::vector&lt;int8_t&gt; cell_odds;          // The odds that a cell is occupied.
+    std::vector&lt;float&gt; obstacle_distances;  // The distance from each cell to the nearest obstacle.
+};</code></pre>
+
+                  <p>The member variables <code>width</code> and <code>height</code> store the graph width and height, in cells. The variables <code>origin_x</code> and <code>origin_y</code> correspond to the global position in meters of the cell <code>(0, 0)</code>. This allows us to determine where the origin of the map is. The variable <code>meters_per_cell</code> contains the size of each cell, in meters. Finally, the <code>cell_odds</code> variable is a vector containing the odds value of each cell, as described above.</p>
+
+                  <ul class="todo">
+                    <li class="icon solid fa-laptop-code">
+                      <strong id="todo0_1">P2.0.1 (1 point):</strong> In the file <code>graph_utils.cpp</code>, complete functions <code>cellToIdx()</code> and <code>idxToCell()</code>.
+                      <code>cellToIdx()</code> should accept a cell coordinate and a graph as arguments, and return an <code>int</code> containing the corresponding array index for the cell.
+                      <code>idxToCell()</code> should accept an array index and a graph as arguments, and return a <code>Cell</code> containing the corresponding cell coordinate for the array index.</li>
+                    </li>
+                  </ul>
+
+                  <p>We have provided a test script to check your indexing functions. Compile your code in the Docker container (using the <a href="../tutorials/app.html#write_code">instructions in the tutorial</a>), then run the test script in the Docker like this:</p>
+                  <pre><code class="language-bash">cd build
+./test_graph</code></pre>
+
+                  <p>The tests should pass before you move on to the next step. You may add more tests if you would like.</p>
+
+                  <h3 id="sec_goal">Part 1: The Goal Field</h3>
+
+                  <p>In this part, you will write an attractive field to pull the robot towards the goal location. You will test your function on the robot. You can also use the web app to test the function.</p>
+
+                  <p>First, complete function <code>createAttractiveField()</code> in file <code>src/potential_field/potential_field.cpp</code> so that it accepts the current graph and a goal cell and returns a vector representing the attractive field. The field should be a vector with the same length as the graph cell data, and should be indexed the same way.</p>
+
+                  <p>Next, modify the code in <code>src/robot_potential_field.cpp</code> so that it uses the function <code>createAttractiveField()</code> to drive to a goal. Create a map using the localization code provided, and pick a goal in that map. The template code uses the provided function <code>localSearch()</code> to get a 2D vector pointing towards the next location in the potential field to explore. Use this vector to create velocity commands to send to the robot. At this point, your robot will not be able to avoid obstacles, so make sure you pick a start and goal position so that your robot doesn't collide with anything.</p>
+
+                  <ul class="todo">
+                    <li class="icon solid fa-laptop-code">
+                      <strong id="todo1_1">P2.1.1 (1 point):</strong> In the file <code>potential_field.cpp</code>, complete function <code>createAttractiveField()</code> to return a vector corresponding to an attractive potential field towards a given goal.
+                    </li>
+                    <li class="icon solid fa-laptop-code">
+                      <strong id="todo1_2">P2.1.2 (1 point):</strong> Modify <code>robot_potential_field.cpp</code> so that it gets an attractive potential field to a goal, then drives in the direction returned by the <code>localSearch()</code> function. When the robot reaches a minimum in the field, <code>localSearch()</code> will return a vector of zeros. Test your code on the robot.
+                    </li>
+                  </ul>
+
+                  <ul class="hint">
+                    <li class="icon solid fa-cogs"><strong>Hint:</strong>
+                      An attractive field where the value of each cell is the distance to the goal location works when this is the only field.
+                    </li>
+                    <li class="icon solid fa-cogs"><strong>Hint:</strong>
+                      Use your indexing functions to convert between Cell types and indexes, and your distance function to calculate distances between cells.
+                    </li>
+                    <li class="icon solid fa-cogs"><strong>Hint:</strong>
+                      You can visualize your attractive field in the web app by setting the vector <code>potential_field</code> in the function <code>createPotentialField()</code> to be equal to the attractive field. The field will be visualized when you plan using the &quot;Potential Field&quot; option in the web app.
+                    </li>
+                    <li class="icon solid fa-cogs"><strong>Hint:</strong>
+                      The local search function returns a vector with magnitude equal to the magnitude of the difference in potential between the current cell and the neighboring cell.
+                    </li>
+                  </ul>
+
+                  <h3 id="sec_dt">Part 2: Distance Transform</h3>
+
+                  <p>In this part, you will implement a distance transform, which will calculate the distance from each cell to the nearest obstacle. This part can be implemented entirely on your computer in the Docker, using the web app (no robot needed). It should look something like the image below. The grey cells represent smaller distances to the nearest obstacle, and the white cells represent higher distances.</p>
+
+                  <span class="image main"><img src="../images/dist_tf.png" alt="" style="max-width:600px;"/></span>
+
+                  <p>We will be implementing a <strong>binary distance transform</strong>, which calculates the distance from each cell to the nearest occupied cell. For occupied cells, the distance should be zero.</p>
+
+                  <p>We will start by implementing a slow version of the distance transform which gives us the Euclidean distance to each cell. Implement this algorithm in the function <code>distanceTransformSlow()</code> located in <code>src/potential_field/distance_transform.cpp</code>. For each unoccupied cell, calculate the distance between the current cell and every occupied cell in the graph. Store the smallest distance in the <code>graph.obstacle_distances</code> vector.
+                    <!-- This implementation doesn't use any tricks to perform the transform more quickly. The complexity is <i>O(N<sup>2</sup>)</i> because the algorithm needs to loop through <i>N</i> cells for each of the <i>N</i> cells, resulting in <i>N*N = N<sup>2</sup></i> operations. You should notice that this takes a lot of time for big graphs! -->
+                  </p>
+
+                  <ul class="todo">
+                    <li class="icon solid fa-laptop-code">
+                      <strong id="todo2_1">P2.2.1 (1 point):</strong>
+                      In the <code>distance_transform.cpp</code> file, complete function <code>distanceTransformSlow()</code>. It should accept a graph and populate the <code>graph.obstacle_distances</code> vector with the Euclidean distance to the nearest occupied cell.
+                    </li>
+                  </ul>
+
+                  <p>You should make sure to test your algorithm on multiple different maps. You can use the web app to visualize the distances as a gradient. It should look like the image at the beginning of this page.</p>
+
+                  <ul class="hint">
+                    <li class="icon solid fa-cogs"><strong>Hint:</strong> You can visualize your transform in the web app by modifying the function <code>distanceTransform()</code> so that it calls <code>distanceTransformSlow()</code>. You should be able to see the distance transform when you toggle &quot;Show Field&quot; in the web app, after uploading the map file.</li>
+                    <li class="icon solid fa-cogs"><strong>Hint:</strong> Can you make your algorithm any faster?</li>
+                  </ul>
+
+                  <p>Next, we will implement a much faster algorithm for computing the distance transform, but which computes the Manhattan distance from each unoccupied cell to the nearest occupied cell. Implement this algorithm in the function <code>distanceTransformManhattan()</code> located in <code>src/potential_field/distance_transform.cpp</code>. You should implement the 2D Manhattan distance transform algorithm presented in lecture. You can visualize your distance transform by modifying the function <code>distanceTransform()</code> so that it calls <code>distanceTransformManhattan()</code>, just like for the slow version you completed.</p>
+
+                  <ul class="todo">
+                    <li class="icon solid fa-laptop-code">
+                      <strong id="todo2_2">P2.2.2 (2 points):</strong>
+                      In the <code>distance_transform.cpp</code> file, complete function <code>distanceTransformManhattan()</code>. It should accept a graph and populate the <code>graph.obstacle_distances</code> vector with the Manhattan distance to the nearest occupied cell, using the 2D Manhattan distance transform algorithm presented in lecture.
+                    </li>
+                  </ul>
+
+                  <h3 id="sec_pfield">Part 3: Potential Field Navigation</h3>
+
+                  <p>Now, you will combine the attractive field from <a href="#sec_goal">Part 1</a> and the distance transform from <a href="#sec_goal">Part 2</a> into a single potential field. Transform the distance transform stored in <code>graph.obstacle_distances</code> into a repulsive field in function <code>createRepulsiveField()</code> in file <code>src/potential_field/potential_field.cpp</code>. Then, modify <code>createPotentialField()</code> in the same file to combine the two. You might want to modify <code>createAttractiveField()</code> for this part.</p>
+
+                  <p>You should test your field in the web app, and when you are satisfied with the result, try it out on the robot. Modify the code in <code>src/robot_potential_field.cpp</code> to call the function <code>createPotentialField()</code>. The robot should now be able to navigate without colliding into obstacles. It will only avoid obstacles that are in its map, not dynamic obstacles, like people walking in front of it, so be careful!</p>
+
+                  <ul class="todo">
+                    <li class="icon solid fa-laptop-code">
+                      <strong id="todo3_1">P2.3.1 (1 point):</strong>
+                      In the <code>potential_field.cpp</code> file, complete function <code>createRepulsiveField()</code>. It should create a repulsive field based on the distance transform in <code>graph.obstacle_distances</code>.
+                    </li>
+                    <li class="icon solid fa-laptop-code">
+                      <strong id="todo3_2">P2.3.2 (2 points):</strong>
+                      In the <code>potential_field.cpp</code> file, complete function <code>createPotentialField()</code>. It should combine the attractive and repulsive fields into a single potential field which can be used to navigate to a goal.
+                    </li>
+                    <li class="icon solid fa-laptop-code">
+                      <strong id="todo3_3">P2.3.3 (1 point):</strong>
+                      Modify the <code>robot_potential_field.cpp</code> file to use function <code>createPotentialField()</code> to get a potential field for a given map and goal, and navigate the robot using the field.
+                    </li>
+                  </ul>
+
+                  <ul class="hint">
+                    <li class="icon solid fa-cogs"><strong>Hint:</strong>
+                      The distance transform is HIGH in places that are far from an obstacle and LOW in places that are close to an obstacle. This is the opposite of the repulsive field, which should have HIGH potential near an obstacle and LOW potential far from an obstacle. What kind of function can you apply to the distances to convert the distance transform to a field?
+                    </li>
+                    <li class="icon solid fa-cogs"><strong>Hint:</strong>
+                      Experiment with a few different functions and parameters to find one that works. You should make sure that the function works for a variety of start and goal locations and maps.
+                    </li>
+                  </ul>
+
+                  <h3 id="sec_results">Project Webpage: Results &amp; Reflection Questions</h3>
+
+                  <p>On your project webpage, include a brief description (a few sentences) of your approach for each part. Include lots of images of how your algorithm works on the web app and the robot, as well as at least one video demo of your robot completing potential field navigation in <a href="sec_pfield">Part 3</a>. You might also consider taking videos of tests you complete on the web app using a screen recording software.</p>
+
+                  <p>Include a discussion section on the web page, where you discuss the following:</p>
+                  <ol>
+                    <li>The strengths of your potential field navigation algorithm</li>
+                    <li>The limitations of your potential field navigation algorithm</li>
+                    <li>How you might improve the algorithm (include at least one idea)</li>
+                  </ol>
+
+                  <p>In addition, consider these questions:</p>
+                  <ol>
+                    <li>Can you make the naive distance transform any faster (without implementing the fast algorithm we discussed in lecture)? If so, consider trying your idea!</li>
+                    <li>How does the Euclidean distance transform differ from the Manhattan one? How do they compare in terms of speed?</li>
+                    <li>What function did you select for your attrative and repulsive fields? How did you combine them to create a potential field?</li>
+                    <li>When and why does your potential field algorithm fail?</li>
+                  </ol>
+
+                  <p>Include images or videos whenever possible to illustrate your points. Keep the discussion brief: it should be no longer than two or three paragraphs.</p>
+
+                  <h3 id="sec_euclidean_dt">Advanced Extension: Euclidean Distance Transform</h3>
+
+                  <p>As an advanced extension, you can implement the fast Euclidean distance transform presented in class. The function <code>distanceTransformEuclidean2D()</code> is provided in the file <code>src/potential_field/distance_transform.cpp</code> to implement the algorithm. You may use function <code>distanceTransformEuclidean1D()</code> to implement the 1D version of the algorithm which is used within the 2D algorithm.</p>
+
+                  <ul class="todo">
+                    <li class="icon solid fa-laptop-code">
+                      <strong id="todoAE_2_i">Advanced Extension P2.2.i (2 extension points):</strong>
+                      In the <code>distance_transform.cpp</code> file, complete function <code>distanceTransformEuclidean2D()</code> so that it uses the fast Euclidean distance transform algorithm from lecture, and stores the result in <code>graph.obstacle_distances</code>.
+                    </li>
+                  </ul>
+
+                </section>
+
+                <!-- TASKS -->
+                <section id="tasks">
+                  <header class="major">
+                    <h2><a href="#tasks">Task Summary</a></h2>
+                  </header>
+
+                  <ul class="todo">
+                    <li class="icon solid fa-laptop-code">
+                      <strong><a href="#todo0">P2.0</a> (1 point):</strong>
+                      In the file <code>LICENSE.txt</code>, replace <code>&lt;COPYRIGHT HOLDER&gt;</code> with the names of all teammates, separated by commas.
+                      Replace <code>&lt;YEAR&gt;</code> with the current year.
+                    </li>
+                    <li class="icon solid fa-laptop-code">
+                      <strong><a href="#todo1">P2.1</a> (4 points):</strong>
+                      Create a web page for your implementation of the potential field navigation algorithm. Include the link to your project page in the <code>README.md</code> file. Include at least one video demo as well as a brief summary and discussion of your algorithm.
+                    </li>
+                    <li class="icon solid fa-laptop-code">
+                      <strong><a href="#todo0_1">P2.0.1</a> (1 point):</strong>
+                      In the file <code>graph_utils.cpp</code>, complete functions <code>cellToIdx()</code> and <code>idxToCell()</code>.
+                    </li>
+                    <li class="icon solid fa-laptop-code">
+                      <strong><a href="#todo1_1">P2.1.1</a> (1 point):</strong>
+                      In the file <code>potential_field.cpp</code>, complete function <code>createAttractiveField()</code> to return a vector corresponding to an attractive potential field towards a given goal.
+                    </li>
+                    <li class="icon solid fa-laptop-code">
+                      <strong><a href="#todo1_2">P2.1.2</a> (1 point):</strong>
+                      Modify <code>robot_potential_field.cpp</code> so that it gets an attractive potential field to a goal, then drives in the direction returned by the <code>localSearch()</code> function. When the robot reaches a minimum in the field, <code>localSearch()</code> will return a vector of zeros. Test your code on the robot.
+                    </li>
+                    <li class="icon solid fa-laptop-code">
+                      <strong><a href="#todo2_1">P2.2.1</a> (1 point):</strong>
+                      In the <code>distance_transform.cpp</code> file, complete function <code>distanceTransformSlow()</code>. It should accept a graph and populate the <code>graph.obstacle_distances</code> vector with the Euclidean distance to the nearest occupied cell.
+                    </li>
+                    <li class="icon solid fa-laptop-code">
+                      <strong><a href="#todo2_2">P2.2.2</a> (2 points):</strong>
+                      In the <code>distance_transform.cpp</code> file, complete function <code>distanceTransformManhattan()</code>. It should accept a graph and populate the <code>graph.obstacle_distances</code> vector with the Manhattan distance to the nearest occupied cell, using the 2D Manhattan distance transform algorithm presented in lecture.
+                    </li>
+                    <li class="icon solid fa-laptop-code">
+                      <strong><a href="#todo3_1">P2.3.1</a> (1 point):</strong>
+                      In the <code>potential_field.cpp</code> file, complete function <code>createRepulsiveField()</code>. It should create a repulsive field based on the distance transform in <code>graph.obstacle_distances</code>.
+                    </li>
+                    <li class="icon solid fa-laptop-code">
+                      <strong><a href="#todo3_2">P2.3.2</a> (2 points):</strong>
+                      In the <code>potential_field.cpp</code> file, complete function <code>createPotentialField()</code>. It should combine the attractive and repulsive fields into a single potential field which can be used to navigate to a goal.
+                    </li>
+                    <li class="icon solid fa-laptop-code">
+                      <strong><a href="#todo3_3">P2.3.3</a> (1 point):</strong>
+                      Modify the <code>robot_potential_field.cpp</code> file to use function <code>createPotentialField()</code> to get a potential field for a given map and goal, and navigate the robot using the field.
+                    </li>
+                  </ul>
+
+                </section>
+
+                <section id="adv_ext">
+                  <header class="major">
+                    <h2><a href="#adv_ext">Advanced Extensions</a></h2>
+                  </header>
+
+                  <ul class="todo">
+                    <li class="icon solid fa-laptop-code">
+                      <strong><a href="#todoAE_2_i">Advanced Extension P2.2.i (2 extension points):</strong>
+                      In the <code>distance_transform.cpp</code> file, complete function <code>distanceTransformEuclidean2D()</code> so that it uses the fast Euclidean distance transform algorithm from lecture, and stores the result in <code>graph.obstacle_distances</code>.
+                    </li>
+                  </ul>
+
+              </section>
 
             </div>
           </div>
@@ -98,7 +428,7 @@
 
               <!-- Footer -->
                 <!-- <footer id="footer">
-                  <p class="copyright">&copy; Untitled. All rights reserved. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+                  <p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
                 </footer> -->
 
             </div>
@@ -112,6 +442,7 @@
       <script src="../assets/js/breakpoints.min.js"></script>
       <script src="../assets/js/util.js"></script>
       <script src="../assets/js/main.js"></script>
+      <script>hljs.highlightAll();</script>
 
   </body>
 </html>
