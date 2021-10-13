@@ -1615,6 +1615,8 @@ ul.pagination {
   background-color: #ffffff; }
 .table-wrapper.schedule table tbody tr.week{
     background-color: rgba(230, 235, 237, 0.25); }
+.table-wrapper.schedule table tbody tr.week a {
+  border-bottom: none; }
 
 table {
   margin: 0 0 2em 0;
