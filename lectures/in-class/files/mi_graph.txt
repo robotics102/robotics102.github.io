@@ -1,0 +1,37 @@
+NODES 15
+alma
+alpena
+ann_arbor
+benton_harbor
+cadillac
+detroit
+escanaba
+flint
+grand_rapids
+kalamazoo
+lansing
+mackinaw_city
+marquette
+saginaw
+traverse_city
+
+EDGES 19
+benton_harbor kalamazoo 52
+kalamazoo ann_arbor 99
+ann_arbor detroit 42
+benton_harbor grand_rapids 80
+grand_rapids kalamazoo 50
+grand_rapids lansing 67
+lansing ann_arbor 65
+lansing detroit 90
+alma lansing 54
+flint detroit 80
+flint saginaw 40
+alma saginaw 38
+cadillac alma 84
+traverse_city cadillac 48
+saginaw alpena 148
+traverse_city mackinaw_city 116
+alpena mackinaw_city 94
+mackinaw_city escanaba 147
+escanaba marquette 66
