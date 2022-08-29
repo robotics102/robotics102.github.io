@@ -1,0 +1,52 @@
+pages:
+  index.html:
+    src: _src/content/home.html
+    active_opener: Course Information
+  # syllabus.html:
+  #   src: _src/content/syllabus.html
+  #   active_opener: Course Information
+
+  # Projects
+  # projects/a0.html:
+  #    src: _src/content/projects/a0.html
+  #    active_opener: Projects
+  # projects/a1.html:
+  #    src: _src/content/projects/a1.html
+  #    active_opener: Projects
+  # projects/a2.html:
+  #    src: _src/content/projects/a2.html
+  #    active_opener: Projects
+  # projects/a3.html:
+  #    src: _src/content/projects/a3.html
+  #    active_opener: Projects
+  # projects/a4.html:
+  #    src: _src/content/projects/a4.html
+  #    active_opener: Projects
+
+  # Tutorials
+  tutorials/app.html:
+    src: _src/content/tutorials/app.html
+    active_opener: Tutorials
+  tutorials/git.html:
+    src: _src/content/tutorials/git.html
+    active_opener: Tutorials
+  tutorials/robot.html:
+    src: _src/content/tutorials/robot.html
+    active_opener: Tutorials
+  tutorials/setup.html:
+    src: _src/content/tutorials/setup.html
+    active_opener: Tutorials
+
+  # Archive
+  archive/f21/index.html:
+    src: _src/content/archive/f21/home.html
+  archive/f21/projects/a0.html:
+    src: _src/content/archive/f21/projects/a0.html
+  archive/f21/projects/a1.html:
+    src: _src/content/archive/f21/projects/a1.html
+  archive/f21/projects/a2.html:
+    src: _src/content/archive/f21/projects/a2.html
+  archive/f21/projects/a3.html:
+    src: _src/content/archive/f21/projects/a3.html
+  archive/f21/projects/a4.html:
+    src: _src/content/archive/f21/projects/a4.html

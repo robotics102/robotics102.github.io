@@ -30,6 +30,15 @@ Robotics 102 is a new course being offered as part of the emerging Michigan Robo
 | 2       | C++ Operators and Variables            | [Video](https://youtu.be/Vvys7lZa764) / [Slides](https://drive.google.com/file/d/1qU9Q2rwbDCqP-k8oOfH-e7AnPy5AmhsO/view?usp=sharing) |    |    |
 | 3       | C++ Functions.                         | [Video](https://youtu.be/ZarKDScV_DQ) / [Slides](https://github.com/robotics102/robotics102.github.io/blob/main/lectures/rob102_03_functions_selected_compressed.pdf)  | [Slides](https://drive.google.com/file/d/1wZhSNOOD4FJSiBcD6ofljEjlr1_OJYTf/view?usp=sharing)   |    |
 
+## Editing this website
+
+Change the _content_ in the `_src/content` folder. Then run the script:
+```bash
+python _src/build_pages.py
+```
+This will copy the content into the template in `_src/template.html`, which will ensure consistent headers, footers, and sidebars in all the pages.
+To add a new page, modify `_src/page_index.yml`.
+
 ## Credits
 - Chad Jenkins, Associate Director of Undergraduate Programs, Michigan Robotics
 - Jana Pavlasek, Director, Michigan Robotics
