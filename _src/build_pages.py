@@ -19,6 +19,12 @@ def make_active_opener(page, opener_name):
     return page
 
 
+def set_title(page, title):
+    empty_title = "<title>PAGE_TITLE</title>"
+    page = page.replace(empty_title, "<title>{}</title>".format(title))
+    return page
+
+
 # Open configuration file.
 with open(CONFIG_FILE, 'r') as f:
     data = yaml.load(f, Loader=yaml.Loader)
@@ -29,6 +35,8 @@ with open(TEMPLATE_FILE, 'r') as f:
 
 for key, val in data["pages"].items():
     page = create_page(val["src"], template)
+    # Set title.
+    page = set_title(page, val["title"])
     if "active_opener" in val.keys():
         page = make_active_opener(page, val["active_opener"])
 

@@ -1,5 +1,6 @@
 pages:
   index.html:
+    title: "ROB 102: Introduction to AI and Programming"
     src: _src/content/home.html
     active_opener: Course Information
   # syllabus.html:
@@ -7,46 +8,61 @@ pages:
   #   active_opener: Course Information
 
   # Projects
-  # projects/a0.html:
-  #    src: _src/content/projects/a0.html
-  #    active_opener: Projects
-  # projects/a1.html:
-  #    src: _src/content/projects/a1.html
-  #    active_opener: Projects
-  # projects/a2.html:
-  #    src: _src/content/projects/a2.html
-  #    active_opener: Projects
-  # projects/a3.html:
-  #    src: _src/content/projects/a3.html
-  #    active_opener: Projects
-  # projects/a4.html:
-  #    src: _src/content/projects/a4.html
-  #    active_opener: Projects
+  projects/a0.html:
+    title: "ROB 102: Project 0"
+    src: _src/content/projects/a0.html
+    active_opener: Projects
+  projects/a1.html:
+    title: "ROB 102: Project 1"
+    src: _src/content/projects/a1.html
+    active_opener: Projects
+  projects/a2.html:
+    title: "ROB 102: Project 2"
+    src: _src/content/projects/a2.html
+    active_opener: Projects
+  projects/a3.html:
+    title: "ROB 102: Project 3"
+    src: _src/content/projects/a3.html
+    active_opener: Projects
+  projects/a4.html:
+    title: "ROB 102: Project 4"
+    src: _src/content/projects/a4.html
+    active_opener: Projects
 
   # Tutorials
   tutorials/app.html:
+    title: "ROB 102: Webapp Tutorial"
     src: _src/content/tutorials/app.html
     active_opener: Tutorials
   tutorials/git.html:
+    title: "ROB 102: Git Tutorial"
     src: _src/content/tutorials/git.html
     active_opener: Tutorials
   tutorials/robot.html:
+    title: "ROB 102: MBot Tutorial"
     src: _src/content/tutorials/robot.html
     active_opener: Tutorials
   tutorials/setup.html:
+    title: "ROB 102: Computer Setup"
     src: _src/content/tutorials/setup.html
     active_opener: Tutorials
 
   # Archive
   archive/f21/index.html:
+    title: "ROB 102: Introduction to AI and Programming"
     src: _src/content/archive/f21/home.html
   archive/f21/projects/a0.html:
+    title: "ROB 102 F21: Project 0"
     src: _src/content/archive/f21/projects/a0.html
   archive/f21/projects/a1.html:
+    title: "ROB 102 F21: Project 0"
     src: _src/content/archive/f21/projects/a1.html
   archive/f21/projects/a2.html:
+    title: "ROB 102 F21: Project 2"
     src: _src/content/archive/f21/projects/a2.html
   archive/f21/projects/a3.html:
+    title: "ROB 102 F21: Project 3"
     src: _src/content/archive/f21/projects/a3.html
   archive/f21/projects/a4.html:
+    title: "ROB 102 F21: Project 4"
     src: _src/content/archive/f21/projects/a4.html
