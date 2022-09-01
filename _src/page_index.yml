@@ -4,8 +4,12 @@ pages:
     src: _src/content/home.html
     active_opener: Course Information
   syllabus.html:
-    title: "ROB 102: Introduction to AI and Programming"
+    title: "ROB 102: Syllabus"
     src: _src/content/syllabus.html
+    active_opener: Course Information
+  activities.html:
+    title: "ROB 102: Activities"
+    src: _src/content/activities.html
     active_opener: Course Information
 
   # Projects
