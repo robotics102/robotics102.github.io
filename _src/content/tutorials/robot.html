@@ -5,8 +5,9 @@
       <strong>Tutorial:</strong> Using the MBot-Omni Robot Platform
     </header>
 
-    <p><span class="image right"><img src="../images/mbot.jpg" alt=""/></span>
-      The <strong>MBot-Omni</strong> is an omnidrive robot platform which we will be programming in ROB 102. This tutorial contains instructions on how to use it and program it.</p>
+    <p><span class="image right"><img src="../images/mbot.jpg" alt="" /></span>
+      The <strong>MBot-Omni</strong> is an omnidrive robot platform which we will be programming in ROB 102. This
+      tutorial contains instructions on how to use it and program it.</p>
 
     <p>This page has the following parts:</p>
     <ul>
@@ -14,7 +15,6 @@
       <li><a href="#sec_robot_prog">Programming the Robot</a>
         <ul>
           <li><a href="#sec_conn_robot">Connecting to the robot</a></li>
-          <li><a href="#sec_code_robot">Coding on the robot</a></li>
         </ul>
       </li>
     </ul>
@@ -29,24 +29,33 @@
   <div class="content">
     <h3 id="sec_robot_on">Turning the robot on</h3>
 
-    <p>To turn the robot on, flick the switch on the power bank to ON. The red light on the Raspberry Pi should turn on. The lights on the Beaglebone should turn off and flash.</p>
+    <p>To turn the robot on, flick the switch on the power bank to ON. The red light on the Raspberry Pi should turn on.
+      The lights on the Beaglebone should turn off and flash.</p>
 
     <h3 id="sec_robot_off">Turning the robot off</h3>
 
-    <p>To turn the robot off, flick the switch on the power bank to OFF. Then, press the power button, marked POW, on the Beaglebone. Wait for <em>all the lights to turn off</em>, on both boards.</p>
+    <p>To turn the robot off, flick the switch on the power bank to OFF. Then, press the power button, marked POW, on
+      the Beaglebone. Wait for <em>all the lights to turn off</em>, on both boards.</p>
 
     <h3 id="sec_robot_net">Robot Wifi network</h3>
 
-    <p>Each robot should be marked with a unique, four digit ID (0001, 0002, etc.). When turned on, the robot will have two access points: <strong>OMNI-RPI-XXXX</strong> and <strong>OMNI-BBB-XXXX</strong> (replace <strong>XXXX</strong> with the ID of the robot). The password for both networks is <strong>iloverobots</strong>. We will primarily be using the RPI network.</p>
+    <p>Each robot should be marked with a unique, four digit ID (0001, 0002, etc.). When turned on, the robot will have
+      two access points: <strong>OMNI-RPI-XXXX</strong> and <strong>OMNI-BBB-XXXX</strong> (replace
+      <strong>XXXX</strong> with the ID of the robot). The password for both networks is <strong>iloverobots</strong>.
+      We will primarily be using the RPI network.</p>
 
     <h3 id="sec_robot_batt">Robot battery care</h3>
 
     <ul>
-      <li><strong>Charging the batteries:</strong> Plug the battery into the power supply. Switch the battery to ON to charge it. The power adapter will have a red light while it's charging, and it will turn green when done. Switch the battery to OFF to store.</li>
-      <li>Batteries are shared across all robots. There are bins labelled &quot;CHARGED BATTERIES&quot; and &quot;UNCHARGED BATTERIES.&quot; Batteries should be placed in the appropriate bin.</li>
+      <li><strong>Charging the batteries:</strong> Plug the battery into the power supply. Switch the battery to ON to
+        charge it. The power adapter will have a red light while it's charging, and it will turn green when done. Switch
+        the battery to OFF to store.</li>
+      <li>Batteries are shared across all robots. There are bins labelled &quot;CHARGED BATTERIES&quot; and
+        &quot;UNCHARGED BATTERIES.&quot; Batteries should be placed in the appropriate bin.</li>
       <li>Always plug in uncharged batteries right away. They take a long time to charge.</li>
       <li>When a battery has three of five green lights on, it should be replaced.</li>
-      <li><em>Tip:</em> When you aren't using the Lidar, unplug the Micro USB cord from its board to disconnect it from the Raspberry Pi. When it spins, it draws a lot of power and drains the battery quickly.</li>
+      <li><em>Tip:</em> When you aren't using the Lidar, unplug the Micro USB cord from its board to disconnect it from
+        the Raspberry Pi. When it spins, it draws a lot of power and drains the battery quickly.</li>
     </ul>
   </div>
 </section>
@@ -57,109 +66,87 @@
     <h2><a href="#sec_robot_prog">Programming the Robot</a></h2>
   </header>
   <div class="content">
-    <p>We will program the robot using VSCode's Remote Development extension. The extension allows us to connect to a remote host in a VSCode window and write code on its filesystem.</p>
+    <p>We will program the robot using VSCode's Remote Development extension. The extension allows us to connect to a
+      remote host in a VSCode window and write code on its filesystem.</p>
 
     <h3>Prerequisites</h3>
 
-    <p>This tutorial assumes you have followed the instructions for installing <a href="setup.html#install_git">Git</a> and <a href="setup.html#install_vscode">VSCode</a>.</p>
+    <p>This tutorial assumes you have followed the instructions for installing <a href="setup.html#install_git">Git</a>
+      and <a href="setup.html#install_vscode">VSCode</a>.</p>
 
     <h2 id="sec_conn_robot">Connecting to the robot</h2>
 
     <h3>1. Add the Remote Development extension</h3>
 
-    <p>First, we need the VSCode Remote Development extension, which will allow us to connect VSCode to the robot's environment. Open VSCode and click on the &quot;Extensions&quot; icon <span><img src="https://raw.githubusercontent.com/microsoft/vscode-icons/master/icons/light/extensions.svg?sanitize=true"></span> in the toolbar on the left. Search for &quot;Remote Development&quot; and select the extension called &quot;Remote Development.&quot; Click &quot;Install&quot; to install it.</p>
+    <p>First, we need the VSCode Remote Development extension, which will allow us to connect VSCode to the robot's
+      environment. Open VSCode and click on the &quot;Extensions&quot; icon <span><img
+          src="https://raw.githubusercontent.com/microsoft/vscode-icons/master/icons/light/extensions.svg?sanitize=true"></span>
+      in the toolbar on the left. Search for &quot;Remote Development&quot; and select the extension called &quot;Remote
+      Development.&quot; Click &quot;Install&quot; to install it.</p>
 
-    <span class="image main"><img src="../images/tutorials/robot/install-remote-ext.jpg" alt="" style="max-width:800px;"/></span>
+    <span class="image main"><img src="../images/tutorials/robot/install-remote-ext.jpg" alt=""
+        style="max-width:800px;" /></span>
 
     <h3>2. Add the Raspberry Pi as a remote host</h3>
 
-    <p>Now we will tell VSCode how to connect to the Raspberry Pi board on the robot. First, power on the robot and connect to the Wifi network <b>OMNI-RPI-XXXX</b>, replacing &quot;XXXX&quot; with the ID of your robot. The ID should be written on a label on the robot. The password for the network is <b>iloverobots</b>. It might take a few seconds for the network to appear. The robot is on if the green and red battery indicator is lit up on the Beaglebone board and if the blue LEDs by the power button are flashing, and the red light is lit up on the Raspberry Pi.</p>
+    <p>Now we will tell VSCode how to connect to the Raspberry Pi board on the robot. First, power on the robot and
+      connect to the Wifi network <b>OMNI-RPI-XXXX</b>, replacing &quot;XXXX&quot; with the ID of your robot. The ID
+      should be written on a label on the robot. The password for the network is <b>iloverobots</b>. It might take a few
+      seconds for the network to appear. The robot is on if the green and red battery indicator is lit up on the
+      Beaglebone board and if the blue LEDs by the power button are flashing, and the red light is lit up on the
+      Raspberry Pi.</p>
 
-    <p>To add the Raspberry Pi as a remote host in VSCode, click on the &quot;Remote Explorer&quot; in the toolbar on the left. Then, select the + to add a new host:</p>
+    <p>To add the Raspberry Pi as a remote host in VSCode, click on the &quot;Remote Explorer&quot; in the toolbar on
+      the left. Then, select the + to add a new host:</p>
 
-    <span class="image main"><img src="../images/tutorials/robot/remote-add-target.png" alt="" style="max-width:400px;"/></span>
+    <span class="image main"><img src="../images/tutorials/robot/remote-add-target.png" alt=""
+        style="max-width:400px;" /></span>
 
-    <p>In the box that appears, type in <code>ssh</code> followed by the robot's address, exactly as below (all robots have the same address and username):</p>
+    <p>In the box that appears, type in <code>ssh</code> followed by the robot's address, exactly as below (all robots
+      have the same address and username):</p>
     <pre><code class="language-bash">ssh pi@192.168.3.1</code></pre>
 
-    <span class="image main"><img src="../images/tutorials/robot/remote-ssh-command.png" alt="" style="max-width:600px;"/></span>
+    <span class="image main"><img src="../images/tutorials/robot/remote-ssh-command.png" alt=""
+        style="max-width:600px;" /></span>
 
     <p>Press Enter, then select the default configuration file when the option appears:</p>
 
-    <span class="image main"><img src="../images/tutorials/robot/remote-ssh-config.png" alt="" style="max-width:600px;"/></span>
+    <span class="image main"><img src="../images/tutorials/robot/remote-ssh-config.png" alt=""
+        style="max-width:600px;" /></span>
 
     <h3>3. Connect to the Raspberry Pi</h3>
 
-    <p>To connect to the Raspberry Pi, open the &quot;Remote Explorer&quot; tab again, and select the new remote host you just added. Click on the icon to the right of the address to connect to the host in a new window.</p>
+    <p>To connect to the Raspberry Pi, open the &quot;Remote Explorer&quot; tab again, and select the new remote host
+      you just added. Click on the icon to the right of the address to connect to the host in a new window.</p>
 
-    <span class="image main"><img src="../images/tutorials/robot/remote-connect-host.png" alt="" style="max-width:400px;"/></span>
+    <span class="image main"><img src="../images/tutorials/robot/remote-connect-host.png" alt=""
+        style="max-width:400px;" /></span>
 
-    <p>If you are already in a new VSCode window with no other files open, you can also right-click on the host address to connect in the current window. You will be asked to select a platform. Select &quot;Linux&quot;.</p>
+    <p>If you are already in a new VSCode window with no other files open, you can also right-click on the host address
+      to connect in the current window. You will be asked to select a platform. Select &quot;Linux&quot;.</p>
 
-    <span class="image main"><img src="../images/tutorials/robot/remote-platform-linux.png" alt="" style="max-width:600px;"/></span>
+    <span class="image main"><img src="../images/tutorials/robot/remote-platform-linux.png" alt=""
+        style="max-width:600px;" /></span>
 
-    <p>You will be asked for the password to the Raspberry Pi. <em>This is different from the wifi password.</em> The password is <b>i&lt;3robots!</b>. The first time you connect, it will take a few minutes for VSCode to do some setup on the Raspberry Pi. You should see the address of the Raspberry Pi on the bottom left of the VSCode window.</p>
+    <p>You will be asked for the password to the Raspberry Pi. <em>This is different from the wifi password.</em> The
+      password is <b>iloverobots</b>. The first time you connect, it will take a few minutes for VSCode to do some setup
+      on the Raspberry Pi. You should see the address of the Raspberry Pi on the bottom left of the VSCode window.</p>
 
-    <span class="image main"><img src="../images/tutorials/robot/remote-connected.png" alt="" style="max-width:300px;"/></span>
+    <span class="image main"><img src="../images/tutorials/robot/remote-connected.png" alt=""
+        style="max-width:300px;" /></span>
 
     <h3>4. Opening a terminal</h3>
 
-    <p>In the VSCode window which is connected to the robot, open a terminal by clicking on &quot;Terminal&quot; &gt; &quot;New Terminal.&quot; A terminal will open on the Raspberry Pi. You can type command line commands in this terminal just like we have done on your computer or in a Docker container.</p>
+    <p>In the VSCode window which is connected to the robot, open a terminal by clicking on &quot;Terminal&quot; &gt;
+      &quot;New Terminal.&quot; A terminal will open on the Raspberry Pi. You can type command line commands in this
+      terminal just like we have done on your computer or in a Docker container.</p>
 
-    <span class="image main"><img src="../images/tutorials/robot/remote-connect-vsc.png" alt="" style="max-width:800px;"/></span>
+    <span class="image main"><img src="../images/tutorials/robot/remote-connect-vsc.png" alt=""
+        style="max-width:800px;" /></span>
 
-    <h2 id="sec_code_robot">Coding on the robot</h2>
-
-    <h3>1. Generate SSH keys for the robot</h3>
-
-    <p>We will clone repositories onto the robot using SSH. This means that you allow the robot's computer to connect to your GitHub account without entering your username and password (or access token) each time. The robot needs to have <em>SSH keys</em> to do this. First, check if there are SSH keys already by listing all the keys in the folder <code>.ssh/</code>. In the robot terminal in the VSCode remote window, type:</p>
-    <pre><code class="language-bash">ls ~/.ssh/</code></pre>
-
-    <p>
-      <strong>If the file <code>~/.ssh/id_rsa.pub</code> exists:</strong>
-      Go to step 2.
-    </p>
-
-    <p>
-      <strong>If the file <code>~/.ssh/id_rsa.pub</code> does not exist:</strong>
-      We need to generate SSH keys. In the robot terminal in the VSCode remote window, type:
-    </p>
-    <pre><code class="language-bash">ssh-keygen</code></pre>
-    <p>Leave the default file paths as is, and leave the passphrase blank. You will just be pressing &quot;Enter&quot; (or &quot;Return&quot; on Mac) for every option that shows up.</p>
-
-    <span class="image main"><img src="../images/tutorials/robot/robot-ssh-keygen.png" alt="" style="max-width:500px;"/></span>
-
-    <h3>2. Copy the robot's public key</h3>
-
-    <p>In the robot's terminal, type:</p>
-    <pre><code class="language-bash">cat ~/.ssh/id_rsa.pub</code></pre>
-
-    <p>The <code>cat</code> command prints the contents of a file to the terminal. Copy the contents of the file that prints out. Remember, Ctrl-C means <em>quit</em> in the terminal. Right-click to copy, or use Ctrl-Shit-C.</p>
-
-    <span class="image main"><img src="../images/tutorials/robot/robot-cat-ssh.png" alt="" style="max-width:500px;"/></span>
-
-    <h3>3. Add the robot's public key to your GitHub account</h3>
-
-    <p>Connect back to your regular WiFi access point. Go to GitHub, and click on your profile picture in the top right corner, then click &quot;Settings&quot;. Select &quot;SSH and GPG keys&quot;, then click the green &quot;New SSH key&quot; button:</p>
-
-    <span class="image main"><img src="../images/tutorials/robot/git-ssh-add.png" alt="" style="max-width:800px;"/></span>
-
-    <p>Copy the full contents of the key you printed out in step 2 into the box and add the key.</p>
-
-    <span class="image main"><img src="../images/tutorials/robot/add-ssh-key.png" alt="" style="max-width:800px;"/></span>
-
-    <h3>4. Clone a repository on the robot</h3>
-
-    <p>Connect back to the robot's WiFi access point. You may need to reload the remote VSCode window, or close it and reconnect. Open a terminal to the robot in VSCode and clone the relevant repository in the home directory. <em>You must use the SSH address to the repository.</em> When you get the address on the repository page, click the &quot;SSH&quot; option.</p>
-
-    <span class="image main"><img src="../images/tutorials/robot/git-ssh-address.png" alt="" style="max-width:600px;"/></span>
-
-    <p>The address should be of the form <code>git@github.com:robotics102/REPO-NAME.git</code>.</p>
-
-    <p>Since you added the key to your GitHub account, you will not be asked for your password when cloning. If you can't clone the repository after adding the SSH keys to your account, see the course staff.</p>
-
-    <h3>5. Open the repository for editing in VSCode</h3>
-
-    <p>You can open a folder on the robot for editing in VSCode, like you do for folders on your own computer. To do this, in the VSCode remote window, go to the explorer, or do &quot;File&quot; &gt; &quot;Open Folder...&quot; (just &quot;Open...&quot; on Mac). In the command pallette that opens, type the path to the repository you cloned <em>on the Raspberry Pi</em> (for example, <code>/home/pi/my-code-folder</code>).</p>
+    <h3> Video tutorial connecting to the robot over SSH</h3>
+    <div style="display: flex; justify-content: center; align-items: center;">
+    <iframe style="display:block" width="560" height="315" src="https://www.youtube.com/embed/65J26m_rSxE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
   </div>
 </section>

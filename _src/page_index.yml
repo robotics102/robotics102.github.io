@@ -47,14 +47,14 @@ pages:
     title: "ROB 102: Repl.it Tutorial"
     src: _src/content/tutorials/replit.html
     active_opener: Tutorials
-  # tutorials/robot.html:
-  #   title: "ROB 102: MBot Tutorial"
-  #   src: _src/content/tutorials/robot.html
-  #   active_opener: Tutorials
-  # tutorials/setup.html:
-  #   title: "ROB 102: Computer Setup"
-  #   src: _src/content/tutorials/setup.html
-  #   active_opener: Tutorials
+  tutorials/robot.html:
+    title: "ROB 102: MBot Tutorial"
+    src: _src/content/tutorials/robot.html
+    active_opener: Tutorials
+  tutorials/setup.html:
+    title: "ROB 102: Computer Setup"
+    src: _src/content/tutorials/setup.html
+    active_opener: Tutorials
 
   # Archive
   archive/f21/index.html:
