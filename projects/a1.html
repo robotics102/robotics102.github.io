@@ -56,11 +56,11 @@
         <ul>
           <li><a href="#sec_square">Part 1: Drive Square</a></li>
           <li><a href="#sec_wall_follow">Part 2: Wall Following (Bang-Bang Control)</a></li>
-          <li><a href="#sec_p_control">Advanced Extension: Wall Following (P-Control)</a></li>
+          <!-- <li><a href="#sec_p_control">Advanced Extension: Wall Following (P-Control)</a></li> -->
         </ul>
       </li>
+      <li><a href="#website">Project Website</a></li>
       <li><a href="#tasks">Task Summary</a></li>
-      <li><a href="#adv_ext">Advanced Extensions</a></li>
     </ul>
   </div>
 
@@ -85,8 +85,12 @@
     
     <h2 id="submitting">Submitting your assignment</h2>
 
-    <p>Your submission for this assignment should include your code and a video demonstrating your robot completing each of
-      the three parts of this assignment. You should make one submission for your team. Teammates will be graded together.
+    <p>
+      Your submission for this assignment should include your code and a website portfolio of your project.
+      The website should feature video demonstrations of your robot completing each of the two parts of this assignment and a brief discussion.
+      The link to your website should be placed in the README of your GitHub repository.
+      For details about what should be on the website, see <a href="#website">Project Website</a>.
+      You should make one submission for your team. Teammates will be graded together.
       Your most recently pushed commit will be graded. You should push your code to the repository.</p>
     </p>
     
@@ -101,18 +105,6 @@
       </li>
     </ul>
       
-    <hr class="major" />
-
-    <p><strong>Submitting the video:</strong> Modify the file <code>README.md</code> to include a link to a video demonstrating all three parts of the project. You can submit one video for all the parts, or one video for each part. Commit the changes to <code>README.md</code>.</p>
-
-    <ul class="todo">
-      <li class="icon solid fa-laptop-code">
-        <strong id="todo2_4">P1.2.4 (1 point):</strong> Add a link to a video demonstration of Parts 1 and 2 to the <code>README.md</code> file in your repository.
-      </li>
-    </ul>
-    
-    <p><em>Note:</em> Consider uploading your video to YouTube. You can make it public or unlisted if you prefer. Alternatively, you can upload your video to Google Drive (you have unlimited storage through your UM account). If you do this, make sure the link is accessible to the instructors.</p>
-
 </section>
 
 <section id="code">
@@ -198,7 +190,7 @@ make</code></pre>
     <h2><a href="#proj_desc">Project Description</a></h2>
   </header>
 
-  <p>This project is separated into three parts. Most of the time you spend on this project should be spent on part 2.</p>
+  <p>This project is separated into two parts. Most of the time you spend on this project should be spent on part 2.</p>
 
   <ol>
     <li><a href="#sec_square">Part 1</a>: Intended to help you get used to programming the robot and sending velocity commands to drive it. </li>
@@ -209,12 +201,14 @@ make</code></pre>
 
   <h3 id="sec_square">Part 1: Drive Square</h3>
 
-  <p>We will start by driving the robot in a square without any sensor feedback. For this part, you will write your code in the file <code>src/drive_square.cpp</code>. In the <code>main</code> function, write code to make the robot drive in a 1 meter by 1 meter square three times.</p>
+  <p>We will start by driving the robot in a square without any sensor feedback. For this part, you will write your code in the file <code>src/drive_square.cpp</code>. In the <code>main</code> function, write code to make the robot drive in a 1 meter by 1 meter square three times. The square is not expected to be perfect.</p>
 
   <ul class="todo">
     <li class="icon solid fa-laptop-code">
       <strong><a href="#todo1_1">P1.1</a> (2 points) DEMO:</strong>
-      In the file <code>drive_square.cpp</code>, write code to drive the robot in a square three times. To get points, you'll need to show your robot working to an instructor.
+      Demonstrate your robot driving in a square three times to a member of the course staff.
+      You should write your code in the file <code>drive_square.cpp</code>.
+      Commit and push your changes to GitHub.
     </li>
   </ul>
 
@@ -224,14 +218,14 @@ make</code></pre>
     <li class="icon solid fa-cogs"><strong>Hint:</strong> It's good practice to create variables in the <code>main</code> function to store constants. For example, you might want to define variables to store the velocity you are driving at, the number of seconds to drive for, and the number of times to repeat the square.</li>
   </ul>
 
-  <h3 id="sec_wall_follow">Part 2: Wall Following (Bang-Bang Control)</h3>
+  <h3 id="sec_wall_follow">Part 2: Wall Following</h3>
 
   <p>Now that we have gotten used to controlling the robot and reading Lidar data, we're ready to code a wall follower! The wall follower should run forever, until the program is stopped with Ctrl-C. At each iteration, the wall follower should do the following:</p>
 
   <ol>
     <li>Find the distance to the nearest wall and the angle where the wall is located (use <code>findMinDist()</code> for this part).</li>
     <li>Use the cross product to find a vector pointing parallel to the wall, in the direction the robot should drive.</li>
-    <li>Apply a correction to the vector using bang-bang control to move closer to or farther from the wall, depending on the current distance to the wall.</li>
+    <li>Apply a correction to the vector using bang-bang or P-control to move closer to or farther from the wall, depending on the current distance to the wall.</li>
     <li>Convert the vector to a velocity vector and send a velocity command to the robot.</li>
   </ol>
 
@@ -243,7 +237,7 @@ make</code></pre>
 
   <ul class="todo">
     <li class="icon solid fa-laptop-code">
-      <strong id="todo2_1">P1.2.1 (2 points):</strong> In the file <code>common/utils.cpp</code>, complete the function <code>findMinDist()</code> so that it finds the minimum length ray in the given scan. Return the <em>index</em> of this ray.
+      <strong id="todo2_1">P1.2.1 (2 points):</strong> In the file <code>src/common/utils.cpp</code>, complete the function <code>findMinDist()</code> so that it finds the minimum length ray in the given scan. Return the <em>index</em> of this ray.
     </li>
   </ul>
 
@@ -255,7 +249,7 @@ make</code></pre>
 
   <ul class="todo">
     <li class="icon solid fa-laptop-code">
-      <strong id="todo2_2">P1.2.2 (2 points):</strong> In the file <code>common/utils.cpp</code>, complete the function <code>crossProduct()</code> to find the cross product between two vectors. The input should be two vectors of length 3, corresponding to the x, y, and z components of the input vectors. The output should be a vector of length 3 corresponding to the components of the resulting cross product.
+      <strong id="todo2_2">P1.2.2 (2 points):</strong> In the file <code>src/common/utils.cpp</code>, complete the function <code>crossProduct()</code> to find the cross product between two vectors. The input should be two vectors of length 3, corresponding to the x, y, and z components of the input vectors. The output should be a vector of length 3 corresponding to the components of the resulting cross product.
     </li>
   </ul>
 
@@ -263,14 +257,15 @@ make</code></pre>
     <li class="icon solid fa-cogs"><strong>Hint:</strong> For a vector <code>v</code>, the x component should be stored in <code>v[0]</code>, the y component should be stored in <code>v[1]</code>, and the z component should be stored in <code>v[2]</code>.</li>
   </ul>
 
-  <p>Once both functions are completed, you are ready to write your wall follower. The wall follower code should go in <code>src/wall_follower.cpp</code>.</p>
+  <p>Once both functions are completed, you are ready to write your wall follower. The wall follower code should go in <code>src/wall_follower.cpp</code>. You can implement either the bang-bang controller or the P-controller discussed in class.</p>
 
   <ul class="todo">
     <li class="icon solid fa-laptop-code">
-      <strong><a href="#todo2_3">P1.2.3</a> (6 points) DEMO:</strong>
-      In the file <code>wall_follower.cpp</code>, write a program that follows a wall using the procedure outlined above.
+      <strong><a href="#todo2_3">P1.2.3</a> (5 points) DEMO:</strong>
+      Demonstrate that your robot can follow a wall to course staff.
+      For full points, your robot should successfully complete two laps around a course defined on Demo Day.
+      You should write your code in the file <code>wall_follower.cpp</code> using the procedure outlined above.
       You will need to use your functions <code>findMinDist()</code> and <code>crossProduct()</code>.
-      For full points, your robot will need to successfully complete 2 laps around the course defined by the course staff.
     </li>
   </ul>
 
@@ -278,21 +273,31 @@ make</code></pre>
     <li class="icon solid fa-cogs"><strong>Hint:</strong> You should create variables to store the setpoint (how far your robot should stay from the wall) and the magnitude of the correction you will apply. You might also want to declare an acceptable margin where you won't apply a correction, and the velocity of the robot. These values will need to be tuned to make your wall follower work well!</li>
   </ul>
 
-  <h3 id="sec_p_control">Advanced Extension: Wall Following (P-Control)</h3>
+</section>
 
-  <p>We can make a smoother controller using <em>proportional control</em>, or P-control, instead of bang-bang control. Instead of applying a correction of a fixed size, we can apply a correction <em>proportional</em> to the magnitude of the error between the desired setpoint and the current distance to the wall.</p>
+<!-- Website -->
+<section id="website">
+  <header class="major">
+    <h2><a href="#website">Project Website</a></h2>
+  </header>
 
-  <p>P-control can be implemented for optional <a href="/syllabus.html#sec_adv_ext">advanced extension credit</a>.</p>
+  <p>Create a website to demonstrate your implementation of the wall follower. The easiest method to create a website is to use Google Sites. You can instead create a project page on a GitHub repository, or use your favorite method to create a website. Note that if you chose to use GitHub pages, you will need to create a separate, public repository. Include at least one video demo of your wall follower as well as a brief summary and discussion of your algorithm. Add the link to your project page to the <code>README.md</code> file in the root of your repository and push it to GitHub.</p>
+
+  <p><em>Note:</em> To include the video on the webpage, consider uploading your video to YouTube. Alternatively, you can upload your video to Google Drive (you have unlimited storage through your UM account). If you do this, make sure the link is accessible to the instructors when they access the web page.</p>
+
+  <p>Include a discussion section on the web page, where you discuss the following:</p>
+  <ol>
+    <li>Your choice of control algorithm (bang-bang or P-control)</li>
+    <li>The strengths and limitations of the algorithm</li>
+    <li>How you might improve the algorithm (include at least one idea)</li>
+  </ol>
+
+  <p>Include images or videos whenever possible to illustrate your points. Keep the discussion brief: it should be no longer than a few sentences.</p>
 
   <ul class="todo">
     <li class="icon solid fa-laptop-code">
-      <strong id="todoAE_3_i">Advanced Extension P1.3.i (1 extension point):</strong>
-      Implement a wall follower using P-control.
+      <strong id="todo2_4">P1.2.4 (3 points):</strong> Create a web page for your wall follower project including at least one video demonstration and a discussion. Add a link to the website to the <code>README.md</code> file in your repository.
     </li>
-  </ul>
-
-  <ul class="hint">
-    <li class="icon solid fa-cogs"><strong>Hint:</strong> Instead of using a fixed correction size, the magnitude of the correction will be <code>kp * error</code>. You will need to declare and tune variable <code>kp</code>, often called the <em>proportional gain</em>.</li>
   </ul>
 
 </section>
@@ -310,39 +315,27 @@ make</code></pre>
     </li>
     <li class="icon solid fa-laptop-code">
       <strong><a href="#todo1_1">P1.1</a> (2 points) DEMO:</strong>
-      In the file <code>drive_square.cpp</code>, write code to drive the robot in a square three times. To get points, you'll need to show your robot working to an instructor.
+      Demonstrate your robot driving in a square three times to a member of the course staff.
+      You should write your code in the file <code>drive_square.cpp</code>.
+      Commit and push your changes to GitHub.
     </li>
     <li class="icon solid fa-laptop-code">
       <strong><a href="#todo2_1">P1.2.1</a> (2 points):</strong>
-      In the file <code>common/utils.cpp</code>, complete the function <code>findMinDist()</code> so that it finds the minimum length ray in the given scan. Return the <em>index</em> of this ray.
+      In the file <code>src/common/utils.cpp</code>, complete the function <code>findMinDist()</code> so that it finds the minimum length ray in the given scan. Return the <em>index</em> of this ray.
     </li>
     <li class="icon solid fa-laptop-code">
       <strong><a href="#todo2_2">P1.2.2</a> (2 points):</strong>
-      In the file <code>common/utils.cpp</code>, complete the function <code>crossProduct()</code> to find the cross product between two vectors.
+      In the file <code>src/common/utils.cpp</code>, complete the function <code>crossProduct()</code> to find the cross product between two vectors.
     </li>
     <li class="icon solid fa-laptop-code">
-      <strong><a href="#todo2_3">P1.2.3</a> (6 points) DEMO:</strong>
+      <strong><a href="#todo2_3">P1.2.3</a> (5 points) DEMO:</strong>
       In the file <code>wall_follower.cpp</code>, write a program that follows a wall using the procedure outlined above. 
       You will need to use your functions <code>findMinDist()</code> and <code>crossProduct()</code>.
       For full points, your robot will need to successfully complete 2 laps around the course defined by the course staff.
     </li>
     <li class="icon solid fa-laptop-code">
-      <strong><a href="#todo2_4">P1.2.4</a> (2 point):</strong>
+      <strong><a href="#todo2_4">P1.2.4</a> (3 points):</strong>
       Add a link to a video demonstration of Parts 1 and 2 to the <code>README.md</code> file in your repository.
-    </li>
-  </ul>
-
-</section>
-
-<section id="adv_ext">
-  <header class="major">
-    <h2><a href="#adv_ext">Advanced Extensions</a></h2>
-  </header>
-
-  <ul class="todo">
-    <li class="icon solid fa-laptop-code">
-      <strong><a href="#todoAE_3_i">Advanced Extension P1.3.i</a> (1 extension point):</strong>
-      Implement a wall follower using P-control.
     </li>
   </ul>
 
