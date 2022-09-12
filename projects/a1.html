@@ -76,7 +76,8 @@
 
     <span class="image main"><img src="/images/p1/git_create_team.png" alt="" style="max-width:600px;"/></span>
 
-    <p>You will be cloning the repository <em>on the robot's Raspberry Pi</em>. See the <a href="/tutorials/robot.html#sec_cThe first teammate to accept will need to create a new team. The team must be named P1 UM Team # for UM students, and P1 Berea Team # for Berea students. Replace # with the team number assigned to you. The first teammate to accept will need to create a new team. The team must be named P1 UM Team # for UM students, and P1 Berea Team # for Berea students. Replace # with the team number assigned to you. The next teammate should join the team from the list of existing teams.The next teammate should join the team from the list of existing teams.onn_robot">robot tutorial</a> for instructions on how to open a remote VSCode session connected to the robot. Once you are connected to the robot, in VSCode, open a terminal. This should be a terminal in the robot's Raspberry Pi. Then, clone the repository in the home directory:</p>
+    <p>You will be cloning the repository <em>on the robot's Raspberry Pi</em>.
+      See the <a href="/tutorials/robot.html#sec_conn_robot">robot tutorial</a> for instructions on how to open a remote VSCode session connected to the robot. Once you are connected to the robot, in VSCode, open a terminal. This should be a terminal in the robot's Raspberry Pi. Then, clone the repository in the home directory:</p>
     <pre><code class="language-bash">git clone &lt;ADDRESS&gt;</code></pre>
     <p>Substitute <strong>&ltADDRESS&gt</strong> with the git address found on github. Open the folder of the repository you just cloned in VSCode using the instructions in the <a href="/tutorials/robot.html#sec_code_robot">tutorial</a>.</p>
 
@@ -94,7 +95,7 @@
     
     <ul class="todo">
       <li class="icon solid fa-laptop-code">
-        <strong id="todo1">P1.0 (1 point):</strong> In the file <code>LICENSE.txt</code>, replace
+        <strong id="todo0">P1.0 (1 point):</strong> In the file <code>LICENSE.txt</code>, replace
         <code>&lt;COPYRIGHT HOLDER&gt;</code> with the names of all teammates, separated by commas. Replace
         <code>&lt;YEAR&gt;</code> with the current year.
       </li>
@@ -106,7 +107,7 @@
 
     <ul class="todo">
       <li class="icon solid fa-laptop-code">
-        <strong id="todo0">P1.1 (1 point):</strong> Add a link to a video demonstration of Parts 1 and 2 to the <code>README.md</code> file in your repository.
+        <strong id="todo2_4">P1.2.4 (1 point):</strong> Add a link to a video demonstration of Parts 1 and 2 to the <code>README.md</code> file in your repository.
       </li>
     </ul>
     
@@ -119,19 +120,26 @@
     <h2><a href="#code">Code Overview</a></h2>
   </header>
 
-  <p>In <a href="/projects/a0.html">Project 0</a>, we compiled our C++ code using the command <code>g++</code>. This called the C++ compiler and generated an executable that we could run. This time, we have a bit more code to deal with. The wall follower code will have dependencies on external libraries to drive the robot and read data from the Lidar. We could still use <code>g++</code> for this, but the command would be much longer and more complicated. Instead, we'll use a tool called <strong>CMake</strong>. CMake finds all the code and external libraries we need and generates instructions to build the executable. To build the code, in a terminal, type:</p>
-  <pre><code class="language-bash">cd ~/wall-follower/build
+  <p>In <a href="/projects/a0.html">Project 0</a>, we compiled our C++ code on Replit. Replit took care of calling the C++ compiler and generating an executable that we could run. This time, we have a bit more code to deal with. The wall follower code will have dependencies on external libraries to drive the robot and read data from the Lidar. We could compile the source code directly by running a similar command to Replit, but the command would be much longer and more complicated. Instead, we'll use a tool called <strong>CMake</strong>. CMake finds all the code and external libraries we need and generates instructions to build the executable. To build the code, in a terminal, type:</p>
+
+  <pre><code class="language-bash">cd ~/[my-wall-follower-dir]/build
 cmake ..
 make</code></pre>
-  <p>Remember that the code should be cloned and compiled on the Raspberry Pi. This will fail on your computer! Let's look at these instructions line by line:</p>
+
+  <p>
+    Remember that the code should be cloned and compiled on the Raspberry Pi. This will fail on your computer!
+    You should replace <code>[my-wall-follower-dir]</code> with the name of your wall follower directoy.
+    Let's look at these instructions line by line:
+  </p>
+
   <ol>
     <li>
-      <code>cd ~/wall-follower/build</code>:
+      <code>cd ~/[my-wall-follower-dir]/build</code>:
       Changes the directory to the <code>build</code> folder, where all the files CMake needs will be generated. The executables will also be in this folder. Keeping all the files related to compilation in <code>build</code> keeps our code organized.
     </li>
     <li>
       <code>cmake ..</code>:
-      Calls CMake, and tells it to use the instructions in the file <code>CMakeLists.txt</code> which is located in <code>wall-follower</code> to generate instructions to compile the code. Generally, <code>cmake ..</code> only needs to be called once, not every time you change your code.
+      Calls CMake, and tells it to use the instructions in the file <code>CMakeLists.txt</code> which is located in the root of the repository to generate instructions to compile the code. Generally, <code>cmake ..</code> only needs to be called once, not every time you change your code.
     </li>
     <li>
       <code>make</code>:
@@ -148,9 +156,6 @@ make</code></pre>
     </li>
     <li>
       <code>include</code>: Header files are stored in this directory. These allow us to include code written in separate files in our code.
-    </li>
-    <li>
-      <code>lib</code>: Precompiled library files.
     </li>
     <li>
       <code>omnibot_msgs</code>: These are message types which are needed for communicating with the MBot.
@@ -173,7 +178,8 @@ make</code></pre>
       <strong>Warning:</strong> Once <code>drive</code> is called, the robot will continue to drive at the given speed until you tell it to stop! Use <code>drive(0, 0, 0)</code> to stop the robot.
     </li>
     <li class="icon solid fa-cogs">
-      <code>LidarScan readLidarScan(RPlidarDriver* drv)</code>: Read the most recent Lidar scan and return it.
+      <code>void getLidarScan(std::vector&lt;float&gt;&amp; ranges, std::vector&lt;float&gt;&amp; thetas)</code>: Read the most recent Lidar scan and put the resulting ranges in the <code>ranges</code> vector, and angles in the <code>thetas</code> vector. <br/>
+      <strong>Warning:</strong> Some rays in the scan never return (for example, if there are no obstacles, or the ray bounces off a material and goes in a different direction). If the ray does not return, its range will be zero. Make sure you check for rays with zero range and ignore them.
     </li>
     <li class="icon solid fa-cogs">
       <code>void sleepFor(double secs)</code>: Sleep for a given number of seconds.
@@ -181,40 +187,8 @@ make</code></pre>
     <li class="icon solid fa-cogs">
       <code>double normalizeAngle(double angle)</code>: Normalize an angle in the range [-pi, pi]. This function returns the normalized angle.
     </li>
-    <li class="icon solid fa-cogs">
-      <code>Vector3D crossProduct(Vector3D& v1, Vector3D& v2)</code>: Preform the cross product between the two vectors provided, and return the resulting vector.
-    </li>
   </ul>
 
-  <p>The following structs are provided:</p>
-
-  <ul class="hint">
-    <li class="icon solid fa-cogs">
-      <strong>Vector3D:</strong> For representing 3D vectors. This is the type that the cross product function requires.
-      <pre><code class="language-cpp">struct Vector3D
-{
-float x, y, z;
-};</code></pre>
-      The values will default to zero if uninitialized.
-    </li>
-    <li class="icon solid fa-cogs">
-      <strong>LaserScan:</strong> For storing Lidar data. This is the type returned by the function that reads the Lidar scan.
-      <pre><code class="language-cpp">struct LidarScan
-{
-bool good;  // Whether the scan is valid.
-
-int utime;       // Clock time of the scan, in microseconds.
-int num_ranges;  // Number of rays in the scan.
-
-std::vector<float> ranges;       // Length of each ray in the scan, in meters.
-std::vector<float> thetas;       // Angle of each ray in the scan, in radians.
-std::vector<float> intensities;  // Intensity of each ray in the scan.
-std::vector<float> times;        // Time each ray was emitted.
-};</code></pre>
-      The vectors <code>ranges</code>, <code>thetas</code>, <code>intensities</code>, and <code>times</code> will all be of length <code>num_ranges</code>. The rays are listed in the same order, in the counterclockwise (positive) direction. For example, for a <code>LaserScan</code> instance named <code>scan</code>, the third ray, at index 2, will have length <code>scan.ranges[2]</code>, angle <code>scan.thetas[2]</code>, intensity <code>scan.intensities[2]</code>, and time <code>scan.times[2]</code>.<br/>
-      <strong>Warning:</strong> Some rays in the scan never return (for example, if there are no obstacles, or the ray bounces off a material and goes in a different direction). If the ray does not return, its range and intensity will be zero. Make sure you check for rays with zero intensity and ignore them.
-    </li>
-  </ul>
 
 </section>
 
@@ -235,11 +209,11 @@ std::vector<float> times;        // Time each ray was emitted.
 
   <h3 id="sec_square">Part 1: Drive Square</h3>
 
-  <p>We will start by driving the robot in a square without any sensor feedback. For this part, you will write your code in the file <code>wall-follower/src/drive_square.cpp</code>. In the <code>main</code> function, write code to make the robot drive in a 1 meter by 1 meter square three times.</p>
+  <p>We will start by driving the robot in a square without any sensor feedback. For this part, you will write your code in the file <code>src/drive_square.cpp</code>. In the <code>main</code> function, write code to make the robot drive in a 1 meter by 1 meter square three times.</p>
 
   <ul class="todo">
     <li class="icon solid fa-laptop-code">
-      <strong><a href="#todo1_1">P1.1.1</a> (2 points) DEMO:</strong>
+      <strong><a href="#todo1_1">P1.1</a> (2 points) DEMO:</strong>
       In the file <code>drive_square.cpp</code>, write code to drive the robot in a square three times. To get points, you'll need to show your robot working to an instructor.
     </li>
   </ul>
@@ -261,17 +235,42 @@ std::vector<float> times;        // Time each ray was emitted.
     <li>Convert the vector to a velocity vector and send a velocity command to the robot.</li>
   </ol>
 
-  <p>You will need to write the cross product function first, in the provided function in <code>wall-follower/src/common/utils.cpp</code>. The wall follower code should go in <code>wall-follower/src/wall_follower.cpp</code>.</p>
+  <p>First, we need to write code to find the distance to the nearest obstacle. Calling the function <code>getLidarScan()</code> fills the <code>ranges</code> vector passed to it with the length, or <em>range</em>, of each ray in the scan in meters. The distance to the nearest obstacle is the range of the shortest ray in the scan.</p>
+
+  <p>
+    Complete the provided function, <code>findMinDist()</code>, in <code>src/common/utils.cpp</code> so that it finds the <em>index</em> of the shortest ray. For example, if the smallest range in <code>ranges</code> is the tenth element at index 9, the function should return 9.
+  </p>
 
   <ul class="todo">
     <li class="icon solid fa-laptop-code">
-      <strong id="todo3_1">P1.3.1 (2 points):</strong> In the file <code>common/utils.cpp</code>, complete the function <code>crossProduct()</code> to find the cross product between two vectors.
+      <strong id="todo2_1">P1.2.1 (2 points):</strong> In the file <code>common/utils.cpp</code>, complete the function <code>findMinDist()</code> so that it finds the minimum length ray in the given scan. Return the <em>index</em> of this ray.
     </li>
+  </ul>
+
+  <ul class="hint">
+    <li class="icon solid fa-cogs"><strong>Hint:</strong> Remember to ignore rays with zero range when finding the minimum range value. Rays with zero range are invalid. If you forget to check for invalid rays, the minimum range will always be zero.</li>
+  </ul>
+
+  <p>Next, you will need to write the cross product function, in the provided function in <code>src/common/utils.cpp</code>. </p>
+
+  <ul class="todo">
     <li class="icon solid fa-laptop-code">
-      <strong><a href="#todo3_2">P1.3.2</a> (6 points) DEMO:</strong>
-      In the file <code>wall_follower.cpp</code>, write a program that follows a wall using the procedure outlined above. 
+      <strong id="todo2_2">P1.2.2 (2 points):</strong> In the file <code>common/utils.cpp</code>, complete the function <code>crossProduct()</code> to find the cross product between two vectors. The input should be two vectors of length 3, corresponding to the x, y, and z components of the input vectors. The output should be a vector of length 3 corresponding to the components of the resulting cross product.
+    </li>
+  </ul>
+
+  <ul class="hint">
+    <li class="icon solid fa-cogs"><strong>Hint:</strong> For a vector <code>v</code>, the x component should be stored in <code>v[0]</code>, the y component should be stored in <code>v[1]</code>, and the z component should be stored in <code>v[2]</code>.</li>
+  </ul>
+
+  <p>Once both functions are completed, you are ready to write your wall follower. The wall follower code should go in <code>src/wall_follower.cpp</code>.</p>
+
+  <ul class="todo">
+    <li class="icon solid fa-laptop-code">
+      <strong><a href="#todo2_3">P1.2.3</a> (6 points) DEMO:</strong>
+      In the file <code>wall_follower.cpp</code>, write a program that follows a wall using the procedure outlined above.
       You will need to use your functions <code>findMinDist()</code> and <code>crossProduct()</code>.
-      For full points, your robot will need to successfully complete 2 laps around the course.
+      For full points, your robot will need to successfully complete 2 laps around the course defined by the course staff.
     </li>
   </ul>
 
@@ -310,7 +309,7 @@ std::vector<float> times;        // Time each ray was emitted.
       In the file <code>LICENSE.txt</code>, replace <code>&lt;COPYRIGHT HOLDER&gt;</code> with the names of all teammates, separated by commas. Replace <code>&lt;YEAR&gt;</code> with the current year.
     </li>
     <li class="icon solid fa-laptop-code">
-      <strong><a href="#todo1_1">P1.1.1</a> (2 points) DEMO:</strong>
+      <strong><a href="#todo1_1">P1.1</a> (2 points) DEMO:</strong>
       In the file <code>drive_square.cpp</code>, write code to drive the robot in a square three times. To get points, you'll need to show your robot working to an instructor.
     </li>
     <li class="icon solid fa-laptop-code">
@@ -318,17 +317,17 @@ std::vector<float> times;        // Time each ray was emitted.
       In the file <code>common/utils.cpp</code>, complete the function <code>findMinDist()</code> so that it finds the minimum length ray in the given scan. Return the <em>index</em> of this ray.
     </li>
     <li class="icon solid fa-laptop-code">
-      <strong><a href="#todo3_1">P1.3.1</a> (2 points):</strong>
+      <strong><a href="#todo2_2">P1.2.2</a> (2 points):</strong>
       In the file <code>common/utils.cpp</code>, complete the function <code>crossProduct()</code> to find the cross product between two vectors.
     </li>
     <li class="icon solid fa-laptop-code">
-      <strong><a href="#todo3_2">P1.3.2</a> (6 points) DEMO:</strong>
+      <strong><a href="#todo2_3">P1.2.3</a> (6 points) DEMO:</strong>
       In the file <code>wall_follower.cpp</code>, write a program that follows a wall using the procedure outlined above. 
       You will need to use your functions <code>findMinDist()</code> and <code>crossProduct()</code>.
-      For full points, your robot will need to successfully complete 2 laps around the course.
+      For full points, your robot will need to successfully complete 2 laps around the course defined by the course staff.
     </li>
     <li class="icon solid fa-laptop-code">
-      <strong><a href="#todo1">P1.1</a> (2 point):</strong>
+      <strong><a href="#todo2_4">P1.2.4</a> (2 point):</strong>
       Add a link to a video demonstration of Parts 1 and 2 to the <code>README.md</code> file in your repository.
     </li>
   </ul>
