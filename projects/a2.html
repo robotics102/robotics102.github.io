@@ -53,10 +53,10 @@
   <ul>
     <li><a href="#getting_code">Getting the Code</a>
     <li><a href="#submitting">Submitting the Assignment</a></li>
-    <li><a href="#code">Code Overview</a></li>
     <li><a href="#proj_desc">Project Description</a></li>
     <li><a href="#website">Project Website</a></li>
-    <!-- <li><a href="#tasks">Task Summary</a></li> -->
+    <li><a href="#code">Code Overview</a></li>
+    <li><a href="#tasks">Task Summary</a></li>
     <li><a href="#ad_ext">Advanced Extensions</a></li>
   </ul>
 
@@ -121,16 +121,14 @@
     <p>
       The Bug Algorithm navigates by driving towards the goal, while checking for obstacles in the path.
       If the robot encounters an obstacle while driving to the goal, it drives around the obstacle until the path to the goal is clear again.
-      We drive around around obstacles using a Wall Follower, with the same algorithm as in <a href="/projects/a1.html">Project 1</a>.
+      We will drive around around obstacles using a Wall Follower, with the same algorithm as in <a href="/projects/a1.html">Project 1</a>.
     </p>
-
-
 
     <h3 id="robot_hits_the_spot">Robot Hits the Spot</h3>
 
     <p>
       The first step is to navigate to a given goal position and angle.
-      In <a href="/projects/a1.html#sec_square">Project 1, Part 1</a>, we wrote a program that drove in a square by sending velocity commands to the robot.
+      In <a href="/projects/a1.html#sec_square">Project 1.1</a>, we wrote a program that drove in a square by sending velocity commands to the robot.
       The square was not very accurate because we had no way of checking whether the robot had acheived the desired position.
     </p>
 
@@ -152,20 +150,22 @@
 
     <h3 id="bug">Bug Navigation</h3>
 
-    <p>Once we can drive to a goal location, we will encorporate avoiding obstacles using Wall Following.
-      We will implement the Bug 0 Algorithm as a State Machine which switches between two states: driving towards the goal, and wall following around obstacles.
+    <p>
+      Once we can drive to a goal location, we will encorporate avoiding obstacles using Wall Following.
+      We will implement the Bug 0 Algorithm as a State Machine which has three states: drive towards the goal, wall follow around obstacles, and reached goal.
       The algorithm continues until the goal is reached, doing the following at each iteration:
     </p>
 
     <ol>
-      <li>Check whether the robot should be in the drive to goal state or the wall following state.</li>
-      <li>Compute the velocity command which drives towards the goal <i>OR</i> follows the obstacle, depending on the state.</li>
+      <li>Check whether the robot has reached the goal, or whether it should be in the drive to goal state or the wall following state.</li>
+      <li>If the robot has reached the goal, terminate the program.</li>
+      <li>Otherwise, compute the velocity command which drives towards the goal <i>OR</i> follows the obstacle, depending on the state.</li>
       <li>Send the command to the robot.</li>
     </ol>
 
     <p>
       First, you will need to determine which state your robot is in.
-      If the path to the goal has an obstacle, the robot should be in a wall following state.
+      If the path to the goal is obstructed, the robot should be in a wall following state.
       In Project 1, we wrote a function to find the minimum ray in the Lidar scan.
       This time, we want to know if there is an obstacle along the path to the goal.
       You should complete the function <code>findMinRayInSlice()</code> which will tell us the minimum ray in a specific slice of the Lidar scan which points in the direction of our go.
@@ -201,7 +201,7 @@
       <li class="icon solid fa-laptop-code">
         <strong id="todo3">P2.3 (1 point):</strong>
         Determine the state of the robot at each iteration and print the current state to the screen.
-        Course staff should be able to read the output to determine whether your bug navigation is correctly transitioning between states.
+        Course staff should be able to read the output to ensure your bug navigation is correctly transitioning between states.
       </li>
     </ul>
 
@@ -222,10 +222,42 @@
       <li class="icon solid fa-laptop-code">
         <strong id="todo4">P2.4 Bug Navigation Demo (5 points):</strong>
         In the file <code>bug_navigation.cpp</code>, write a program that drives to a goal location and avoids obstacles following the procedure outlined above.
-        For full points, your robot will need to drive to a goal given given by course staff.
+        For full points, your robot will need to drive to a goal given by course staff.
         Staff will test 2-3 runs of your bug navigation.
       </li>
     </ul>
+
+</section>
+
+<!-- Website -->
+<section id="website">
+  <header class="major">
+    <h2><a href="#website">Project Website</a></h2>
+  </header>
+
+  <p>
+    Create a website to demonstrate your implementation of bug navigation.
+    Include at least one video demo of your algorithm as well as a brief summary and discussion of your algorithm.
+    Add the link to your project page to the <code>README.md</code> file in the root of your repository and push it to GitHub.
+    For a refresher about how to create the website, see the <a href="/projects/a1.html#website">Project 1 description</a>.
+  </p>
+
+  <p>Include a discussion section on the web page, where you answer the following questions:</p>
+  <ol>
+    <li>Is the pose from odometry accurate? Why or why not?</li>
+    <li>Which environments would cause your bug navigation algorithm to fail to reach the goal? You are encouraged to take a video demonstrating a failure case of your algorithm, or draw a picture of one or more failure modes.</li>
+    <li>How could your bug navigation algorithm be improved? Give at least one suggestion.</li>
+  </ol>
+
+  <p>Include images or videos whenever possible to illustrate your points. Keep the discussion brief: it should be no longer than a few sentences. Remember to ensure that videos are visible by course staff.</p>
+
+  <ul class="todo">
+    <li class="icon solid fa-laptop-code">
+      <strong id="todo2_4">P2.5 (3 points):</strong>
+      Create a web page for your bug navigation project including at least one video demonstration and a discussion.
+      Add a link to the website to the <code>README.md</code> file in your repository.
+    </li>
+  </ul>
 
 </section>
 
@@ -245,7 +277,7 @@ make</code></pre>
 
   <p>
     Remember that the code should be cloned and compiled on the Raspberry Pi. This will fail on your computer!
-    You should replace <code>[my-bug-nav-dir]</code> with the name of your bug navigation directory.
+    You should replace <code>[my-bug-navigation-dir]</code> with the name of your bug navigation directory.
     For a review of what these commands do, see <a href="/projects/a1.html#code">the Project 1 description</a>.
   </p>
 
@@ -280,44 +312,23 @@ make</code></pre>
       <strong>Warning:</strong> Once <code>drive</code> is called, the robot will continue to drive at the given speed until you tell it to stop! Use <code>drive(0, 0, 0)</code> to stop the robot.
     </li>
     <li class="icon solid fa-cogs">
+      <code>void resetPose()</code>: Set the current odometry pose to zero.
+    </li>
+    <li class="icon solid fa-cogs">
       <code>void getLidarScan(std::vector&lt;float&gt;&amp; ranges, std::vector&lt;float&gt;&amp; thetas)</code>: Read the most recent Lidar scan and put the resulting ranges in the <code>ranges</code> vector, and angles in the <code>thetas</code> vector. <br/>
       <strong>Warning:</strong> Some rays in the scan never return (for example, if there are no obstacles, or the ray bounces off a material and goes in a different direction). If the ray does not return, its range will be zero. Make sure you check for rays with zero range and ignore them.
+    </li>
+    <li class="icon solid fa-cogs">
+      <code>void getPose(std::vector<float>& pose)</code>: Read the most recent pose data from odometry and put the result in the  <code>pose</code> vector. Pose is stored in the order: <code>[x, y, theta]</code>.
+    </li>
+    <li class="icon solid fa-cogs">
+      <code>void getEncoderDeltas(std::vector<int>& encoder)</code>: Read the most recent encoder deltas and put the result in the <code>encoder</code> vector. Encoder deltas are stored in the order: <code>[a_delta, b_delta, c_delta]</code>.
     </li>
     <li class="icon solid fa-cogs">
       <code>void sleepFor(float secs)</code>: Sleep for a given number of seconds.
     </li>
     <li class="icon solid fa-cogs">
-      <code>float wrapAngle(float angle)</code>: Normalize an angle in the range [-pi, pi]. This function returns the normalized angle.
-    </li>
-  </ul>
-
-</section>
-
-<!-- Website -->
-<section id="website">
-  <header class="major">
-    <h2><a href="#website">Project Website</a></h2>
-  </header>
-
-  <p>
-    Create a website to demonstrate your implementation of bug navigation.
-    Include at least one video demo of your algorithm as well as a brief summary and discussion of your algorithm.
-    Add the link to your project page to the <code>README.md</code> file in the root of your repository and push it to GitHub.
-    For a refresher about how to create the website, see the <a href="/projects/a1.html#website">Project 1 description</a>.
-  </p>
-
-  <p>Include a discussion section on the web page, where you discuss the following:</p>
-  <ol>
-    <li>TODO</li>
-  </ol>
-
-  <p>Include images or videos whenever possible to illustrate your points. Keep the discussion brief: it should be no longer than a few sentences.</p>
-
-  <ul class="todo">
-    <li class="icon solid fa-laptop-code">
-      <strong id="todo2_4">P2.5 (3 points):</strong>
-      Create a web page for your bug navigation project including at least one video demonstration and a discussion.
-      Add a link to the website to the <code>README.md</code> file in your repository.
+      <code>float wrapAngle(float angle)</code>: Wrap an angle in the range [-pi, pi]. This function returns the wrapped angle.
     </li>
   </ul>
 
@@ -380,16 +391,19 @@ make</code></pre>
 
   <ul class="todo">
     <li class="icon solid fa-laptop-code">
-      <strong><a href="#todoAE_1_i">Advanced Extension P2.i</a> (X extension point):</strong>
-      Implement Odometry
+      <strong><a href="#todoAE_1_i">Advanced Extension P2.i</a> (1 extension point):</strong>
+      Implement odometry using the encoder readings in the file <code>src/robot/odometry.cpp</code>.
+      Replace the pose read from the robot's odometry code with your own odometry code.
+      Tune the odometry parameters to make the pose as accurate as possible.
     </li>
     <li class="icon solid fa-laptop-code">
-      <strong><a href="#todoAE_1_i">Advanced Extension P2.i</a> (1 extension point):</strong>
+      <strong><a href="#todoAE_1_ii">Advanced Extension P2.ii</a> (1 extension point):</strong>
       Implement the Bug 1 or Bug 2 algorithm, as discussed in lecture.
     </li>
   </ul>
 
 </section>
+
 
             </div>
           </div>
