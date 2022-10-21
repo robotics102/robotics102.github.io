@@ -57,7 +57,12 @@
     <li><a href="#website">Project Website</a></li>
     <li><a href="#code">Code Overview</a></li>
     <li><a href="#tasks">Task Summary</a></li>
-    <li><a href="#ad_ext">Advanced Extensions</a></li>
+    <li>
+      <a href="#ad_ext">Advanced Extensions</a>
+      <ul>
+        <li><a href="#odometry">Instructions for implementing odometry</a></li>
+      </ul>
+    </li>
   </ul>
 
   <hr class="major" />
@@ -405,6 +410,91 @@ make</code></pre>
       Implement the Bug 1 or Bug 2 algorithm, as discussed in lecture.
     </li>
   </ul>
+
+  <h2 id="odometry">Odometry</h2>
+
+  <p>
+    To implement odometry, you will have to modify the code to listen for encoder data instead of the Pico's odometry.
+    To use your own odometry in <code>hit_the_spot.cpp</code>, make the following modifications:
+  </p>
+
+  <ol>
+    <li>Change <code>initPoseListener()</code> to <code>initEncoderListener()</code>,</li>
+    <li>Initialize the vector <code>pose</code> in the main function and modify the header of <code>driveToPose()</code> to accept the pose vector,</li>
+    <li>In the loop, define a vector of ints for encoder deltas, and call <code>getEncoderDeltas()</code> instead of <code>getPose()</code>,</li>
+    <li>Call <code>updatePoseOdometry()</code> to update the robot's current pose.</li>
+  </ol>
+
+  <p>You can then use the pose vector as normal. The template code should look something like this:</p>
+
+  <pre><code class="language-cpp">// ...
+void driveToPose(float goal_x, float goal_y, float goal_theta, std::vector&lt;float&gt; pose) {
+    std::vector&lt;int&gt; encoder_deltas(3, 0);
+    while(true)  // TODO: You may replace the while loop condition.
+    {
+        handle();
+        getEncoderDeltas(encoder_deltas);  // Gets the encoder readings.
+        updatePoseOdometry(encoder_deltas, pose);  // You should fill in this function in odometry.cpp.
+
+        /**
+         * TODO: (P2.1) Implement your code to drive to the goal pose,
+         * [goal_x, goal_y, goal_theta].
+         **/
+    }
+}
+
+int main(){
+    // Set the current robot position to be zero.
+    std::vector&lt;float&gt; pose(3, 0);
+    // Listen for the encoder values.
+    initEncoderListener();
+
+    // Call driveToPose(x, y, theta, pose) here. Remember to pass in the current pose.
+
+    // Stop the robot before exiting.
+    drive(0, 0, 0);
+}</code></pre>
+
+<p>Bug navigation is similar, but the template code only runs the loop when a new lidar scan is received. You will need to update odometry every time new encoder data is received. The template should look similar to the code below. Some parts of the template are excluded for brevity. The parts to modify are highlighted in comments. Pay special attention to the lines at the beginning of the while loop.</p>
+
+<pre><code class="language-cpp">// ...
+  int main() {
+    // ...
+
+    // No need to reset pose! Just initialize pose to zero.
+    std::vector&lt;float&gt; pose(3, 0);
+
+    // Setup Lidar and encoder listeners and create vectors to store the data.
+    initLidarListener();
+    initEncoderListener();  // Listen for encoders instead of pose.
+    std::vector&lt;float&gt; ranges;
+    std::vector&lt;float&gt; thetas;
+    std::vector&lt;int&gt; encoder_deltas(3, 0);  // Add a vector for encoder deltas.
+
+    // ...
+
+    while (true) {
+        handle();
+        if (newEncoderReceived()) {  // Add this block BEFORE checking for new Lidar data.
+          getEncoderDeltas(encoder_deltas);  // Gets the encoder readings.
+          updatePoseOdometry(encoder_deltas, pose);
+        }
+        if(!lidarScanReceived()) continue;  // This should be changed!! Was newPoseLidarReceived().
+
+        // Only get the lidar scan, remove the getPose() call.
+        getLidarScan(ranges, thetas);
+
+        // The rest of the code can use the pose as computed by your odometry.
+
+        if(ctrl_c_pressed) {
+            break;
+        }
+    }
+
+    // Stop the robot.
+    drive(0, 0, 0);
+    return 0;
+}</code></pre>
 
 </section>
 
