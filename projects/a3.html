@@ -40,7 +40,7 @@
       <strong>Project 3:</strong> Path Planning
     </header>
 
-    <p><font size="+2"><strong>Due November 17th, 2022 at 11:59 PM.</strong></font></p>
+    <!-- <p><font size="+2"><strong>Due November 17th, 2022 at 11:59 PM.</strong></font></p> -->
 
     <p>In this project, we will write a <strong>path planning algorithm</strong>, which will find a path to any goal in a map. When you've completed the project, you'll be able to find paths like this one:</p>
 
@@ -61,16 +61,13 @@
         <ul>
           <li><a href="#part1_michigan">Part 1: Path Planning in Michigan</a></li>
           <li><a href="#part2_robot">Part 2: Path Planning on the Robot</a></li>
-          <!-- <li><a href="#sec_node">Part 1: Storing Node Data</a></li> -->
-          <!-- <li><a href="#sec_bfs">Part 2: Breadth First Search</a></li> -->
-          <!-- <li><a href="#sec_robot">Part 3: Planning on the Robot</a></li> -->
-          <li><a href="#adv_ext_astar">Advanced Extension: A-Star Search</a></li>
+          <li><a href="#adv_ext">Advanced Extensions</a></li>
         </ul>
       </li>
       <li><a href="#website">Project Webpage</a></li>
       <li><a href="#code">Code Overview</a></li>
       <li><a href="#tasks">Task Summary</a></li>
-      <li><a href="#adv_ext">Advanced Extensions</a></li>
+      <li><a href="#adv_ext_summary">Advanced Extensions Summary</a></li>
     </ul>
 
     <hr class="major" />
@@ -276,7 +273,9 @@
 
     <p>
       To help you develop your algorithm, we have created a webapp which you can use to test your algorithm.
+      You can find a tutorial on how to use it <a href="/tutorials/app.html">here</a>.
       The code can be run in Replit for testing purposes, using provided test maps, or maps that you have downloaded from the robot.
+      It will output a file that you can use in the webapp to visualize your code.
       Once your planning algorithm is working, you can run it on your robot using a real robot map.
     </p>
 
@@ -404,7 +403,7 @@ make
 cmake -DOMNIBOT=On ..
 make</code></pre>
 
-    <p>Do not forget the argument <code>-DOMNIBOT=On</code> when running CMake. This is how the compiler knows whether to compile the robot code (which is not compiled by default in the Docker). To run the planning algorithm, in the <code>build</code> folder where you compiled, do:</p>
+    <p>Do not forget the argument <code>-DOMNIBOT=On</code> when running CMake. This is how the compiler knows whether to compile the robot code (which is not compiled by default for testing in Replit). To run the planning algorithm, in the <code>build</code> folder where you compiled, do:</p>
     <pre><code class="language-bash">./robot_plan_path [PATH/TO/MAP] [goal_x] [goal_y]</code></pre>
     <p>The map is stored in <code>~/mbot-bin/maps/current.map</code>. Use that path if you did not move the map since creating it. You can also pass in <code>goal_x</code> and <code>goal_y</code>, the global position of the goal, relative to the starting position of your map, in meters. If you do not pass these in, they will default to zero.</p>
 
@@ -416,18 +415,7 @@ make</code></pre>
 
     <h3 id="astar">A-Star Search</h3>
 
-    <p>As an advanced extension, you may write code to implement <strong>A-Star Search</strong> over a graph, given a start and goal cell. You will write your code in the file <code>src/graph_search/graph_search.cpp</code>. Your code should go in the function <code>aStarSearch()</code>. This function looks a lot like the one for <a href="#sec_bfs">BFS</a>. However, you will need to maintain the f-score of the nodes you explore.</p>
-
-    <ul class="todo">
-      <li class="icon solid fa-laptop-code">
-        <strong id="todoAE_3_i">Advanced Extension P3.i:</strong>
-        In the <code>graph_utils.h</code> file, extend your cell node data to include the f-score of the node.
-      </li>
-      <li class="icon solid fa-laptop-code">
-        <strong id="todoAE_3_ii">Advanced Extension P3.ii:</strong>
-        In the <code>graph_utils.cpp</code> file, implement the function <code>getScore()</code> to return a double corresponding to the f-score of the given cell index.
-      </li>
-    </ul>
+    <p>As an advanced extension, you may write code to implement <strong>A-Star Search</strong> over a graph, given a start and goal cell. You will write your code in the file <code>src/graph_search/graph_search.cpp</code>. Your code should go in the function <code>aStarSearch()</code>. This function looks a lot like the one for <a href="#sec_bfs">BFS</a>. However, you will need to maintain the f-score of the nodes you explore. Modify your cell node data to include the f-score of the node. In the <code>graph_utils.cpp</code> file, implement the function <code>getScore()</code> to return a double corresponding to the f-score of the given cell index.</p>
 
     <p>In A-Star, the next node to explore is the one with the <emph>lowest f-score</emph>. The function <code>findLowestScore()</code> takes a <code>std::vector</code> of integers as an argument, along with the graph, and returns the index of the lowest score node <emph>in the list</emph>. You can use this function as follows to get the lowest scoring node, and then remove it from the list:</p>
     <pre><code class="language-cpp">int min_score_idx = findLowestScore(visit_list, graph);
@@ -436,12 +424,71 @@ visit_list.erase(visit_list.begin() + min_score_idx);</code></pre>
 
     <ul class="todo">
       <li class="icon solid fa-laptop-code">
-        <strong id="todoAE_3_iii">Advanced Extension P3.iii:</strong>
+        <strong id="todoAE_3_i">Advanced Extension P3.i (1 extension point):</strong>
         In the <code>graph_search.cpp</code> file, implement A-Star Search in function <code>aStarSearch()</code>.
       </li>
     </ul>
 
-    <h3 id="dt">Distance Transform</h3>
+    <h3 id="dt">Distance Transform (Manhattan)</h3>
+
+    <p>A <strong>binary distance transform</strong> calculates the distance from each cell to the nearest occupied cell in a map.
+    We can use this to check whether a cell is in collision quickly.
+    The distance transform values can also be used to compute more interesting costs to visit a cell in a planning algorithm.
+    The output should look something like the image below.
+    The grey cells represent smaller distances to the nearest obstacle, and the white cells represent higher distances.</p>
+
+    <span class="image main"><img src="/images/p2/dist_tf.png" alt="" style="max-width:600px;"/></span>
+
+    <p>If you have completed this advanced extension, you can use function <code>checkCollisionFast()</code> in your path planning algorithms.</p>
+
+    <p>
+      A good starting point is to implement a slow version of the distance transform which gives us the Euclidean distance to each cell.
+      This can be implmented in the function <code>distanceTransformSlow()</code> located in <code>src/potential_field/distance_transform.cpp</code>.
+      To do this, for each unoccupied cell, we can calculate the distance between the current cell and every occupied cell in the graph.
+      We store the smallest distance in the <code>graph.obstacle_distances</code> vector. This will help you get the hang of the idea, but is very slow! This algorithm alone is not worth extension points.
+    </p>
+
+    <ul class="hint">
+      <li class="icon solid fa-cogs"><strong>Hint:</strong> You can visualize your transform in the web app by modifying the function <code>initGraph()</code> so that it calls <code>distanceTransformSlow()</code>. If <code>graph.obstacle_distances</code> contains data, you should be able to see the distance transform when you toggle &quot;Show Distance Transform&quot; in the web app, after uploading the planning file.</li>
+      <!-- <li class="icon solid fa-cogs"><strong>Hint:</strong> Can you make your algorithm any faster?</li> -->
+    </ul>
+
+    <p>
+      To get the advanced extension point, you should implement a much faster algorithm for computing the distance transform, but which computes the Manhattan distance from each unoccupied cell to the nearest occupied cell.
+      The 2D Distance Transform is discribed in <a href="https://youtu.be/5vI76u17-UE">this video lecture</a>
+      [<a href="/lectures/rob102_07_distance_transform.pdf">Slides</a>].
+      There is also an accompanying example which can be completed in Replit:
+      [<a href="/lectures/in-class/files/dt.cpp">Template Code</a>]
+      [<a href="/lectures/in-class/rob102_08_inclass_distance_transform.pdf">Slides</a>].
+    </p>
+
+    <p>
+      Implement this algorithm in the function <code>distanceTransformManhattan()</code> located in <code>src/potential_field/distance_transform.cpp</code>.
+      You can visualize your distance transform by modifying the function <code>initGraph()</code> so that it calls <code>distanceTransformManhattan()</code>.
+    </p>
+
+    <ul class="todo">
+      <li class="icon solid fa-laptop-code">
+        <strong id="todoAE_3_iii">Advanced Extension P3.ii (1 extension point):</strong>
+        In the <code>distance_transform.cpp</code> file, complete function <code>distanceTransformManhattan()</code> so that it uses the fast Manhattan distance transform algorithm, and stores the result in <code>graph.obstacle_distances</code>.
+      </li>
+    </ul>
+
+    <h3 id="dt_euclidean">Distance Transform (Euclidean)</h3>
+
+    <p>
+      <strong>Notes on the algorithm:</strong> <a href="/lectures/fast_euclidean_dt.pdf">Fast Euclidean Distance Transform</a>.
+      The notes describe an algorithm presented in a research paper which is available <a href="http://people.cs.uchicago.edu/~pff/papers/dt.pdf">here</a>.
+    </p>
+
+    <p>For an additional advanced extension point, you can implement the fast Euclidean distance transform described in the notes linked above. The function <code>distanceTransformEuclidean2D()</code> is provided in the file <code>src/potential_field/distance_transform.cpp</code> to implement the algorithm. You may use function <code>distanceTransformEuclidean1D()</code> to implement the 1D version of the algorithm which is used within the 2D algorithm.</p>
+
+    <ul class="todo">
+      <li class="icon solid fa-laptop-code">
+        <strong id="todoAE_3_iii">Advanced Extension P3.iii (1 extension point):</strong>
+        In the <code>distance_transform.cpp</code> file, complete function <code>distanceTransformEuclidean2D()</code> so that it uses the fast Euclidean distance transform algorithm, and stores the result in <code>graph.obstacle_distances</code>.
+      </li>
+    </ul>
 
   </section>
 
@@ -625,21 +672,21 @@ visit_list.erase(visit_list.begin() + min_score_idx);</code></pre>
 
   <section id="adv_ext">
     <header class="major">
-      <h2><a href="#adv_ext">Advanced Extensions</a></h2>
+      <h2><a href="#adv_ext_summary">Advanced Extensions</a></h2>
     </header>
 
     <ul class="todo">
       <li class="icon solid fa-laptop-code">
-        <strong><a href="#todoAE_3_i">Advanced Extension P3.i</a>:</strong>
-        In the <code>graph_utils.h</code> file, extend your cell node data to include the f-score of the node.
+        <strong><a href="#todoAE_3_i">Advanced Extension P3.i</a> (1 extension point):</strong>
+        Implement A-Star path finding.
       </li>
       <li class="icon solid fa-laptop-code">
-        <strong><a href="#todoAE_3_ii">Advanced Extension P3.ii</a>:</strong>
-        In the <code>graph_utils.cpp</code> file, implement the function <code>getScore()</code> to return a double corresponding to the f-score of the given cell index.
+        <strong><a href="#todoAE_3_ii">Advanced Extension P3.ii</a> (1 extension point):</strong>
+        Implement a Manhattan distance transform and use the result to check for collisions during path planning.
       </li>
       <li class="icon solid fa-laptop-code">
-        <strong><a href="#todoAE_3_iii">Advanced Extension P3.iii</a>:</strong>
-        In the <code>graph_search.cpp</code> file, implement A-Star Search in function <code>aStarSearch()</code>.
+        <strong><a href="#todoAE_3_iii">Advanced Extension P3.iii</a> (1 extension point):</strong>
+        Implement a Euclidean distance transform and use the result to check for collisions during path planning.
       </li>
     </ul>
 
