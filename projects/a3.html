@@ -35,12 +35,554 @@
               </header>
 
               <!-- Content -->
-<section>
-  <header class="main project">
-    <strong>Project 3:</strong> Path Finding
+  <section>
+    <header class="main project">
+      <strong>Project 3:</strong> Path Planning
+    </header>
+
+    <p><font size="+2"><strong>Due November 17th, 2022 at 11:59 PM.</strong></font></p>
+
+    <p>In this project, we will write a <strong>path planning algorithm</strong>, which will find a path to any goal in a map. When you've completed the project, you'll be able to find paths like this one:</p>
+
+    <span class="image main"><img src="/images/p3/bfs_path.png" alt="" style="max-width:600px;"/></span>
+
+    <p>This project will have two components: an individual component where you plan paths throughout a map of Michigan, and a group component where you plan paths in a robot map.</p>
+
+    <ul>
+      <li><a href="#getting_code">Getting the Code</a>
+      <li>
+        <a href="#submitting">Submitting the Assignment</a>
+        <ul>
+          <li><a href="#grading">Grading Breakdown</a></li>
+        </ul>
+      </li>
+
+      <li><a href="#proj_desc">Project Description</a>
+        <ul>
+          <li><a href="#part1_michigan">Part 1: Path Planning in Michigan</a></li>
+          <li><a href="#part2_robot">Part 2: Path Planning on the Robot</a></li>
+          <!-- <li><a href="#sec_node">Part 1: Storing Node Data</a></li> -->
+          <!-- <li><a href="#sec_bfs">Part 2: Breadth First Search</a></li> -->
+          <!-- <li><a href="#sec_robot">Part 3: Planning on the Robot</a></li> -->
+          <li><a href="#adv_ext_astar">Advanced Extension: A-Star Search</a></li>
+        </ul>
+      </li>
+      <li><a href="#website">Project Webpage</a></li>
+      <li><a href="#code">Code Overview</a></li>
+      <li><a href="#tasks">Task Summary</a></li>
+      <li><a href="#adv_ext">Advanced Extensions</a></li>
+    </ul>
+
+    <hr class="major" />
+
+    <h2 id="getting_code">Getting the Code</h2>
+
+    <p>For Part 1 of this project, you can find the template code <a href="https://replit.com/team/robotics-102-f22/Planning-in-Michigan">on Replit here</a>.</p>
+
+    <p>For Part 2 of this project, one repository per team will be created for this project through GitHub Classroom, like in Projects 1 and 2. Both teammates will share ownership of the code and receive credit for writing the code through the license file.</p>
+
+    <p><strong>The invite link to accept the assignment on Github Classroom can be found on Slack.</strong></p>
+
+    <p>
+      The first teammate to accept will need to create a new team. The team must be named <strong>P3 F22 Team &#35;&#35;</strong>.
+      Replace <strong>&#35;&#35;</strong> with the team number assigned to you (for example, P3 F22 Team 01, P3 F22 Team 11, etc.).
+      The next teammate should join the team from the list of existing teams.
+    </p>
+
+    <p>
+      <strong>Modify the LICENSE.txt file to include the names of all teammates.</strong>
+      Make sure the change is committed to your repository.
+      This must be completed in order for your project to be graded, but this time, points are not awarded for completed the license.
+    </p>
+
+    <ul class="todo">
+      <li class="icon solid fa-laptop-code">
+        <strong id="todo0">P3.0 (0 points):</strong> In the file <code>LICENSE.txt</code>, replace
+        <code>&lt;COPYRIGHT HOLDER&gt;</code> with the names of all teammates, separated by commas. Replace
+        <code>&lt;YEAR&gt;</code> with the current year.
+      </li>
+    </ul>
+
+    <hr class="major" />
+
+    <h2 id="submitting">Submitting the Assignment</h2>
+
+    <p>For Part 1 of the assignment, each student should complete the code on Replit individually. Use the <strong>&quot;Submit&quot;</strong> button to submit your assignment.</p>
+
+    <p>For Part 2 of the assignment, teammates will be graded together. You should push your code to your GitHub repository, and create a project webpage for your completed project. Include a link to your webpage in the <code>README.md</code> of your repository. For details about what should be on the website, see <a href="#website">Project Website</a>.</p>
+
+    <h3 id="grading">Grading Breakdown</h3>
+
+    <p>This project will be graded as follows:</p>
+    <ul>
+      <li>
+        <strong>Path Planning in Michigan</strong> (5 points)
+        Complete and submit your code to plan paths from one city to the next in Michigan. Your code should work for any start and goal city in the map. It should also work for different graph configurations (e.g. adding new cities).
+        <emph>This portion of the project is completed and graded individually.</emph>
+      </li>
+      <li>
+        <strong>Breadth First Search in the Robot Map:</strong> (5 points)
+        Your code should be pushed to GitHub and tagged. It should be organized and complete. The instructors will run your code to test your .
+      </li>
+      <li>
+        <strong>Robot Path Planning Demo (in-class):</strong> (2 points)
+        Your planning algorithm will be demonstrated on the robot, in class on Demo Day. The robot should navigate from a start location to a goal location given by the instructors.
+      </li>
+      <li>
+        <strong>Website:</strong> (3 points)
+        On your website, include a brief discussion of your implementation (see <a href="#website">reflection questions</a>). For full credit, include multiple examples of maps and start and goal locations in the webapp (you can take screenshots or screen recordings). Include at least one video of your algorithm working sucessfully on the robot.
+      </li>
+    </ul>
+  </section>
+
+  <section id="description">
+    <header class="major">
+      <h2><a href="#description">Project Description</a></h2>
+    </header>
+
+    <p>This assignment has the following parts:</p>
+
+    <ol>
+      <li><a href="#part1_michigan">Part 1</a>: Path Planning in Michigan</li>
+      <li><a href="#part2_robot">Part 2</a>: Path Planning on the Robot</li>
+    </ol>
+
+    <hr class="major" />
+
+    <h2 id="part1_michigan">Part 1: Path Planning in Michigan</h2>
+
+    <p>
+      The goal of this part of the project is to find a path using the Breadth First Search algorithm through Michigan.
+      The Michigan map we will be using looks like this:
+    </p>
+
+    <span class="image main"><img src="/images/p3/michigan.png" alt="" style="max-width:600px;"/></span>
+
+    <p>
+      The graph data is stored in a text file called <code>mi_graph.txt</code>. It contains a list of cities, which are nodes in the graph, followed by a list of edges between the nodes. The edges are denoted by the names of the two connected cities, followed by the distance in miles between the cities.
+    </p>
+
+    <ul class="hint">
+      <li class="icon solid fa-cogs">
+        <strong>Hint:</strong>
+        You can modify the map (for example, add some cities)!
+        To do this, add the name of the city under where it says <code>NODES</code>.
+        Add the edges connected to the new city under where it says <code>EDGES</code>, following format (one line per edge):
+        <pre><code>[my_new_city] [connected_city] [miles_between_cities]</code></pre>
+        Don't forget to update the numbers beside the headings <code>NODES</code> and <code>EDGES</code> to reflect the total number of nodes and edges respectively.
+      </li>
+    </ul>
+
+    <p>
+      The map data is stored in a struct called <code>Graph</code>, defined for you, which looks like this:
+    </p>
+    <pre><code class="language-cpp">struct Graph
+{
+    std::vector&lt;std::string&gt; data;
+    std::vector&lt;std::vector&lt;int&gt; &gt; edges;
+    std::vector&lt;std::vector&lt;float&gt; &gt; edge_costs;
+
+    // TODO: Add any members you need to the graph.
+};</code></pre>
+
+    <p>
+      The function <code>createGraph("mi_graph.txt")</code> populates a struct of type <code>Graph</code> with the Michigan map data defined in <code>mi_graph.txt</code>.
+      The struct contains a vector of strings <code>data</code>, which stores a list of all the cities.
+      We will use the index of the city in this vector to identify the node.
+      You can get the number of nodes in the graph using <code>data.size()</code>.
+      You can use function <code>nameToIdx("my_city", g.data)</code> to get the index of a city from its name.
+    </p>
+
+    <p>
+      The vectors <code>edges</code> and <code>edge_costs</code> store the edges connecting the node and the distances of those edges respectively.
+      <emph>You should not need to access these directly.</emph>
+      Use functions <code>getNeighbors(idx, g)</code> to get a list of the indices of the neighbors of node at index <code>idx</code>, and <code>getEdgeCosts(idx, g)</code> to get a list of the distances to the neighboring cities.
+    </p>
+
+    <p>
+      <strong>Storing node data:</strong> First, decide how to store the various node data which you need to access in the BFS algorithm.
+      Add data to the <code>Graph</code> struct to store this data.
+      Make sure you store the index of the parent node during the search.
+      The final path will be found by tracing backwards through the parents, starting from the goal node, using function <code>tracePath(goal_idx, g)</code> (where <code>goal_idx</code> is the index of the goal node).
+    </p>
+
+    <ul class="todo">
+      <li class="icon solid fa-laptop-code">
+        <strong id="todo1_1">P3.1.1:</strong>
+        Design a way to store node data needed in BFS.
+        Add members to the <code>Graph</code> struct to store this data.
+      </li>
+    </ul>
+
+    <p>
+      <strong>Initializing node data:</strong>
+      You should start by initializing data for each node of the graph, before the algorithm starts, so you can access and update it during your algorithm. This is done in function <code>initGraph()</code>.
+    </p>
+
+     <ul class="todo">
+      <li class="icon solid fa-laptop-code">
+        <strong id="todo1_2">P3.1.2:</strong>
+        Complete function <code>initGraph()</code>. It should create space to store data for each node in the graph, and initialize any data you might need.
+      </li>
+    </ul>
+
+    <p>
+      <strong>Accessing node data:</strong>
+      For the function <code>tracePath()</code> to work, it should be able to use function <code>getParent(idx, g)</code> to get the index of the parent of the node at <code>idx</code>. Complete the <code>getParent(idx, g)</code> function to access the parent of a node.
+    </p>
+
+    <ul class="todo">
+      <li class="icon solid fa-laptop-code">
+        <strong id="todo1_3">P3.1.3:</strong>
+        Complete function <code>getParent()</code>. It should return the index of the parent node. If the node has no parent, it should return -1.
+      </li>
+    </ul>
+
+    <ul class="hint">
+      <li class="icon solid fa-cogs">
+        <strong>Hint:</strong>
+        If your function <code>initGraph()</code> initializes the parent of all nodes to be -1, your <code>getParent()</code> function will automatically return the correct result for nodes with no parents, without extra logic.
+      </li>
+      <li class="icon solid fa-cogs">
+        <strong>Hint:</strong>
+        The start node should not have a parent.
+      </li>
+    </ul>
+
+    <p>
+      <strong>Breadth First Search:</strong>
+      Complete the function <code>bfs()</code> to find a path from the start to the goal node.
+      Maintain a visit list containing node indices as a queue data structure.
+      Use the function <code>getNeighbors(idx, g)</code> to get the neighbors of node with index <code>idx</code> within graph <code>g</code>.
+      When the goal is found, use the following code to get the path as a vector of node indices.
+      This should work as written if you have maintained the parents of the nodes correctly and implemented <code>getParent()</code>, assuming <code>goal_idx</code> is the index of the goal node.
+    </p>
+
+    <pre><code class="language-cpp">path = tracePath(goal_idx, g);</code></pre>
+
+    <ul class="todo">
+      <li class="icon solid fa-laptop-code">
+        <strong id="todo1_4">P3.1.4:</strong>
+        Complete function <code>bfs(start, goal, g)</code>.
+        It should perform Breadth First Search to find a path from node index <code>start</code> to <code>goal</code> within graph <code>g</code>.
+      </li>
+    </ul>
+
+    <hr class="major" />
+
+    <h2 id="part2_robot">Part 2: Path Planning on the Robot</h2>
+
+    <!-- <ol>
+      <li><a href="#sec_node">Part 1</a>: Storing Node Data</li>
+      <li><a href="#sec_bfs">Part 2</a>: Breadth First Search</li>
+      <li><a href="#sec_robot">Part 3</a>: Path Planning on the Robot</li>
+    </ol> -->
+
+    <p>In this part of the project, we will implement Breadth First Search within robot maps. We also provide an advanced extension to implement the <a href="#astar">A-Star search algorithm</a>, as discussed in lecture.</p>
+
+    <p>
+      To help you develop your algorithm, we have created a webapp which you can use to test your algorithm.
+      The code can be run in Replit for testing purposes, using provided test maps, or maps that you have downloaded from the robot.
+      Once your planning algorithm is working, you can run it on your robot using a real robot map.
+    </p>
+
+    <h3 id="sec_node">Storing Node Data</h3>
+
+    <p>We will be using the <code>GridGraph</code> struct to store the graph data (see <a href="a2.html#code_utils">Project 2 description</a> for details). In order to perform graph search, we need to keep track of a few things for each cell:</p>
+      <ol>
+        <li>The cell's parent along the current path,</li>
+        <li>The distance from the start node to the cell along the current path,</li>
+        <li>Whether the cell has been visited.</li>
+        <!-- <li>(A-Star only) The cell's score.</li> -->
+      </ol>
+
+    <p>Using the concepts we have learned so far, design code to store this data. Then, modify <code>GridGraph</code> to store the node information. You may extend your implementation to store any additional information you need.</p>
+
+    <p><strong>Note:</strong> The nodes should be indexed the same way as the cells, as a single vector. Refer to <a href="a2.html#sec_graph">Project 2, Part 0</a> for more information. You can use the <code>cellToIdx()</code> and <code>idxToCell()</code> functions to access node data for a specific cell.</p>
+
+    <ul class="todo">
+      <li class="icon solid fa-laptop-code">
+        <strong id="todo1_1">P3.2.1:</strong>
+        In the <code>graph_utils.h</code> file, design a data structure to store the cell information and modify <code>GridGraph</code> to add any new member variables accordingly.
+      </li>
+      <li class="icon solid fa-laptop-code">
+        <strong id="todo1_2">P3.2.2:</strong>
+        In the <code>graph_utils.cpp</code> file, complete function <code>initGraph()</code> to initialize the cell data. You can assume the graph will be loaded when the function is called.
+      </li>
+      <li class="icon solid fa-laptop-code">
+        <strong id="todo1_3">P3.2.3:</strong>
+        In the <code>graph_utils.cpp</code> file, complete function <code>getParent()</code> so it returns the index of the parent of the given cell. If a cell does not have a parent, it should return -1.
+      </li>
+    </ul>
+
+    <ul class="hint">
+      <li class="icon solid fa-cogs">
+        <strong>Hint:</strong>
+        You might consider implementing a struct to represent your cell node and store a vector of cell node structs in <code>GridGraph</code>. Alternatively, you might consider adding a few vectors to the <code>GridGraph</code> struct to store the relevant information.
+      </li>
+      <li class="icon solid fa-cogs">
+        <strong>Hint:</strong>
+        The start node and unexplored nodes should not have parents.
+      </li>
+    </ul>
+
+    <h3 id="sec_bfs">Breadth First Search</h3>
+
+    <p>In this section, you will write code to implement a <strong>Breadth First Search (BFS)</strong> over a graph, given a start and goal cell. You will write your code in the file <code>src/graph_search/graph_search.cpp</code>. Your code should go in the function <code>breadthFirstSearch()</code>, which looks like this:</p>
+    <pre><code class="language-cpp">std::vector<Cell> breadthFirstSearch(GridGraph& graph, const Cell& start, const Cell& goal, std::function<void(int, int)> showVisitedCell)
+{
+  std::vector<Cell> path;  // The final path should be placed here.
+  initGraph(graph);  // Make sure all the node values are reset.
+  int start_idx = cellToIdx(start.i, start.j, graph);
+
+  /**
+   * TODO (P3): Implement BFS.
+   */
+
+  return path;
+}</code></pre>
+    <p>Assume the graph is loaded with the corresponding map data. The function first calls <code>initGraph()</code> to make sure that all the nodes are initialized. The start and goal position are passed in as <code>Cell</code> structs.<code>Cell</code> has two integer member variables: <code>i</code> and <code>j</code>, corresponding to the row and column coordinates of the cell. When the path is found, your code should store the path in the provided vector, <code>path</code>. You can use the provided function <code>tracePath()</code>, as follows:</p>
+    <pre><code class="language-cpp">path = tracePath(goal_idx, graph);</code></pre>
+    <p>where <code>goal_idx</code> is an integer value which stores the index of the goal. If you have correctly maintained the parent structure of the cells and the <code>idxToCell()</code> and <code>getParent()</code> functions are implemented, this will return the path to the start node. The start node should not have a parent. If no path was found, your code should return an empty vector.</p>
+
+    <p>Use either <code>checkCollision()</code> or <code>checkCollisionFast()</code> to check whether a cell is in collision. It is highly recommended to use <code>checkCollisionFast()</code>. This requires that you call your distance transform function first. The results will be slightly different than <code>checkCollision()</code> if you use the Manhattan distance transform, but both are valid.</p>
+
+    <p>The function also accepts a <code>showVisitedCell</code> argument. This is to interface with helper functions which will help you visualize your algorithm in the web app. To mark a cell with coordinate <code>(i, j)</code> as visited (shown in grey) in the web app, do:</p>
+    <pre><code class="language-cpp">showVisitedCell(i, j);</code></pre>
+
+    <ul class="todo">
+      <li class="icon solid fa-laptop-code">
+        <strong id="todo2_1">P3.2.4:</strong>
+        In the <code>graph_search.cpp</code> file, implement Breadth First Search in function <code>breadthFirstSearch()</code>.
+      </li>
+    </ul>
+
+    <ul class="hint">
+      <li class="icon solid fa-cogs"><strong>Hint:</strong> BFS maintains a list of nodes to visit using a First-In-First-Out data structure (or a queue). C++ has a queue implementation called <code>std::queue</code>. Assuming you have a queue <code>q</code>, <code>q.push(my_node_idx)</code> will push a value onto the back of the queue, <code>q.front()</code> will return the value at the front of the queue, and <code>q.pop()</code> will remove the first element of the queue.</li>
+      <li class="icon solid fa-cogs"><strong>Hint:</strong> Your visit list should store integers corresponding to the indices of the nodes of interest. You can use these indices to retrieve and modify cell data directly in the graph. Do not push any structs your graph stores onto the visit list! This makes a <emph>copy</emph> of the data, so any changes you make would not be reflected in the graph.</li>
+      <li class="icon solid fa-cogs"><strong>Hint:</strong> You should not add any cells which are in collision to your visit list.</li>
+    </ul>
+
+    <h3 id="sec_robot">Path Planning on the Robot</h3>
+
+    <p>You will write code to search for and drive along a path on the robot in the file <code>src/robot_plan_path.cpp</code>. We have provided a function <code>drivePath(std::vector<Cell>& path, GridGraph& graph)</code> which will send the robot a command to follow the path defined in vector of cells <code>path</code>. This function sends a path to the motion controller. Modify the provided code template to call your path planning algorithm and then send the path to the robot.</p>
+
+    <p><strong>Note:</strong> The utility function <code>loadFromFile()</code> initializes the radius for collision checking to the robot radius, stored in variable <code>ROBOT_RADIUS</code>, plus the width of one cell. You might want to make the collision radius larger on the robot, so that your planner is more conservative on the robot. To do this modify the value of <code>graph.collision_radius</code> after the map is loaded.</p>
+
+    <ul class="todo">
+      <li class="icon solid fa-laptop-code">
+        <strong id="todo3_1">P3.2.5:</strong>
+        In the <code>robot_plan_path.cpp</code> file, call your path planning function and use the <code>drivePath()</code> function provided to send the path to the robot.
+      </li>
+    </ul>
+
+    <ul class="hint">
+      <li class="icon solid fa-cogs"><strong>Hint:</strong> If you are using the <code>checkCollision()</code> function in your graph search, do not forget to call your distance transform function after the map is loaded.</li>
+      <li class="icon solid fa-cogs"><strong>Hint:</strong> The provided function <code>drivePath()</code> returns immediately after sending the path command to motion controller. That means your program will quit before the robot has reached the goal. If you wish to send another path to the robot or perform some processing when the robot has reached the goal, you can write code to wait until the robot has reached the goal before finishing.</li>
+    </ul>
+
+    <p>Before you run the code, you should <a href="/labs/lab4_navigation_workflow.pdf">make a map</a> of the environment you want to run in. Once you have made a map, launch localization (with motion controller) as follows:</p>
+    <pre><code class="language-bash">~/botlab-bin/launch_botlab.sh -m [PATH/TO/MAP]</code></pre>
+
+    <p>To compile and run path planning on the robot, connect to the robot using VSCode (as described in the <a href="/tutorials/robot.html#sec_robot_prog">robot tutorial</a>). Then, from inside the repository you cloned onto the robot, compile as follows:</p>
+    <pre><code class="language-bash">cd build
+cmake -DOMNIBOT=On ..
+make</code></pre>
+
+    <p>Do not forget the argument <code>-DOMNIBOT=On</code> when running CMake. This is how the compiler knows whether to compile the robot code (which is not compiled by default in the Docker). To run the potential field controller, in the <code>build</code> folder where you compiled, do:</p>
+    <pre><code class="language-bash">./robot_plan_path [PATH/TO/MAP] [goal_x] [goal_y]</code></pre>
+    <p>The map is stored in <code>~/botlab-bin/maps/current.map</code>. Use that path if you did not move the map since creating it. You can also pass in <code>goal_x</code> and <code>goal_y</code>, the global position of the goal, relative to the starting position of your map, in meters. If you do not pass these in, they will default to zero.</p>
+
+    <p>When you pass in arguments to the code, do not include the square brackets.</p>
+
+  <hr class="major" />
+
+    <h2 id="adv_ext">Advanced Extensions</h2>
+
+    <h3 id="astar">A-Star Search</h3>
+
+    <p>As an advanced extension, you may write code to implement <strong>A-Star Search</strong> over a graph, given a start and goal cell. You will write your code in the file <code>src/graph_search/graph_search.cpp</code>. Your code should go in the function <code>aStarSearch()</code>. This function looks a lot like the one for <a href="#sec_bfs">BFS</a>. However, you will need to maintain the f-score of the nodes you explore.</p>
+
+    <ul class="todo">
+      <li class="icon solid fa-laptop-code">
+        <strong id="todoAE_3_i">Advanced Extension P3.i:</strong>
+        In the <code>graph_utils.h</code> file, extend your cell node data to include the f-score of the node.
+      </li>
+      <li class="icon solid fa-laptop-code">
+        <strong id="todoAE_3_ii">Advanced Extension P3.ii:</strong>
+        In the <code>graph_utils.cpp</code> file, implement the function <code>getScore()</code> to return a double corresponding to the f-score of the given cell index.
+      </li>
+    </ul>
+
+    <p>In A-Star, the next node to explore is the one with the <emph>lowest f-score</emph>. The function <code>findLowestScore()</code> takes a <code>std::vector</code> of integers as an argument, along with the graph, and returns the index of the lowest score node <emph>in the list</emph>. You can use this function as follows to get the lowest scoring node, and then remove it from the list:</p>
+    <pre><code class="language-cpp">int min_score_idx = findLowestScore(visit_list, graph);
+int current = visit_list[min_score_idx];
+visit_list.erase(visit_list.begin() + min_score_idx);</code></pre>
+
+    <ul class="todo">
+      <li class="icon solid fa-laptop-code">
+        <strong id="todoAE_3_iii">Advanced Extension P3.iii:</strong>
+        In the <code>graph_search.cpp</code> file, implement A-Star Search in function <code>aStarSearch()</code>.
+      </li>
+    </ul>
+
+    <h3 id="dt">Distance Transform</h3>
+
+  </section>
+
+<section id="website">
+  <header class="major">
+    <h2><a href="#website">Project Website</a></h2>
   </header>
 
-  <p><font size="+2">Coming soon!</font></p>
+  <p>
+    Create a website to demonstrate your implementation of bug navigation.
+    Include at least one video demo of your algorithm as well as a brief summary and discussion of your algorithm.
+    Add the link to your project page to the <code>README.md</code> file in the root of your repository and push it to GitHub.
+    For a refresher about how to create the website, see the <a href="/projects/a1.html#website">Project 1 description</a>.
+  </p>
+
+  <p>On your project webpage, include multiple images showing paths found by your breadth first search algorithm (and by A-Star, if applicable). Include examples of different maps, with different start and goal locations. Include at least one video demonstration of your robot following a path and avoiding obstacles (for example, in a maze-like environment) using either BFS or A-Star.</p>
+
+    <p>Include a discussion section on the web page. Consider the following questions:</p>
+    <ol>
+      <li>What are the strengths and limitations of breadth first search? Graph search in general?</li>
+      <li>Does breadth first search always find the shortest path? Does A-Star always find the shortest path?</li>
+      <li>How might you improve the algorithm(s) you implemented? (Include at least one idea)</li>
+      <li>
+        <em>(If you implemented A-Star)</em>
+        In what types of environments is A-Star much faster than BFS? Are there any environments where A-Star is not much faster than BFS?
+      </li>
+    </ol>
+
+    <p>Consider including images or videos whenever possible to illustrate your points. Keep the discussion brief: it should be no longer than one or two paragraphs. If you did not implement A-Star, you may ignore the A-Star questions, or answer based on what we discussed in lecture.</p>
+
+  <p>Include images or videos whenever possible to illustrate your points. Keep the discussion brief: it should be no longer than a few sentences. Remember to ensure that videos are visible by course staff.</p>
+
+  <ul class="todo">
+    <li class="icon solid fa-laptop-code">
+      <strong id="todo2_4">P2.5 (3 points):</strong>
+      Create a web page for your bug navigation project including at least one video demonstration and a discussion.
+      Add a link to the website to the <code>README.md</code> file in your repository.
+    </li>
+  </ul>
+
+</section>
+
+  <section id="code">
+    <header class="major">
+      <h2><a href="#code">Code Overview</a></h2>
+    </header>
+
+    <h3 id="code_utils">Provided Utility Functions</h3>
+
+    <p>You have access to all the <a href="a2.html#code_utils">utility functions and structs from Project 2</a>. This section will describe additional functions relevant to this project, from the header <code>include/autonomous_navigation/utils/graph_utils.h</code> (implemented in <code>src/utils/graph_utils.cpp</code>). Other than those marked, these are implemented for you.</p>
+
+    <ul class="hint">
+      <li class="icon solid fa-cogs">
+        <code>bool loadFromFile(const std::string&amp; file_path, GridGraph&amp; graph)</code>:
+        Loads graph data from a file. Also initializes the distance transform values to all zeros and calls the <code>initGraph()</code> function.
+      </li>
+      <li class="icon solid fa-cogs">
+        <code>void initGraph(GridGraph&amp; graph)</code>:
+        <em>(TODO, see <a href="sec_node">Part 1</a>)</em> Initializes the graph data.<br/>
+        <em>Note:</em> This function should not modify <code>graph.obstacle_distances</code>.
+      </li>
+      <li class="icon solid fa-cogs">
+        <code>std::vector<int> findNeighbors(int idx, const GridGraph&amp; graph)</code>:
+        Returns a list of the indices of the neighbors of the cell at a given index in the graph.<br/>
+        <em>Warning:</em> This only works if <code>cellToIdx()</code> and <code>idxToCell()</code> are implemented.
+      </li>
+      <li class="icon solid fa-cogs">
+        <code>bool checkCollisionFast(int idx, const GridGraph&amp; graph)</code>:
+        Uses the distance transform values to check whether visiting the cell at <code>idx</code> would result in a collision.<br/>
+        <em>Warning:</em> This only works if the distance transform values are stored in <code>graph.obstacle_distances</code>. When using the web app, the function <code>distanceTransform()</code> will be called when the map is loaded.
+      </li>
+      <li class="icon solid fa-cogs">
+        <code>bool checkCollision(int idx, const GridGraph&amp; graph)</code>:
+        Manually checks in a radius around the given cell for collisions.<br/>
+        <em>Warning:</em> This version does not require the distance transform but will be slower than the above version.
+      </li>
+      <li class="icon solid fa-cogs">
+        <code>int getParent(int idx, const GridGraph&amp; graph)</code>:
+        <em>(TODO, see <a href="sec_node">Part 1</a>)</em>
+        Returns the index of the parent of the node at <code>idx</code>.
+      </li>
+      <li class="icon solid fa-cogs">
+        <code>float getScore(int idx, const GridGraph&amp; graph)</code>:
+        <em>(TODO, A-Star only, see <a href="astar">Advanced Extension: A-Star</a>)</em>
+        Returns the f-score of the node at <code>idx</code>.
+      </li>
+      <li class="icon solid fa-cogs">
+        <code>std::vector&lt;Cell&gt; tracePath(int goal, const GridGraph&amp; graph)</code>:
+        Returns the path from the start cell to the given goal cell.<br/>
+        <em>Warning:</em> This only works if <code>getParent()</code> is implemented.
+      </li>
+      <li class="icon solid fa-cogs">
+        <code>int findLowestScore(const std::vector&lt;int&gt;&amp; node_list, const GridGraph&amp; graph)</code>:
+        Returns the index of the node with the lowest f-score.<br/>
+        <em>Warning:</em> This only works if <code>getScore()</code> is implemented (A-Star only).
+      </li>
+    </ul>
+
+  </section>
+
+
+
+   <!-- TASKS -->
+   <section id="tasks">
+    <header class="major">
+      <h2><a href="#tasks">Task Summary</a></h2>
+    </header>
+
+    <h3>Part 1: Path Planning in Michigan</h3>
+
+    <h3>Part 2: Path Planning on the Robot</h3>
+
+    <ul class="todo">
+      <li class="icon solid fa-laptop-code">
+        <strong><a href="#todo1_1">P3.2.1</a>:</strong>
+        In the <code>graph_utils.h</code> file, design a data structure to store the cell information and modify <code>GridGraph</code> to add any new member variables accordingly.
+      </li>
+      <li class="icon solid fa-laptop-code">
+        <strong><a href="#todo1_2">P3.2.2</a>:</strong>
+        In the <code>graph_utils.cpp</code> file, complete function <code>initGraph()</code> to initialize the cell data. You can assume the graph will be loaded when the function is called.
+      </li>
+      <li class="icon solid fa-laptop-code">
+        <strong><a href="#todo1_3">P3.2.3</a>:</strong>
+        In the <code>graph_utils.cpp</code> file, complete function <code>getParent()</code> so it returns the index of the parent of the given cell. If a cell does not have a parent, it should return -1.
+      </li>
+      <li class="icon solid fa-laptop-code">
+        <strong><a href="#todo2_1">P3.2.4</a>:</strong>
+        In the <code>graph_search.cpp</code> file, implement Breadth First Search in function <code>breadthFirstSearch()</code>.
+      </li>
+      <li class="icon solid fa-laptop-code">
+        <strong><a href="#todo3_1">P3.2.5</a>:</strong>
+        In the <code>robot_plan_path.cpp</code> file, call your path planning function and use the <code>drivePath()</code> function provided to send the path to the robot.
+      </li>
+    </ul>
+
+  </section>
+
+  <section id="adv_ext">
+    <header class="major">
+      <h2><a href="#adv_ext">Advanced Extensions</a></h2>
+    </header>
+
+    <ul class="todo">
+      <li class="icon solid fa-laptop-code">
+        <strong><a href="#todoAE_3_i">Advanced Extension P3.i</a>:</strong>
+        In the <code>graph_utils.h</code> file, extend your cell node data to include the f-score of the node.
+      </li>
+      <li class="icon solid fa-laptop-code">
+        <strong><a href="#todoAE_3_ii">Advanced Extension P3.ii</a>:</strong>
+        In the <code>graph_utils.cpp</code> file, implement the function <code>getScore()</code> to return a double corresponding to the f-score of the given cell index.
+      </li>
+      <li class="icon solid fa-laptop-code">
+        <strong><a href="#todoAE_3_iii">Advanced Extension P3.iii</a>:</strong>
+        In the <code>graph_search.cpp</code> file, implement A-Star Search in function <code>aStarSearch()</code>.
+      </li>
+    </ul>
 
 </section>
 
