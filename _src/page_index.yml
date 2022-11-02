@@ -35,10 +35,6 @@ pages:
     active_opener: Projects
 
   # Tutorials
-  # tutorials/app.html:
-  #   title: "ROB 102: Webapp Tutorial"
-  #   src: _src/content/tutorials/app.html
-  #   active_opener: Tutorials
   tutorials/git.html:
     title: "ROB 102: Git Tutorial"
     src: _src/content/tutorials/git.html
@@ -54,6 +50,10 @@ pages:
   tutorials/setup.html:
     title: "ROB 102: Computer Setup"
     src: _src/content/tutorials/setup.html
+    active_opener: Tutorials
+  tutorials/app.html:
+    title: "ROB 102: Navigation Webapp Tutorial"
+    src: _src/content/tutorials/app.html
     active_opener: Tutorials
 
   # Archive
