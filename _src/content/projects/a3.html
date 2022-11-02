@@ -236,12 +236,6 @@
 
     <h2 id="part2_robot">Part 2: Path Planning on the Robot</h2>
 
-    <!-- <ol>
-      <li><a href="#sec_node">Part 1</a>: Storing Node Data</li>
-      <li><a href="#sec_bfs">Part 2</a>: Breadth First Search</li>
-      <li><a href="#sec_robot">Part 3</a>: Path Planning on the Robot</li>
-    </ol> -->
-
     <p>In this part of the project, we will implement Breadth First Search within robot maps. We also provide an advanced extension to implement the <a href="#astar">A-Star search algorithm</a>, as discussed in lecture.</p>
 
     <p>
@@ -249,6 +243,28 @@
       The code can be run in Replit for testing purposes, using provided test maps, or maps that you have downloaded from the robot.
       Once your planning algorithm is working, you can run it on your robot using a real robot map.
     </p>
+
+    <h3 id="sec_graph">Grid Graph</h3>
+
+    <p>Information about the map for a particular environment is stored in a provided struct called <code>GridGraph</code>, described in <a href="#code_utils_gridgraph">the code overview</a>. You can visualize the available maps using the <a href="/tutorials/app.html">web app</a>.</p>
+
+    <p>You should complete the functions <code>cellToIdx()</code> and <code>idxToCell()</code>, which convert between cells and indices as discussed in lab. You can use these functions for the following parts of the project.</p>
+
+    <ul class="todo">
+      <li class="icon solid fa-laptop-code">
+        <strong id="todo0_1">P3.2.1:</strong> In the file <code>graph_utils.cpp</code>, complete functions <code>cellToIdx()</code> and <code>idxToCell()</code>.
+        <code>cellToIdx()</code> should accept a cell coordinate and a graph as arguments, and return an <code>int</code> containing the corresponding array index for the cell.
+        <code>idxToCell()</code> should accept an array index and a graph as arguments, and return a <code>Cell</code> containing the corresponding cell coordinate for the array index.</li>
+      </li>
+    </ul>
+
+    <p>We have provided a test script to check your indexing functions. Compile your code either on Replit or on the robot, then run the test script in the Docker like this:</p>
+    <pre><code class="language-bash">cd /code/build
+cmake ..
+make
+./test_graph</code></pre>
+
+    <p>The tests should pass before you move on to the next step. You may add more tests if you would like.</p>
 
     <h3 id="sec_node">Storing Node Data</h3>
 
@@ -345,17 +361,16 @@
       <li class="icon solid fa-cogs"><strong>Hint:</strong> The provided function <code>drivePath()</code> returns immediately after sending the path command to motion controller. That means your program will quit before the robot has reached the goal. If you wish to send another path to the robot or perform some processing when the robot has reached the goal, you can write code to wait until the robot has reached the goal before finishing.</li>
     </ul>
 
-    <p>Before you run the code, you should <a href="/labs/lab4_navigation_workflow.pdf">make a map</a> of the environment you want to run in. Once you have made a map, launch localization (with motion controller) as follows:</p>
-    <pre><code class="language-bash">~/botlab-bin/launch_botlab.sh -m [PATH/TO/MAP]</code></pre>
+    <p>Before you run the code, you should make a map of the environment you want to run in. Once you have made a map, switch the robot into localization only mode.</p>
 
-    <p>To compile and run path planning on the robot, connect to the robot using VSCode (as described in the <a href="/tutorials/robot.html#sec_robot_prog">robot tutorial</a>). Then, from inside the repository you cloned onto the robot, compile as follows:</p>
+    <p>To compile and run path planning on the robot, connect to the robot using VSCode. Then, from inside the repository you cloned onto the robot, compile as follows:</p>
     <pre><code class="language-bash">cd build
 cmake -DOMNIBOT=On ..
 make</code></pre>
 
-    <p>Do not forget the argument <code>-DOMNIBOT=On</code> when running CMake. This is how the compiler knows whether to compile the robot code (which is not compiled by default in the Docker). To run the potential field controller, in the <code>build</code> folder where you compiled, do:</p>
+    <p>Do not forget the argument <code>-DOMNIBOT=On</code> when running CMake. This is how the compiler knows whether to compile the robot code (which is not compiled by default in the Docker). To run the planning algorithm, in the <code>build</code> folder where you compiled, do:</p>
     <pre><code class="language-bash">./robot_plan_path [PATH/TO/MAP] [goal_x] [goal_y]</code></pre>
-    <p>The map is stored in <code>~/botlab-bin/maps/current.map</code>. Use that path if you did not move the map since creating it. You can also pass in <code>goal_x</code> and <code>goal_y</code>, the global position of the goal, relative to the starting position of your map, in meters. If you do not pass these in, they will default to zero.</p>
+    <p>The map is stored in <code>~/mbot-bin/maps/current.map</code>. Use that path if you did not move the map since creating it. You can also pass in <code>goal_x</code> and <code>goal_y</code>, the global position of the goal, relative to the starting position of your map, in meters. If you do not pass these in, they will default to zero.</p>
 
     <p>When you pass in arguments to the code, do not include the square brackets.</p>
 
@@ -438,11 +453,55 @@ visit_list.erase(visit_list.begin() + min_score_idx);</code></pre>
       <h2><a href="#code">Code Overview</a></h2>
     </header>
 
-    <h3 id="code_utils">Provided Utility Functions</h3>
-
-    <p>You have access to all the <a href="a2.html#code_utils">utility functions and structs from Project 2</a>. This section will describe additional functions relevant to this project, from the header <code>include/autonomous_navigation/utils/graph_utils.h</code> (implemented in <code>src/utils/graph_utils.cpp</code>). Other than those marked, these are implemented for you.</p>
+    <p>The following structs are provided:</p>
 
     <ul class="hint">
+      <li class="icon solid fa-cogs">
+        <strong>Cell:</strong> For representing a cell in the graph.
+        <pre><code class="language-cpp">struct Cell
+{
+  float i, j;
+};</code></pre>
+        where <code>i</code> is the <em>row</em> of the cell, and <code>j</code> is the <em>column</em> of the cell.
+      </li>
+      <li class="icon solid fa-cogs" id="code_utils_gridgraph">
+        <strong>GridGraph:</strong> For storing map data.
+        <pre><code class="language-cpp">struct GridGraph
+{
+  int width, height;                      // Width and height of the map in cells.
+  float origin_x, origin_y;               // The (x, y) coordinate corresponding to cell (0, 0) in meters.
+  float meters_per_cell;                  // Width of a cell in meters.
+  float collision_radius;                 // The radius to use to check collisions.
+  int8_t threshold;                       // Threshold to check if a cell is occupied or not.
+
+  std::vector&lt;int8_t&gt; cell_odds;          // The odds that a cell is occupied.
+  std::vector&lt;float&gt; obstacle_distances;  // The distance from each cell to the nearest obstacle.
+};</code></pre>
+        The member variables <code>width</code> and <code>height</code> store the graph width and height, in cells. The variables <code>origin_x</code> and <code>origin_y</code> correspond to the global position in meters of the cell <code>(0, 0)</code>. This allows us to determine where the origin of the map is. The variable <code>meters_per_cell</code> contains the size of each cell, in meters. Finally, the <code>cell_odds</code> variable is a vector containing the odds value of each cell. The odds value and organization of the graph was covered in <a href="/labs/lab4_navigation_workflow.pdf">Lab 4</a>.
+      </li>
+    </ul>
+
+    <h3 id="code_utils">Provided Utility Functions</h3>
+
+    <p>This section describes functions which are useful for interacting with the graph, from the header <code>include/autonomous_navigation/utils/graph_utils.h</code> (implemented in <code>src/utils/graph_utils.cpp</code>). Other than those marked, these are implemented for you.</p>
+
+    <ul class="hint">
+      <li class="icon solid fa-cogs">
+        <code>int cellToIdx(int i, int j, const GridGraph& graph)</code>:
+        <em>(TODO, see <a href="sec_graph">Part 0</a>)</em> Given a cell row <code>i</code> and column <code>j</code> in the graph, calculates the index where the data for the cell is stored.
+      </li>
+      <li class="icon solid fa-cogs">
+        <code>Cell idxToCell(int idx, const GridGraph& graph)</code>:
+        <em>(TODO, see <a href="sec_graph">Part 0</a>)</em> Given an index, calculates the corresponding cell row <code>i</code> and column <code>j</code> in the graph.
+      </li>
+      <li class="icon solid fa-cogs">
+        <code>Cell posToCell(float x, float y, const GridGraph& graph)</code>:
+        Given a global position <code>x</code> and <code>y</code>, in meters, calculates the corresponding cell in the graph.
+      </li>
+      <li class="icon solid fa-cogs">
+        <code>std::vector<float> cellToPos(int i, int j, const GridGraph& graph)</code>:
+        Given a cell in the graph, calculates the corresponding global position in meters.
+      </li>
       <li class="icon solid fa-cogs">
         <code>bool loadFromFile(const std::string&amp; file_path, GridGraph&amp; graph)</code>:
         Loads graph data from a file. Also initializes the distance transform values to all zeros and calls the <code>initGraph()</code> function.
