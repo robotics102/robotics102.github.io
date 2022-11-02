@@ -21,7 +21,7 @@
         </ul>
       </li>
 
-      <li><a href="#proj_desc">Project Description</a>
+      <li><a href="#description">Project Description</a>
         <ul>
           <li><a href="#part1_michigan">Part 1: Path Planning in Michigan</a></li>
           <li><a href="#part2_robot">Part 2: Path Planning on the Robot</a></li>
@@ -245,29 +245,31 @@
 
     <h3 id="sec_graph">Grid Graph</h3>
 
-    <p>Information about the map for a particular environment is stored in a provided struct called <code>GridGraph</code>, described in <a href="#code_utils_gridgraph">the code overview</a>. You can visualize the available maps using the <a href="/tutorials/app.html">web app</a>.</p>
+    <p>Information about the map for a particular environment is stored in a provided struct called <code>GridGraph</code>, described in <a href="#code_utils_gridgraph">the code overview</a>. You can visualize the available maps using the <a href="/tutorials/app.html">webapp</a>.</p>
 
-    <p>You should complete the functions <code>cellToIdx()</code> and <code>idxToCell()</code>, which convert between cells and indices as discussed in lab. You can use these functions for the following parts of the project.</p>
+    <p>A number of helper functions are available for you to use. Review them in the <a href="#code_utils">code overview</a>.</p>
 
-    <ul class="todo">
+    <!-- <p>You should complete the functions <code>cellToIdx()</code> and <code>idxToCell()</code>, which convert between cells and indices as discussed in lab. You can use these functions for the following parts of the project.</p> -->
+
+   <!--  <ul class="todo">
       <li class="icon solid fa-laptop-code">
         <strong id="todo0_1">P3.2.1:</strong> In the file <code>graph_utils.cpp</code>, complete functions <code>cellToIdx()</code> and <code>idxToCell()</code>.
         <code>cellToIdx()</code> should accept a cell coordinate and a graph as arguments, and return an <code>int</code> containing the corresponding array index for the cell.
         <code>idxToCell()</code> should accept an array index and a graph as arguments, and return a <code>Cell</code> containing the corresponding cell coordinate for the array index.</li>
       </li>
-    </ul>
+    </ul> -->
 
-    <p>We have provided a test script to check your indexing functions. Compile your code either on Replit or on the robot, then run the test script in the Docker like this:</p>
+    <!-- <p>We have provided a test script to check your indexing functions. Compile your code either on Replit or on the robot, then run the test script in the Docker like this:</p>
     <pre><code class="language-bash">cd /code/build
 cmake ..
 make
-./test_graph</code></pre>
+./test_graph</code></pre> -->
 
-    <p>The tests should pass before you move on to the next step. You may add more tests if you would like.</p>
+    <!-- <p>The tests should pass before you move on to the next step. You may add more tests if you would like.</p> -->
 
     <h3 id="sec_node">Storing Node Data</h3>
 
-    <p>We will be using the <code>GridGraph</code> struct to store the graph data (see <a href="a2.html#code_utils">Project 2 description</a> for details). In order to perform graph search, we need to keep track of a few things for each cell:</p>
+    <p>In order to perform graph search, we need to keep track of a few things for each cell:</p>
       <ol>
         <li>The cell's parent along the current path,</li>
         <li>The distance from the start node to the cell along the current path,</li>
@@ -277,7 +279,7 @@ make
 
     <p>Using the concepts we have learned so far, design code to store this data. Then, modify <code>GridGraph</code> to store the node information. You may extend your implementation to store any additional information you need.</p>
 
-    <p><strong>Note:</strong> The nodes should be indexed the same way as the cells, as a single vector. Refer to <a href="a2.html#sec_graph">Project 2, Part 0</a> for more information. You can use the <code>cellToIdx()</code> and <code>idxToCell()</code> functions to access node data for a specific cell.</p>
+    <p><strong>Note:</strong> The nodes should be indexed the same way as the cells, as a single vector. You can use the <code>cellToIdx()</code> and <code>idxToCell()</code> functions to access node data for a specific cell.</p>
 
     <ul class="todo">
       <li class="icon solid fa-laptop-code">
@@ -322,9 +324,7 @@ make
 }</code></pre>
     <p>Assume the graph is loaded with the corresponding map data. The function first calls <code>initGraph()</code> to make sure that all the nodes are initialized. The start and goal position are passed in as <code>Cell</code> structs.<code>Cell</code> has two integer member variables: <code>i</code> and <code>j</code>, corresponding to the row and column coordinates of the cell. When the path is found, your code should store the path in the provided vector, <code>path</code>. You can use the provided function <code>tracePath()</code>, as follows:</p>
     <pre><code class="language-cpp">path = tracePath(goal_idx, graph);</code></pre>
-    <p>where <code>goal_idx</code> is an integer value which stores the index of the goal. If you have correctly maintained the parent structure of the cells and the <code>idxToCell()</code> and <code>getParent()</code> functions are implemented, this will return the path to the start node. The start node should not have a parent. If no path was found, your code should return an empty vector.</p>
-
-    <p>Use either <code>checkCollision()</code> or <code>checkCollisionFast()</code> to check whether a cell is in collision. It is highly recommended to use <code>checkCollisionFast()</code>. This requires that you call your distance transform function first. The results will be slightly different than <code>checkCollision()</code> if you use the Manhattan distance transform, but both are valid.</p>
+    <p>where <code>goal_idx</code> is an integer value which stores the index of the goal. If you have correctly maintained the parent structure of the cells and the <code>idxToCell()</code> and <code>getParent()</code> functions are implemented, this will return the path to the start node. The start node should not have a parent. If no path was found, your code should return an empty vector. Use <code>checkCollision()</code> to check whether a cell is in collision.</p>
 
     <p>The function also accepts a <code>showVisitedCell</code> argument. This is to interface with helper functions which will help you visualize your algorithm in the web app. To mark a cell with coordinate <code>(i, j)</code> as visited (shown in grey) in the web app, do:</p>
     <pre><code class="language-cpp">showVisitedCell(i, j);</code></pre>
@@ -340,6 +340,7 @@ make
       <li class="icon solid fa-cogs"><strong>Hint:</strong> BFS maintains a list of nodes to visit using a First-In-First-Out data structure (or a queue). C++ has a queue implementation called <code>std::queue</code>. Assuming you have a queue <code>q</code>, <code>q.push(my_node_idx)</code> will push a value onto the back of the queue, <code>q.front()</code> will return the value at the front of the queue, and <code>q.pop()</code> will remove the first element of the queue.</li>
       <li class="icon solid fa-cogs"><strong>Hint:</strong> Your visit list should store integers corresponding to the indices of the nodes of interest. You can use these indices to retrieve and modify cell data directly in the graph. Do not push any structs your graph stores onto the visit list! This makes a <emph>copy</emph> of the data, so any changes you make would not be reflected in the graph.</li>
       <li class="icon solid fa-cogs"><strong>Hint:</strong> You should not add any cells which are in collision to your visit list.</li>
+      <li class="icon solid fa-cogs"><strong>Hint:</strong>If you complete the Distance Transform advanced extension, you can use <code>checkCollisionFast()</code> to check collisions. This requires that you call your distance transform function first. The results will be slightly different than <code>checkCollision()</code> if you use the Manhattan distance transform, but both are valid.</li>
     </ul>
 
     <h3 id="sec_robot">Path Planning on the Robot</h3>
@@ -462,13 +463,12 @@ visit_list.erase(visit_list.begin() + min_score_idx);</code></pre>
   </header>
 
   <p>
-    Create a website to demonstrate your implementation of bug navigation.
-    Include at least one video demo of your algorithm as well as a brief summary and discussion of your algorithm.
+    Create a website to demonstrate your implementation of path planning.
     Add the link to your project page to the <code>README.md</code> file in the root of your repository and push it to GitHub.
     For a refresher about how to create the website, see the <a href="/projects/a1.html#website">Project 1 description</a>.
   </p>
 
-  <p>On your project webpage, include multiple images showing paths found by your breadth first search algorithm (and by A-Star, if applicable). Include examples of different maps, with different start and goal locations. Include at least one video demonstration of your robot following a path and avoiding obstacles (for example, in a maze-like environment) using either BFS or A-Star.</p>
+  <p>On your project webpage, include multiple images and / or videos showing paths found by your breadth first search algorithm (and by A-Star, if applicable). Include examples of different maps, with different start and goal locations on the webapp. Include at least one video demonstration of your robot following a path and avoiding obstacles (for example, in a maze-like environment) using either BFS or A-Star. Remember to ensure that videos are visible by course staff.</p>
 
     <p>Include a discussion section on the web page. Consider the following questions:</p>
     <ol>
@@ -482,16 +482,6 @@ visit_list.erase(visit_list.begin() + min_score_idx);</code></pre>
     </ol>
 
     <p>Consider including images or videos whenever possible to illustrate your points. Keep the discussion brief: it should be no longer than one or two paragraphs. If you did not implement A-Star, you may ignore the A-Star questions, or answer based on what we discussed in lecture.</p>
-
-  <p>Include images or videos whenever possible to illustrate your points. Keep the discussion brief: it should be no longer than a few sentences. Remember to ensure that videos are visible by course staff.</p>
-
-  <ul class="todo">
-    <li class="icon solid fa-laptop-code">
-      <strong id="todo2_4">P2.5 (3 points):</strong>
-      Create a web page for your bug navigation project including at least one video demonstration and a discussion.
-      Add a link to the website to the <code>README.md</code> file in your repository.
-    </li>
-  </ul>
 
 </section>
 
@@ -607,27 +597,48 @@ visit_list.erase(visit_list.begin() + min_score_idx);</code></pre>
 
     <h3>Part 1: Path Planning in Michigan</h3>
 
+    <ul class="todo">
+      <li class="icon solid fa-laptop-code">
+        <strong><a href="#todo1_1">P3.1.1</a>:</strong>
+        Design a way to store node data needed in BFS.
+        Add members to the <code>Graph</code> struct to store this data.
+      </li>
+      <li class="icon solid fa-laptop-code">
+        <strong><a href="#todo1_2">P3.1.2</a>:</strong>
+        Complete function <code>initGraph()</code>. It should create space to store data for each node in the graph, and initialize any data you might need.
+      </li>
+      <li class="icon solid fa-laptop-code">
+        <strong><a href="#todo1_3">P3.1.3</a>:</strong>
+        Complete function <code>getParent()</code>. It should return the index of the parent node. If the node has no parent, it should return -1.
+      </li>
+      <li class="icon solid fa-laptop-code">
+        <strong><a href="#todo1_4">P3.1.4</a>:</strong>
+        Complete function <code>bfs(start, goal, g)</code>.
+        It should perform Breadth First Search to find a path from node index <code>start</code> to <code>goal</code> within graph <code>g</code>.
+      </li>
+    </ul>
+
     <h3>Part 2: Path Planning on the Robot</h3>
 
     <ul class="todo">
       <li class="icon solid fa-laptop-code">
-        <strong><a href="#todo1_1">P3.2.1</a>:</strong>
+        <strong><a href="#todo2_1">P3.2.1</a>:</strong>
         In the <code>graph_utils.h</code> file, design a data structure to store the cell information and modify <code>GridGraph</code> to add any new member variables accordingly.
       </li>
       <li class="icon solid fa-laptop-code">
-        <strong><a href="#todo1_2">P3.2.2</a>:</strong>
+        <strong><a href="#todo2_2">P3.2.2</a>:</strong>
         In the <code>graph_utils.cpp</code> file, complete function <code>initGraph()</code> to initialize the cell data. You can assume the graph will be loaded when the function is called.
       </li>
       <li class="icon solid fa-laptop-code">
-        <strong><a href="#todo1_3">P3.2.3</a>:</strong>
+        <strong><a href="#todo2_3">P3.2.3</a>:</strong>
         In the <code>graph_utils.cpp</code> file, complete function <code>getParent()</code> so it returns the index of the parent of the given cell. If a cell does not have a parent, it should return -1.
       </li>
       <li class="icon solid fa-laptop-code">
-        <strong><a href="#todo2_1">P3.2.4</a>:</strong>
+        <strong><a href="#todo2_4">P3.2.4</a>:</strong>
         In the <code>graph_search.cpp</code> file, implement Breadth First Search in function <code>breadthFirstSearch()</code>.
       </li>
       <li class="icon solid fa-laptop-code">
-        <strong><a href="#todo3_1">P3.2.5</a>:</strong>
+        <strong><a href="#todo2_5">P3.2.5</a>:</strong>
         In the <code>robot_plan_path.cpp</code> file, call your path planning function and use the <code>drivePath()</code> function provided to send the path to the robot.
       </li>
     </ul>
