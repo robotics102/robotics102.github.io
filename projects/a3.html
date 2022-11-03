@@ -320,15 +320,26 @@
 
     <p>A number of helper functions are available for you to use. Review them in the <a href="#code_utils">code overview</a>.</p>
 
-    <!-- <p>You should complete the functions <code>cellToIdx()</code> and <code>idxToCell()</code>, which convert between cells and indices as discussed in lab. You can use these functions for the following parts of the project.</p> -->
+    <p>
+      You will need to complete the function <code>findNeighbors()</code>.
+      The neighbors of a cell are the adjacent cells in the graph.
+      This function will be necessary in order to complete your planning algorithm.
+    </p>
 
-   <!--  <ul class="todo">
+    <ul class="todo">
       <li class="icon solid fa-laptop-code">
-        <strong id="todo0_1">P3.2.1:</strong> In the file <code>graph_utils.cpp</code>, complete functions <code>cellToIdx()</code> and <code>idxToCell()</code>.
-        <code>cellToIdx()</code> should accept a cell coordinate and a graph as arguments, and return an <code>int</code> containing the corresponding array index for the cell.
-        <code>idxToCell()</code> should accept an array index and a graph as arguments, and return a <code>Cell</code> containing the corresponding cell coordinate for the array index.</li>
+        <strong id="todo2_1">P3.2.1:</strong> In the file <code>graph_utils.cpp</code>, complete functions <code>findNeighbors()</code>.
+        It should accept the index of a node and return a vector of indices of neighboring nodes.
+        You may use either 4-connected or 8-connected neighbors, as discussed in lab.
       </li>
-    </ul> -->
+    </ul>
+
+    <ul class="hint">
+      <li class="icon solid fa-cogs">
+        <strong>Hint:</strong>
+        You might find the functions <code>idxToCell()</code> and <code>cellToIdx()</code> helpful.
+      </li>
+    </ul>
 
     <!-- <p>We have provided a test script to check your indexing functions. Compile your code either on Replit or on the robot, then run the test script in the Docker like this:</p>
     <pre><code class="language-bash">cd /code/build
@@ -354,15 +365,15 @@ make
 
     <ul class="todo">
       <li class="icon solid fa-laptop-code">
-        <strong id="todo1_1">P3.2.1:</strong>
+        <strong id="todo2_2">P3.2.2:</strong>
         In the <code>graph_utils.h</code> file, design a data structure to store the cell information and modify <code>GridGraph</code> to add any new member variables accordingly.
       </li>
       <li class="icon solid fa-laptop-code">
-        <strong id="todo1_2">P3.2.2:</strong>
+        <strong id="todo2_3">P3.2.3:</strong>
         In the <code>graph_utils.cpp</code> file, complete function <code>initGraph()</code> to initialize the cell data. You can assume the graph will be loaded when the function is called.
       </li>
       <li class="icon solid fa-laptop-code">
-        <strong id="todo1_3">P3.2.3:</strong>
+        <strong id="todo2_4">P3.2.4:</strong>
         In the <code>graph_utils.cpp</code> file, complete function <code>getParent()</code> so it returns the index of the parent of the given cell. If a cell does not have a parent, it should return -1.
       </li>
     </ul>
@@ -402,7 +413,7 @@ make
 
     <ul class="todo">
       <li class="icon solid fa-laptop-code">
-        <strong id="todo2_1">P3.2.4:</strong>
+        <strong id="todo2_5">P3.2.5:</strong>
         In the <code>graph_search.cpp</code> file, implement Breadth First Search in function <code>breadthFirstSearch()</code>.
       </li>
     </ul>
@@ -422,13 +433,13 @@ make
 
     <ul class="todo">
       <li class="icon solid fa-laptop-code">
-        <strong id="todo3_1">P3.2.5:</strong>
+        <strong id="todo2_6">P3.2.6:</strong>
         In the <code>robot_plan_path.cpp</code> file, call your path planning function and use the <code>drivePath()</code> function provided to send the path to the robot.
       </li>
     </ul>
 
     <ul class="hint">
-      <li class="icon solid fa-cogs"><strong>Hint:</strong> If you are using the <code>checkCollision()</code> function in your graph search, do not forget to call your distance transform function after the map is loaded.</li>
+      <li class="icon solid fa-cogs"><strong>Hint:</strong> If you are using the <code>checkCollisionFast()</code> function in your graph search, do not forget to call your distance transform function after the map is loaded.</li>
       <li class="icon solid fa-cogs"><strong>Hint:</strong> The provided function <code>drivePath()</code> returns immediately after sending the path command to motion controller. That means your program will quit before the robot has reached the goal. If you wish to send another path to the robot or perform some processing when the robot has reached the goal, you can write code to wait until the robot has reached the goal before finishing.</li>
     </ul>
 
@@ -596,11 +607,11 @@ visit_list.erase(visit_list.begin() + min_score_idx);</code></pre>
     <ul class="hint">
       <li class="icon solid fa-cogs">
         <code>int cellToIdx(int i, int j, const GridGraph& graph)</code>:
-        <em>(TODO, see <a href="sec_graph">Part 0</a>)</em> Given a cell row <code>i</code> and column <code>j</code> in the graph, calculates the index where the data for the cell is stored.
+        Given a cell row <code>i</code> and column <code>j</code> in the graph, calculates the index where the data for the cell is stored.
       </li>
       <li class="icon solid fa-cogs">
         <code>Cell idxToCell(int idx, const GridGraph& graph)</code>:
-        <em>(TODO, see <a href="sec_graph">Part 0</a>)</em> Given an index, calculates the corresponding cell row <code>i</code> and column <code>j</code> in the graph.
+        Given an index, calculates the corresponding cell row <code>i</code> and column <code>j</code> in the graph.
       </li>
       <li class="icon solid fa-cogs">
         <code>Cell posToCell(float x, float y, const GridGraph& graph)</code>:
@@ -621,8 +632,7 @@ visit_list.erase(visit_list.begin() + min_score_idx);</code></pre>
       </li>
       <li class="icon solid fa-cogs">
         <code>std::vector<int> findNeighbors(int idx, const GridGraph&amp; graph)</code>:
-        Returns a list of the indices of the neighbors of the cell at a given index in the graph.<br/>
-        <em>Warning:</em> This only works if <code>cellToIdx()</code> and <code>idxToCell()</code> are implemented.
+          <em>(<a href="sec_graph">TODO</a>)</em> Returns a list of the indices of the neighbors of the cell at a given index in the graph.<br/>
       </li>
       <li class="icon solid fa-cogs">
         <code>bool checkCollisionFast(int idx, const GridGraph&amp; graph)</code>:
@@ -693,23 +703,27 @@ visit_list.erase(visit_list.begin() + min_score_idx);</code></pre>
 
     <ul class="todo">
       <li class="icon solid fa-laptop-code">
-        <strong><a href="#todo2_1">P3.2.1</a>:</strong>
-        In the <code>graph_utils.h</code> file, design a data structure to store the cell information and modify <code>GridGraph</code> to add any new member variables accordingly.
+        <strong><a href="#todo2_1">P3.2.1</a>:</strong> In the file <code>graph_utils.cpp</code>, complete functions <code>findNeighbors()</code>.
+        It should accept the index of a node and return a vector of indices of neighboring nodes.
       </li>
       <li class="icon solid fa-laptop-code">
         <strong><a href="#todo2_2">P3.2.2</a>:</strong>
-        In the <code>graph_utils.cpp</code> file, complete function <code>initGraph()</code> to initialize the cell data. You can assume the graph will be loaded when the function is called.
+        In the <code>graph_utils.h</code> file, design a data structure to store the cell information and modify <code>GridGraph</code> to add any new member variables accordingly.
       </li>
       <li class="icon solid fa-laptop-code">
         <strong><a href="#todo2_3">P3.2.3</a>:</strong>
-        In the <code>graph_utils.cpp</code> file, complete function <code>getParent()</code> so it returns the index of the parent of the given cell. If a cell does not have a parent, it should return -1.
+        In the <code>graph_utils.cpp</code> file, complete function <code>initGraph()</code> to initialize the cell data. You can assume the graph will be loaded when the function is called.
       </li>
       <li class="icon solid fa-laptop-code">
         <strong><a href="#todo2_4">P3.2.4</a>:</strong>
-        In the <code>graph_search.cpp</code> file, implement Breadth First Search in function <code>breadthFirstSearch()</code>.
+        In the <code>graph_utils.cpp</code> file, complete function <code>getParent()</code> so it returns the index of the parent of the given cell. If a cell does not have a parent, it should return -1.
       </li>
       <li class="icon solid fa-laptop-code">
         <strong><a href="#todo2_5">P3.2.5</a>:</strong>
+        In the <code>graph_search.cpp</code> file, implement Breadth First Search in function <code>breadthFirstSearch()</code>.
+      </li>
+      <li class="icon solid fa-laptop-code">
+        <strong><a href="#todo2_6">P3.2.6</a>:</strong>
         In the <code>robot_plan_path.cpp</code> file, call your path planning function and use the <code>drivePath()</code> function provided to send the path to the robot.
       </li>
     </ul>
