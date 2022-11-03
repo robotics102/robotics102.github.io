@@ -356,7 +356,7 @@ make
     <h3 id="sec_bfs">Breadth First Search</h3>
 
     <p>In this section, you will write code to implement a <strong>Breadth First Search (BFS)</strong> over a graph, given a start and goal cell. You will write your code in the file <code>src/graph_search/graph_search.cpp</code>. Your code should go in the function <code>breadthFirstSearch()</code>, which looks like this:</p>
-    <pre><code class="language-cpp">std::vector<Cell> breadthFirstSearch(GridGraph& graph, const Cell& start, const Cell& goal, std::function<void(int, int)> showVisitedCell)
+    <pre><code class="language-cpp">std::vector<Cell> breadthFirstSearch(GridGraph& graph, const Cell& start, const Cell& goal)
 {
   std::vector<Cell> path;  // The final path should be placed here.
   initGraph(graph);  // Make sure all the node values are reset.
@@ -372,8 +372,8 @@ make
     <pre><code class="language-cpp">path = tracePath(goal_idx, graph);</code></pre>
     <p>where <code>goal_idx</code> is an integer value which stores the index of the goal. If you have correctly maintained the parent structure of the cells and the <code>idxToCell()</code> and <code>getParent()</code> functions are implemented, this will return the path to the start node. The start node should not have a parent. If no path was found, your code should return an empty vector. Use <code>checkCollision()</code> to check whether a cell is in collision.</p>
 
-    <p>The function also accepts a <code>showVisitedCell</code> argument. This is to interface with helper functions which will help you visualize your algorithm in the web app. To mark a cell with coordinate <code>(i, j)</code> as visited (shown in grey) in the web app, do:</p>
-    <pre><code class="language-cpp">showVisitedCell(i, j);</code></pre>
+    <p>The webapp allows you to play back which cells are visited in your algorithm. It will show visited cells in grey so you can visualize the order that the cells are explored. To visualize the visited cells, you should add the cell to the vector <code>graph.visited_cells</code>, as follows (given that the current cell is stored in <code>Cell</code> struct <code>c</code>):</p>
+    <pre><code class="language-cpp">graph.visited_cells.push_back(c);</code></pre>
 
     <ul class="todo">
       <li class="icon solid fa-laptop-code">
