@@ -84,6 +84,72 @@
   </div>
 </section>
 
+<section>
+  <header class="major">
+    <h2><a href="#sec_git">Visualizing a plan</a></h2>
+  </header>
+
+  <p>
+    The main use of the web app is to visualize both the plan that your search algorithms generate
+    along with show the order which your search algorithm visits cells. You find that the starter
+    code provides a command line interface (cli), named nav_cli, which is used to generate the
+    necessary data to allow the web app to visualize a search path and visited cells.
+  </p>
+  <p>
+    To start, first navigate to your project on replit and open a terminal in replit.
+    In the terminal, run <code>cd build && cmake ..</code> to generate the Makefile.
+    Then run <code>make</code>. This will generate the application <code>nav_cli</code>.
+    Assuming your code compiles, you should end up with something that looks as follows:
+  </p>
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <img style="max-width: 100%;" src="/images/tutorials/webapp/compiled-nav-cli.png" alt="" />
+    <figcaption>Image: Compiled nav cli</figcaption>
+  </div>
+  <p>
+    Now that the <code>nav_cli</code> is compiled, we can use it to run out search algorithms.
+    The <code>nav_cli</code> is used as follows:
+
+    <code>./nav_cli [map_file] [planning_algo] [start_x] [start_y] [goal_x] [goal_y]</code>
+    where <code>[map_file]</code> is the map which we would like to use, <code>[planning_algo]</code>
+    is the desired search algorithm we would like to use (one of bfs, dfs, or astar), <code>[start_x]</code>
+    and <code>[start_y]</code> are the starting cell x and y coordinates, respectively, and
+    <code>[goal_x]</code> and <code>[goal_y]</code> are the goal cell x and y
+    coordinates, respectively.
+    <br>
+    <br>
+    Try running <code>./nav_cli ../data/maze1.map astar 21 88 86 18</code>.
+    Assuming your code works properly, you will end up with the following output:
+  </p>
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <img style="max-width: 100%;" src="/images/tutorials/webapp/nav-cli-map1-output.png" alt="" />
+    <figcaption>Image: using nav_cli</figcaption>
+  </div>
+
+  <p>
+    <code>nav_cli</code> generates an output file, named <code>out.planner</code> located in the
+    <code>build</code> folder of your project. You will be able to open the file and see
+    its contents, which will look as follows: 
+  </p>
+
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <img style="max-width: 100%;" src="/images/tutorials/webapp/generated-nav-output.png" alt="" />
+    <figcaption>Image: generated nav output</figcaption>
+  </div>
+
+  <p>
+    Copy all the contents of that file, and navigate back to the web app. Paste this output
+    in the text entry box and click <code>submit.</code> One done, you will see the map appear
+    and the robot will be located at the start cell. Then, click <code>Plan!</code> and watch the
+    generated plan come to life!
+  </p>
+
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <img style="max-width: 60%;" src="/images/tutorials/webapp/final-output.png" alt="" />
+    <figcaption>Image: Running the nav app</figcaption>
+  </div>
+
+</section>
+
             </div>
           </div>
 
