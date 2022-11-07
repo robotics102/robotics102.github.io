@@ -201,6 +201,81 @@
   </div>
 </section>
 
+<!-- WEB APP TUTORIAL -->
+<section id="sec_robot_prog">
+  <header class="major">
+    <h2><a href="#sec_robot_prog">SLAM Web App Tutorial</a></h2>
+  </header>
+  <div class="content">
+    <p>This tutorial will go over how to build a map of your current environment using SLAM</p>
+
+    <h3>Prerequisites</h3>
+
+    <p>This tutorial assumes that you have followed the tutorial "Connecting to your Robot" above, and should have your robot's IP Address</p>
+
+    <h3>1. Access SLAM WebAPP</h3>
+
+    <p>
+      First, we want to open the WebAPP. Using your robot's IP Address, type <strong>http://&lt;ROBOT-IP&gt;:8000</strong> (replace all of <strong>&lt;ROBOT-IP&gt;</strong> with your robot's IP address) in your browser. This should open the web app, shown below:
+    </p>
+
+    <span class="image main"><img src="/images/tutorials/robot/mapp_starting.png" alt=""
+        style="max-width:800px;" /></span>
+
+    <p>If the robot is connected and working properly, you should be able to see the green "Connected" sign.</p>
+
+    <ul class="hint">
+      <li class="icon solid fa-cogs"><strong>Debugging Tip:</strong> Make sure that the file on GitHub is recent by checking the time that it was updated. The IP can change when rebooted. It can take a few minutes for the robot to boot up and connect, so be patient! If the IP is not updated after a few minutes, try restarting the robot.</li>
+    </ul>
+
+    <h3>3. Build the map in Mapping Mode</h3>
+
+    <p>
+      Toggle <strong>Localization Mode</strong>. You should start seeing a map of the physical environment being built on the right. If you don't see this, make sure your LiDAR is spinning, and try restarting your robot. If these fixes don't work, come to an instructor. 
+    </p>
+    <p>
+      You should then see the <strong>Mapping Mode</strong> switch. Place your robot in your physical environment, and when you are ready to start mapping, toggle this switch. This will give you a popup stating "This will overwrite the current map. Are you sure?". Press <strong>OK</strong>
+    </p>
+
+    <span class="image main"><img src="/images/tutorials/robot/mapping_mode.png" alt=""
+      style="max-width:800px;" /></span>
+
+    <p>
+      Now you should be ready to build your map. The idea is to drive around the physical space until you have an accurate reading of the physical environment with no missing borders. To drive around, toggle the <strong>Drive Mode</strong> switch
+    </p>
+
+    <ul class="hint">
+      <li class="icon solid fa-cogs"><strong>Driving Tips:</strong> Make sure you drive slowly and give the robot some time to build it's current environment before you drive again. Try to limit jerky movements and excessive turning, and forward and backwards movement works best. DO NOT bump into any of the obstacles. If you do, reset your map and try again. Another source of error could be that your wheels are not tight, but if that doesn't fix the problem when following the aforementioned tips, come to an instructor. </li>
+    </ul>
+
+    <p>
+      The image below shows a good mapping of the environment, where the map is consistent to the physical space. There are also no incomplete edges, or shifts. 
+    </p>
+
+    <span class="image main"><img src="/images/tutorials/robot/good_map.png" alt=""
+      style="max-width:800px;" /></span>
+
+    <p>
+      The image below shows a bad mapping of the same environment above, where the map is inconsistent, and the edges are not clear. 
+    </p>
+
+    <span class="image main"><img src="/images/tutorials/robot/bad_map.png" alt=""
+      style="max-width:800px;" /></span>
+
+    <p>
+      Once you have a good mapping of the environment, turn off mapping mode and click on the <strong>Download Map</strong> button, and you should have a saved map. 
+    </p>
+
+    
+    <h2 id="conn_video"> Video Tutorial</h2>
+
+    <p>This video tutorial goes through the process outlined above.</p>
+
+    <div style="display: flex; justify-content: center; align-items: center;">
+      <iframe style="display:block" width="560" height="315" src="https://www.youtube.com/watch?v=LzMrtliWKR8&ab_channel=LaasyaChukka" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
 
             </div>
           </div>
