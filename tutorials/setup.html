@@ -10,7 +10,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="/assets/css/main.css" />
-    <link rel="shortcut icon" type="image/png" href="/images/mbot_overhead.png"/>
+    <link rel="shortcut icon" type="image/png" href="/images/icon.png"/>
 
     <!-- Syntax highlighting -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/stackoverflow-light.min.css">
@@ -30,7 +30,7 @@
                 <a href="/index.html" class="logo"><strong>ROB 102:</strong> Introduction to AI and Programming</a>
                 <ul class="icons">
                   <li><a href="https://um-fa22-rob102.slack.com" class="icon brands fa-slack" target="_blank"><span class="label">Slack</span></a></li>
-                  <li><a href="https://github.com/robotics102" class="icon brands fa-github" target="_blank"><span class="label">Github</span></a></li>
+                  <li><a href="https://github.com/robotics102" class="icon brands fa-github" target="_blank"><span class="label">GitHub</span></a></li>
                 </ul>
               </header>
 
@@ -40,115 +40,17 @@
     <strong>Tutorial:</strong> Computer Setup
   </header>
 
-  <p>This page contains instructions for installing software needed for ROB 102. The setup for Projects 0 to 3 is different than for Project 4. For Projects 0 to 3, you will need Git, VSCode, and Docker. For Project 4, you will need Julia.</p>
-
-  <p><strong>For Projects 0 to 3, follow the setup instructions below:</strong> (they should be completed in order)</p>
+  <p>This page contains instructions for installing software needed for ROB 102.</p>
 
   <ol>
-    <li><a href="#install_git">Git</a></li>
     <li><a href="#install_vscode">VSCode</a></li>
-    <li><a href="#install_docker">Docker</a></li>
   </ol>
-
-  <p><strong>For Project 4, follow the setup instructions for Julia:</strong></p>
-  <ul>
-    <li><a href="#install_julia">Julia</a></li>
-  </ul>
-
-  <hr class="major" />
-
-  <!-- GIT -->
-
-  <h2 id="install_git">1. Git</h2>
-
-  <p>This section guides you through the installation and setup procedure for Git. We will use GitHub to manage our code. If you do not have a Github account, go to <a href="https://github.com/">github.com</a> and create one. It's free!</p>
-
-  <h3>Installing Git</h3>
-
-    <p>Follow the instructions for your operating system. When you're done, <a href="#sec_config_git">configure Git</a>.</p>
-
-    <ul>
-      <li><a href="#sec_git_win">Windows</a></li>
-      <li><a href="#sec_git_mac">MacOS</a></li>
-      <li><a href="#sec_git_linux">Linux</a></li>
-    </ul>
-
-    <h4 id="sec_git_win">Windows</h4>
-
-    <p>
-      We will use Git Bash to interface with Github on Windows. We will also use Git Bash as our terminal when we are developing code.
-    </p>
-
-    <ol>
-      <li><strong>Download Git:</strong>
-        Download Git and Git Bash from <a href="https://git-scm.com/downloads" target="_blank">here</a> and click on the &quot;Windows&quot; option:
-        <span class="image main"><img src="../images/setup/git/win/git_win_download.png" alt="" style="max-width:500px;"/></span>
-      </li>
-      <li><strong>Install Git:</strong>
-        Once the download finishes, click on the installer to run it. When you are asked whether to allow the application to make changes to your computer, select &quot;Yes.&quot;
-      </li>
-      <li><strong>Configuring install options:</strong>
-        The Git installer asks you to select many options during installation. In general, you can accept the default options by clicking &quot;Continue&quot; without changing the default values. We recommend changing only three of them: <br/><br/>
-
-        The default editor, Vim, is difficult to use. Change this to &quot;Nano&quot;:
-        <span class="image main"><img src="../images/setup/git/win/git_editor.jpg" alt="" style="max-width:500px;"/></span><br/>
-
-        We recommend setting the default branch name to &quot;main&quot;:
-        <span class="image main"><img src="../images/setup/git/win/git_main_branch.jpg" alt="" style="max-width:500px;"/></span><br/>
-
-        Select the option to checkout line-endings as-is and commit with Unix style:
-        <span class="image main"><img src="../images/setup/git/win/git_line_endings.jpg" alt="" style="max-width:500px;"/></span><br/>
-      </li>
-      </li>
-      <li>Once the installer finishes successfully, you should be able to open a Git Bash terminal by searching for &quot;Git Bash&quot; in the explorer and clicking on the application.</li>
-      <li>Configure Git using the <a href="#sec_config_git">configuration instructions</a>.</li>
-    </ol>
-
-    <h4 id="sec_git_mac">MacOS</h4>
-
-    <ol>
-      <li><strong>Check if Git is installed:</strong>
-        Sometimes, Git is already installed on MacOS. To check if this is the case, open a terminal by using the Launchpad to search for &quot;Terminal&quot;:
-        <span class="image main"><img src="../images/setup/git/mac/open_terminal.png" alt="" style="max-width:300px;"/></span>
-        In the terminal, type:
-        <pre><code class="language-bash">git --version</code></pre>
-        If a version prints out, you're done! Go to the instructions on <a href="#sec_config_git">configuring Git</a>. Otherwise, move on to the next step.
-      </li>
-      <li><strong>Install Git:</strong>
-        If Git is not installed, you will be prompted to install developer tools. Click &quot;Install&quot;, then accept the license agreement and wait for the software to install.
-        <span class="image main"><img src="../images/setup/git/mac/install-git.png" alt="" style="max-width:500px;"/></span>
-      </li>
-      <li><strong>Check Git is installed:</strong>
-        Now, in a terminal, when you type <code>git --version</code>, version information should print out:
-        <span class="image main"><img src="../images/setup/git/mac/git-success.png" alt="" style="max-width:500px;"/></span>
-      </li>
-      <li><strong>Install Git Credential Manager:</strong>
-        We need one more tool to let us log into Git from a laptop so we can clone and push to Git repositories. Git Credential Manager lets you log in to GitHub and it will remember you so you don't have to put in your password every time you interact with Git. First, install <a href="https://brew.sh/" target="_blank">Brew</a>, a package manager for Mac. Open a terminal and type:
-        <pre><code class="language-bash">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>
-        Enter your password when prompted, and press Return to allow the install to start. When it finishes, in the terminal, install Git Credential Manager by entering these commands, one at a time:
-        <pre><code class="language-bash">brew tap microsoft/git
-brew install --cask git-credential-manager-core</code></pre>
-      </li>
-      <li>Configure Git using the <a href="#sec_config_git">configuration instructions</a>.</li>
-    </ol>
-
-    <h4 id="sec_git_linus">Linux</h4>
-
-    <p>Check if Git is installed by opening a command prompt and typing <code>git --version</code> on the command line. The version will print if Git is installed. If you get a message saying the command <code>git</code> does not exist, install as follows:</p>
-    <pre><code class="language-bash">sudo apt install git-all</code></pre>
-
-  <h3 id="sec_config_git">Configuring Git</h3>
-
-  <p>Once Git is installed, you should configure it with your name and email. This will help identify you as the author of code you commit. This only has to be done once. <i>You should only do this on your own computer, not a shared computer.</i> To set your name and email, open a terminal (for Windows, open Git Bash) and enter the following two commands, substituting your name and email:</p>
-  <pre><code class="language-bash">git config --global user.name "Your Name"
-git config --global user.email your@email.com</code></pre>
-  <p>Use the email associated with your GitHub account.</p>
 
   <hr class="major" />
 
   <!-- VSCODE -->
 
-  <h2 id="install_vscode">2. Install VSCode</h2>
+  <h2 id="install_vscode">Install VSCode</h2>
 
   <p>Visual Studio Code is the <em>Integrated Development Environment (IDE)</em> that we will be using to write C++ code. To install it, follow the instructions for your OS. Then, configure it following the <a href="#sec_vscode_config">configuration instructions</a>.</p>
 
@@ -173,13 +75,6 @@ git config --global user.email your@email.com</code></pre>
     </li>
     <li><strong>Open VSCode:</strong> Open VSCode by searching for &quot;Visual Studio Code&quot; in the search bar:
       <span class="image main"><img src="../images/setup/vscode/win/vscode_app.png" alt="" style="max-width:500px;"/></span>
-    </li>
-    <li><strong>Set Git Bash as the default terminal:</strong>
-      In ROB 102, we will be covering how to use the command line in a Bash terminal. By default, Windows uses its own command prompt. You will set your default terminal in VSCode to Git Bash. In VSCode, open the command pallette by pressing <code>F1</code> (or <code>Ctrl-Shift-P</code>). Search for the option &quot;Terminal: Select Default Profile&quot;:
-      <span class="image main"><img src="../images/setup/vscode/win/terminal-cmd.png" alt="" style="max-width:800px;"/></span>
-      Select the option &quot;Git Bash&quot;:
-      <span class="image main"><img src="../images/setup/vscode/win/terminal-select.png" alt="" style="max-width:800px;"/></span>
-      Next time you open a terminal, it should be a Git Bash terminal by default.
     </li>
   </ol>
 
@@ -208,180 +103,6 @@ git config --global user.email your@email.com</code></pre>
 
   <hr class="major" />
 
-  <!-- DOCKER -->
-
-  <h2 id="install_docker">3. Docker</h2>
-
-  <p>Docker allows users to run code inside <em>containers</em>, which are programs that emulate a specific coding environment. In ROB 102, we will run code in Docker containers which run on our computers. This will ensure that you are running your code in the exact same environment as everyone else in the class and the instructors. Docker is needed for <a href="../projects/a0.html">Project 0</a>, <a href="../projects/a2.html">Project 2</a>, and <a href="../projects/a3.html">Project 3</a>.</p>
-
-  <h3>Installing Docker</h3>
-
-    <h4>Windows</h4>
-
-    <ol>
-      <li><strong>Check your Windows version:</strong>
-        On Windows, Docker uses a program called Windows Subsystem for Linux (WSL). We need to use WSL 2, which is only available for recent versions of Windows. Make sure you have <strong>Windows 10, version 1903 or higher</strong>. Check your Windows version by searching for &quot;About&quot; in your Windows search bar, and select &quot;About your PC&quot;. Your Windows version is listed under &quot;Windows Specifications&quot;:
-        <span class="image main"><img src="../images/setup/win_version.png" alt="" style="max-width:500px;"/></span>
-        Versions 1903, 1909, 2004, 20H2, 21H1, and 21H2 are acceptable versions.
-        <br/><br/>
-        If your version of Windows is older that this, try upgrading your machine. You can <a href="https://its.umich.edu/computing/computers-software/software-services/software-information/windows-licensing" target="_blank">upgrade your Windows version for free</a> as a UM student (if your computer already has Windows). If you don't have a computer which can meet these requirements, talk to the instructors.
-      </li>
-      <li><strong>Download Docker for Windows:</strong>
-        Download the installer from the <a href="https://hub.docker.com/editions/community/docker-ce-desktop-windows/" target="_blank">Docker website</a>:
-        <span class="image main"><img src="../images/setup/docker/win/download.png" alt="" style="max-width:800px;"/></span>
-      </li>
-      <li><strong>Install Docker for Windows:</strong>
-        When the installer finishes downloading, click on it to run. Make sure the options to enable Hyper V and install WSL 2 are selected, then run the installer, accepting the default options.
-        <span class="image main"><img src="../images/setup/docker/win/docker_1_config.jpg" alt="" style="max-width:500px;"/></span>
-      </li>
-      <li><strong>Restart your computer:</strong>
-        When the installer completes, you should see this message. Click the <b>Close &amp; Restart</b> button to restart your computer.
-        <span class="image main"><img src="../images/setup/docker/win/docker_2_restart.jpg" alt="" style="max-width:500px;"/></span>
-      </li>
-      <li><strong>Launching Docker:</strong>
-        When your computer restarts, Docker should start automatically. You should see a message telling you that WSL 2 is not installed:
-        <span class="image main"><img src="../images/setup/docker/win/docker_4_wsl2_install.jpg" alt="" style="max-width:500px;"/></span>
-        You might also see this error. If you do, just press &quot;Continue&quot;.
-        <span class="image main"><img src="../images/setup/docker/win/docker_3_net_except.jpg" alt="" style="max-width:300px;"/></span>
-      </li>
-      <li><strong>Download WSL 2:</strong>
-        Go to <a href="https://docs.microsoft.com/en-ca/windows/wsl/install-win10#step-4---download-the-linux-kernel-update-package">this link</a> (the same one that the message from the previous step gave you) and click on the link shown below to download the installer for WSL 2 (ignore the other instructions on the page):
-        <span class="image main"><img src="../images/setup/docker/win/docker_5_wsl_web.jpg" alt="" style="max-width:500px;"/></span>
-      </li>
-      <li><strong>Install WSL 2:</strong>
-        When the installer downloads, click to run it. You should see a screen that looks like this:
-        <span class="image main"><img src="../images/setup/docker/win/docker_6_wsl_start.jpg" alt="" style="max-width:500px;"/></span>
-        Press &quot;Next&quot; through the options and wait for the install to finish. You will see a success screen that looks like this:
-        <span class="image main"><img src="../images/setup/docker/win/docker_7_wsl_success.jpg" alt="" style="max-width:500px;"/></span>
-      </li>
-      <li><strong>Test Docker:</strong>
-        That's it! Now we'll test that Docker was installed correctly. Open Git Bash, and enter the following command:
-        <pre><code class="language-bash">docker run hello-world</code></pre>
-        Docker should download the Docker image for the container <code>hello-world</code> and run it. It does nothing, so it will shutdown once a message like this one has been printed:
-        <span class="image main"><img src="../images/setup/docker/win/docker_8_helloworld.jpg" alt="" style="max-width:500px;"/></span>
-        You should also see a Docker icon in your task bar:
-        <span class="image main"><img src="../images/setup/docker/win/docker_9_icon.jpg" alt="" style="max-width:300px;"/></span>
-      </li>
-      <li><strong>Install Docker extensions for VSCode:</strong> Follow the <a href="#sec_docker_ext">instructions to install VSCode extensions for Docker</a>.</li>
-    </ol>
-
-    <h4>Mac</h4>
-
-    <ol>
-      <li><strong>Check your chip type:</strong>
-        If you don't already know whether you have an Intel or an Apple chip, you can find the information by typing &quot;System Information&quot; in your Finder. The chip type will be listed under hardware information:
-        <span class="image main"><img src="../images/setup/docker/mac/system_information.png" alt="" style="max-width:500px;"/></span>
-      </li>
-      <li><strong>Download Docker:</strong>
-        Download the correct version of Docker for your chip type from the <a href="https://docs.docker.com/docker-for-mac/install/" target="_blank">Docker website</a>.
-        <span class="image main"><img src="../images/setup/docker/mac/download.png" alt="" style="max-width:800px;"/></span>
-      </li>
-      <li><strong>Install Docker:</strong>
-        Once the download is completed, find the downloaded file, &quot;Docker.dmg&quot;, and double click it to run it:
-        <span class="image main"><img src="../images/setup/docker/mac/click-download.png" alt="" style="max-width:300px;"/></span>
-      </li>
-      <li><strong>Add Docker to applications:</strong>
-        Once the install is completed, a window will open which prompts you to drag Docker to your applications. Do so in the window:
-        <span class="image main"><img src="../images/setup/docker/mac/drag-drop.png" alt="" style="max-width:400px;"/></span>
-      </li>
-      <li><strong>Run Docker:</strong>
-        Run Docker by searching for it in the Launchpad. You will need to accept to run it and provide it with priveledged access. Enter your password when prompted.
-        <span class="image main"><img src="../images/setup/docker/mac/launchpad.png" alt="" style="max-width:300px;"/></span>
-      </li>
-      <li><strong>Test Docker:</strong>
-        When Docker is running, open a terminal and type:
-        <pre><code class="language-bash">docker run hello-world</code></pre>
-        Docker should download the Docker image for the container <code>hello-world</code> and run it. It does nothing, so it will shutdown once a message like this one has been printed:
-        <span class="image main"><img src="../images/setup/docker/mac/docker-hello-world.png" alt="" style="max-width:500px;"/></span>
-      </li>
-      <li><strong>Install Docker extensions for VSCode:</strong> Follow the <a href="#sec_docker_ext">instructions to install VSCode extensions for Docker</a>.</li>
-    </ol>
-
-    <h4>Linux</h4>
-
-    <p>Follow the instructions <a href="https://docs.docker.com/engine/install/ubuntu/" target="_blank">here</a>.</p>
-
-  <h3 id="sec_docker_ext">VSCode Docker Extensions</h3>
-
-  <p>There are some helpful extensions for using Docker within VSCode that we will make use of. To install the extensions, open VSCode and click on the &quot;Extensions&quot; icon <span><img src="https://raw.githubusercontent.com/microsoft/vscode-icons/master/icons/light/extensions.svg?sanitize=true"></span>. Alternatively open Extensions with <code>Ctrl-Shift-X</code> (or <code>Cmd-Shift-X</code> on Mac). Search for &quot;Docker&quot; and install the extensions <b>Docker</b> and <b>Docker Explorer</b> using the &quot;Install&quot; button:</p>
-  <span class="image main"><img src="../images/setup/docker/vscode_docker.jpg" alt="" style="max-width:400px;"/></span>
-
-  <hr class="major" />
-
-  <!-- JULIA -->
-
-  <h2 id="install_julia">Julia</h2>
-
-  <p>Julia is needed for <a href="../projects/a4.html">Project 4</a>.</p>
-
-  <h3>Installing Julia</h3>
-
-    <h4>Windows</h4>
-
-    <p>Download the 64-bit installer for the current stable release from the <a href="https://julialang.org/downloads/#current_stable_release" target="_blank">Julia downloads page</a>. Run the installer and follow the instructions to install Julia.</p>
-
-    <span class="image main"><img src="../images/setup/julia/win/julia_install.png" alt="" style="max-width:800px;"/></span>
-
-    <p>Select the install executable and follow the instructions. You can select the default install location and options. On the page about additional tasks, you can choose whether you want to add a destop icon and start menu entry. It might be helpful to add Julia to your <code>PATH</code> variable at this step (optional):</p>
-
-    <span class="image main"><img src="../images/setup/julia/win/julia_tasks.png" alt="" style="max-width:500px;"/></span>
-
-    <p>When the installation is complete, you should see a window that looks like the one below. You can now exit out of the installer.</p>
-
-    <span class="image main"><img src="../images/setup/julia/win/julia_success.png" alt="" style="max-width:500px;"/></span>
-
-    <p>To open the Julia interpreter, search for &quot;Julia&quot; and select the Julia application.</p>
-
-    <span class="image main"><img src="../images/setup/julia/win/search_julia.png" alt="" style="max-width:700px;"/></span>
-
-    <p>When you launch Julia, you should see an interpreter like this one:</p>
-
-    <span class="image main"><img src="../images/setup/julia/win/julia_interpreter.png" alt="" style="max-width:800px;"/></span>
-
-    <h4>Mac</h4>
-
-    <p>Go to <a href="https://julialang.org/downloads/#current_stable_release" target="_blank">Julia downloads page</a>. Click the download next to macOS:</p>
-    <span class="image main"><img src="../images/setup/julia/mac/download_page.png" alt="" style="max-width:800px;"/></span>
-
-    <p>Find the downloaded .dmg file:</p>
-    <span class="image main"><img src="../images/setup/julia/mac/downloaded_dmg.png" alt="" style="max-width:800px;"/></span>
-
-    <p>Double click the downloaded file in your Finder:</p>
-    <span class="image main"><img src="../images/setup/julia/mac/found_download.png" alt="" style="max-width:400px;"/></span>
-
-    <p>Click and drag the Julia logo into your Applications folder:</p>
-    <span class="image main"><img src="../images/setup/julia/mac/drag_app.png" alt="" style="max-width:500px;"/></span>
-
-    <p>Find the Julia application in your Launchpad:</p>
-    <span class="image main"><img src="../images/setup/julia/mac/applications.png" alt="" style="max-width:500px;"/></span>
-
-    <p>This will open the Julia interpreter. You may have to give your computer permission to use Julia, or give Julia permission to use your terminal. </p>
-    <span class="image main"><img src="../images/setup/julia/mac/julia.png" alt="" style="max-width:600px;"/></span>
-
-    <h4>Linux</h4>
-
-    <p>Open a terminal and navigate to the directory where you want to put Julia. Then do:</p>
-    <pre><code class="language-bash">wget https://julialang-s3.julialang.org/bin/linux/x64/1.6/julia-1.6.2-linux-x86_64.tar.gz
-tar zxvf julia-1.6.2-linux-x86_64.tar.gz</code></pre>
-
-    <p>You can launch Julia from the directory that you downloaded it in the terminal by doing <code>./bin/julia</code>. Or, to launch from any directory, do:</p>
-    <pre><code class="language-bash">export PATH="$PATH:[/path/to/julia-1.6.2]/bin"</code></pre>
-    <p>then run <code>julia</code>. You can add the above line to the end of the <code>.bashrc</code> file so it runs each time you open a new terminal. To quit the Julia interpreter, type <code>exit()</code>.</p>
-
-  <h3>Installing package dependencies</h3>
-
-  <p>You will need to install some packages that we will need to complete <a href="../projects/a4.html">Project 4</a>. Open the Julia interpreter and enter the following lines, one at a time:</p>
-  <pre><code class="language-julia">using Pkg
-Pkg.add("IJulia")
-Pkg.add("Plots")
-Pkg.add("Images")
-Pkg.add("MosaicViews")
-Pkg.add("MLDatasets")
-Pkg.add("CSV")
-Pkg.add(Pkg.PackageSpec(name="DataFrames", version="0.21.0"))</code></pre>
-
-  <p>It might take some time to install all the packages! You can add other packages you might want to use this way as well.</p>
-
 </section>
 
 
@@ -403,16 +124,18 @@ Pkg.add(Pkg.PackageSpec(name="DataFrames", version="0.21.0"))</code></pre>
                       <span class="opener">Course Information</span>
                       <ul>
                         <li><a href="/index.html#schedule">Schedule</a></li>
+                        <li><a href="/index.html#office-hours">Office Hours</a></li>
                         <li><a href="/index.html#staff">Course Staff</a></li>
                         <li><a href="/syllabus.html">Syllabus</a></li>
+                        <li><a href="/activities.html">Asynchronous Activities</a></li>
                       </ul>
                     </li>
                     <li>
                       <span class="opener">Projects</span>
                       <ul>
-                        <li><a href="/projects/a0.html">Project 0: Intro to C++</a></li>
+                        <li><a href="/projects/a0.html">Project 0: Pocket Calculator</a></li>
                         <li><a href="/projects/a1.html">Project 1: Wall Following</a></li>
-                        <li><a href="/projects/a2.html">Project 2: Autonomous Navigation</a></li>
+                        <li><a href="/projects/a2.html">Project 2: Bug Navigation</a></li>
                         <li><a href="/projects/a3.html">Project 3: Path Planning</a></li>
                         <li><a href="/projects/a4.html">Project 4: Machine Learning</a></li>
                       </ul>
@@ -420,12 +143,14 @@ Pkg.add(Pkg.PackageSpec(name="DataFrames", version="0.21.0"))</code></pre>
                     <li>
                       <span class="opener active">Tutorials</span>
                       <ul>
-                        <!-- <li><a href="/tutorials/setup.html">Computer Setup</a></li> -->
+                        <li><a href="/tutorials/setup.html">Computer Setup</a></li>
                         <li><a href="/tutorials/git.html">Github</a></li>
-                        <!-- <li><a href="/tutorials/robot.html">Using the MBot-Omni</a></li> -->
-                        <!-- <li><a href="/tutorials/app.html">Using the Webapp</a></li> -->
+                        <li><a href="/tutorials/replit.html">Replit</a></li>
+                        <li><a href="/tutorials/robot.html">Using the MBot-Omni</a></li>
+                        <li><a href="/tutorials/app.html">Navigation Webapp</a></li>
                       </ul>
                     </li>
+                    <li><a href="https://robotics102.github.io/nav-app/">Navigation Webapp</a></li>
                   </ul>
                 </nav>
 
