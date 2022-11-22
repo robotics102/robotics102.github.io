@@ -1,9 +1,222 @@
-<!-- Content -->
+Content -->
 <section>
   <header class="main project">
-    <strong>Project 4:</strong> Machine Learning
+    <strong>Project 4:</strong> Machine Learning for Image Classification
   </header>
 
-  <p><font size="+2">Coming soon!</font></p>
+  <p><font size="+2"><strong>Due December 8th, 2022 at 11:59 PM.</strong></font></p>
+
+  <p>In this project, we will use machine learning algorithms to perform <strong>image classification</strong>. Image classification is the task of predicting the class, or label, of an image out of a set of known images. This is a type of <em>supervised learning</em>, which refers to algorithms that learn a function from labelled datasets.</p>
+
+  <p>We will be writing algorithms to do image classification on the <a href="http://yann.lecun.com/exdb/mnist/" target="_blank">MNIST</a> dataset. MNIST consists of tiny 28&#215;28 pixel images of handwritten digits from 0 to 9. A few example images from each are shown below.</p>
+
+  <span class="image main"><img src="/images/p4/mnist.png" alt="" style="max-width:550px;"/></span>
+
+  <p>MNIST has 60,000 images to train a classification algorithm, each labelled with the correct digit. In addition, there are 10,000 images which are used for testing the accuracy of the algorithm. We will implement three machine learning algorithms to classify images: <a href="#nearest_neighbor">nearest neighbors</a>, <a href="#linear_classifier">linear classification</a>, and a <a href="#neural_net">neural network</a>.</p>
+
+  <p>
+    This project is implemented using the Python programming language.
+    We will be using the Python libraries NumPy and SciKit Learn.
+    Before you start, make sure you have watched the <a href="/index.html#schedule_week12">Introduction to Python lecture</a>.
+    There are a number of Python activities to help you practice, available on the <a href="/activities.html">Activities page</a>.
+  </p>
+
+  <p>
+    The following topics are covered on this page:
+  </p>
+
+  <ul>
+    <li><a href="#getting_code">Getting the Code</a>
+    <li><a href="#submitting">Submitting the Assignment</a>
+      <ul>
+        <li><a href="#grading">Grading Breakdown</a></li>
+      </ul>
+    </li>
+    <li><a href="#proj_desc">Project Description</a>
+      <ul>
+        <li><a href="#nearest_neighbor">Part 1: Nearest Neighbors</a></li>
+        <li><a href="#train_ml">Part 2: Machine Learning with SciKit Learn</a></li>
+        <li><a href="#tour_guide">Part 3: Robot Museum Tour Guide</a></li>
+      </ul>
+    </li>
+    <li><a href="#website">Project Webpage</a></li>
+    <!-- <li><a href="#tasks">Task Summary</a></li> -->
+    <!-- <li><a href="#adv_ext">Advanced Extensions</a></li> -->
+  </ul>
+
+  <hr class="major" />
+
+  <h2 id="getting_code">Getting the Code</h2>
+
+  <p>
+    Parts 1 and 2 of this project are done <emph>individually</emph>. They will be completed using Jupyter Notebooks which we will run in Google Colab.
+    To accept the assignment, open the template notebooks and select <strong>File &gt; Save a copy in Drive</strong> to save a copy in your Google Drive. You will need to do this using your UM Google credentials.
+    There are two notebooks, one for each of Parts 1 and 2.
+  </p>
+
+  <p>
+    Part 3 of the project is done <emph>in teams</emph>.
+    You will accept the code for this part on GitHub Classroom, like in previous projects.
+    This part of the code can only be run on the robot.
+  </p>
+
+  <p><strong>The Google Drive links and GitHub Classroom link can be found on Slack.</strong></p>
+
+  <hr class="major" />
+
+  <h2 id="submitting">Submitting the Assignment</h2>
+
+  <p>
+    <strong>Parts 1 and 2:</strong>. You will submit both Colab notebooks <strong>on Canvas</strong>.
+    Make sure to run all the cells before you submit.
+    When you run your cells, the output gets saved in the notebook file.
+    When you submit this file, the instructors will be able to see output such as images, plots, and printed values.
+    You may add new cells to perform further analysis or visualization, as well as Markdown cells to write up your observations and analysis, if you wish.
+  </p>
+
+  <p>
+    <strong>Part 3:</strong>.
+    Teammates will be graded together for this part.
+    You should push your code to your GitHub repository, and create a project webpage for your completed project.
+    Include a link to your webpage in the <code>README.md</code> of your repository.
+    For details about what should be on the website, see <a href="#website">Project Website</a>.
+  </p>
+
+  <p>
+    <strong>Modify the LICENSE.txt file in your GitHub repository to include your name and the year.</strong>
+    Make sure the change is committed to your repository.
+  </p>
+
+  <ul class="todo">
+    <li class="icon solid fa-laptop-code">
+      <strong id="todo1">P4 License:</strong> In the file <code>LICENSE.txt</code>, replace <code>&lt;COPYRIGHT HOLDER&gt;</code> with your name. Replace <code>&lt;YEAR&gt;</code> with the current year.
+    </li>
+  </ul>
+
+  <h3 id="grading">Grading Breakdown</h3>
+
+    <p>This project will be graded as follows:</p>
+    <ul>
+      <li>
+        <strong>Part 1: Nearest Neighbors:</strong> (4 points)
+        Complete and submit the completed notebook for Part 1 on Canvas.
+        <emph>This portion of the project is completed and graded individually.</emph>
+      </li>
+      <li>
+        <strong>Part 2: Machine Learning with SciKit Learn:</strong> (5 points)
+        Complete and submit the completed notebook for Part 2 on Canvas.
+        Your algorithms must acheive a minimum accuracy score, which is given in the notebook.
+        <emph>This portion of the project is completed and graded individually.</emph>
+      </li>
+      <li>
+        <strong>Robot Museum Tour Guide Demo (in-class):</strong> (3 points)
+        Your tour guide algorithm, which uses the best machine learning algorithm from Part 2, will be demonstrated on the robot, in class on Demo Day.
+        The robot should classify images and use them to determine in which order to visit given waypoints.
+      </li>
+      <li>
+        <strong>Website:</strong> (3 points)
+        On your website, include a brief discussion of your implementation (see <a href="#website">discussion questions</a>).
+        Include at least one video of your algorithm working sucessfully on the robot.
+      </li>
+    </ul>
 
 </section>
+
+<section id="proj_desc">
+    <header class="major">
+      <h2><a href="#proj_desc">Project Description</a></h2>
+    </header>
+
+  <p>In this project, you will use various machine learning algorithms for image classification on the MNIST dataset. Then, you will use the best algorithm to perform image classification on the robot in a museum tour guide task.</p>
+    <ul>
+      <li><a href="#nearest_neighbor">Part 1: Nearest Neighbors in Python</a></li>
+      <li><a href="#train_ml">Part 2: Training Machine Learning algorithms with SciKit Learn</a></li>
+      <li><a href="#tour_guide">Part 3: Robot Museum Tour Guide</a></li>
+    </ul>
+
+  <p>
+    Parts 1 and 2 are done inidivually, using Google Colab.
+    We have provided a Google Colab notebook which introduces the concepts of Jupyter Notebooks and using NumPy, available as a <a href="/activities.html">practice activity</a>.
+  </p>
+
+  <h3 id="nearest_neighbor">Part 1: Nearest Neighbors</h3>
+
+    <p>In Part 1 of this project, you will implement a Nearest Neighbor classifier. The nearest neighbor algorithm takes a test image and finds the <em>closest</em> train image, which we call the image's nearest neighbor. Then, it assigns the test image the same label as its nearest neighbor. Here is an example of some MNIST images and their nearest neighbors:</p>
+
+    <span class="image main"><img src="/images/p4/nearest_neighbor_mnist.png" alt="" style="max-width:600px;"/></span>
+
+    <p>Open the notebook <code>Nearest Neighbors.ipynb</code> using the Google Drive link provided, and save a copy in your Drive. The notebook is made up of <em>cells</em>, which can be text cells (in Markdown) or code cells (in Python). You can run a cell by pressing the play button (<i class="fas fa-play"></i>) in the top left corner of the cell.</p>
+
+    <p>You need to run a cell before you use anything it defines in another cell. For example, you should always run the imports cell when you start the notebook. Similarly, you must run a cell which defines a variable or function before running a cell that uses it. Start by running the import cell at the top of the notebook to import some dependencies we'll need later on.</p>
+
+    <p>
+      The text in the notebook contains descriptions of how the data is stored and how distance should be calculated. Places where you need to write code are noted in the comments, with the label <code>TODO</code>. Use the provided test cells to check that your functions are working correctly.
+    </p>
+
+    <p>
+      <emph>Please read through the notebook carefully to make sure you do not miss any important instructions.</emph>
+    </p>
+
+  <h3 id="train_ml">Part 2: Training Machine Learning Algorithms</h3>
+
+    <p>In this part, we will use a Python library called <a href="https://scikit-learn.org/stable/">SciKit Learn</a>. This library has implementations for multiple machine learning algorithms. We will focus on three of them:</p>
+    <ul>
+      <li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html">K-Nearest Neighbors</a></li>
+      <li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVC.html">Linear Classifier</a></li>
+      <li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html">Neural Network</a></li>
+    </ul>
+
+    <p>We will use the SciKit Learn implementations for each of these. Your job will be to train the best versions of the K-Nearest Neighbors and Neural Network algorithms using Cross Validation. The Linear Classifier will be used as a baseline (your Neural Network must outperform it!).</p>
+
+    <p>
+      Open the notebook <code>Machine Learning with SciKit Learn.ipynb</code> using the Google Drive link provided, and save a copy in your Drive.
+      The text in the notebook guides you through each task. Places where you need to write code are noted in the comments, with the label <code>TODO</code>.
+      <emph>Please read through the notebook carefully to make sure you do not miss any important instructions.</emph>
+    </p>
+
+    <p>
+      The end of this notebook contains a cell which allows you to aave your favorite classification algorithm to a file.
+      You should run it, then download the file for <a href="#tour_guide">Part 3</a>.
+      With your partner, select the best algorithm from both of your notebooks to use.
+    </p>
+
+  <h3 id="tour_guide">Part 3: Robot Museum Tour Guide</h3>
+
+    <p>
+      Once you have trained a machine learning algorithm to recognize digits, you will use it on the robot to detect digits using the robot's camera. The robot's task will be to detect images in a museum (represented by a maze), and use the result to select which museum location to go to next. The waypoints corresponding to each digit will be provided by the instructors. The robot will use planning code from Project 3 to drive between the waypoints.
+    </p>
+
+    <p><strong>This section is under development!</strong></p>
+
+</section>
+
+<section id="website">
+  <header class="major">
+    <h2><a href="#website">Project Website</a></h2>
+  </header>
+
+  <p>
+    Create a website to demonstrate your implementation of the museum tour guide.
+    Add the link to your project page to the <code>README.md</code> file in the root of your repository and push it to GitHub.
+    For a refresher about how to create the website, see the <a href="/projects/a1.html#website">Project 1 description</a>.
+  </p>
+
+  <p><strong>This section is under development!</strong></p>
+
+</section>
+
+  <!-- <section id="adv_ext">
+    <header class="major">
+      <h2><a href="#adv_ext">Advanced Extensions</a></h2>
+    </header>
+
+    <ul class="todo">
+      <li class="icon solid fa-laptop-code">
+        <strong><a href="#todoAE_4i">Advanced Extension 4.i</a>:</strong> Implement the k-nearest neighbors algorithm.
+      </li>
+      <li class="icon solid fa-laptop-code">
+        <strong><a href="#todoAE_4ii">Advanced Extension 4.ii</a>:</strong> Experiment with different values of \(k\).
+      </li>
+    </ul>
+
+</section> -->
