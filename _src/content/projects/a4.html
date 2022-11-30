@@ -1,4 +1,3 @@
-Content -->
 <section>
   <header class="main project">
     <strong>Project 4:</strong> Machine Learning for Image Classification
@@ -186,7 +185,64 @@ Content -->
       Once you have trained a machine learning algorithm to recognize digits, you will use it on the robot to detect digits using the robot's camera. The robot's task will be to detect images in a museum (represented by a maze), and use the result to select which museum location to go to next. The waypoints corresponding to each digit will be provided by the instructors. The robot will use planning code from Project 3 to drive between the waypoints.
     </p>
 
-    <p><strong>This section is under development!</strong></p>
+    <p>The instructors will provide a list of digits and their corresponding waypoints.
+      <strong>Not all digits will be represented.</strong>
+      Here is an example waypoint course configuration, where the digit of interest is followed by a waypoint, in format <code>[x, y, theta]</code> (positions are in meters and angles are in radians):
+    </p>
+
+    <pre><code>0: [0, 0, 0]
+3: [3, 2, -PI / 2]
+5: [2, 0, PI / 2]
+8: [0, 2, 0]</code></pre>
+
+    <p>This configuration corresponds to the following map:</p>
+    <span class="image main"><img src="/images/p4/maze_ex.jpg" alt="" style="max-width:650px;"/></span>
+    <p>The waypoints are labelled in blue circles, and correspond to the waypoints given in the course configuration. On the wall facing the given configuration, there will be a handwritten digit (as shown in the image). The digit tells the robot which waypoint to visit next. All waypoints in the configuration will have a handwritten digit at the corresponding map location.</p>
+
+    <p>The robot will always start at <code>[0, 0, 0]</code>. A handwritten digit on the wall of the maze will tell the robot which waypoint to visit first. When the robot detects the digit <strong>&quot;0&quot;</strong>, it should return to the zero position, and stop execution (i.e. it should <i>not</i> travel back to the waypoint it detects at the origin). In the above example, the robot's trajectory should be: <strong>&quot;0&quot; &#8594; &quot;5&quot; &#8594; &quot;8&quot; &#8594; &quot;3&quot; &#8594; &quot;0&quot;</strong>.</p>
+
+    <p>You will receive full points if the robot follows the path correctly as described by the configuration. You should print out the digit detected at each waypoint. You will not lose points for up to 1 incorrect detection. You must deal with the case where the robot detects a digit which does not correspond to a valid detection.</p>
+
+    <h4 id="robot_setup">Robot Setup</h4>
+
+    <p>You will use your code from Project 3 to generate plans between waypoints, and your model output from the Colab notebooks in <a href="#train_ml">Part 2</a> to detect digits. You can use the planning binary and classification model from either partner. Follow these steps to set up your robot:</p>
+
+    <ol>
+      <li>Upgrade Python's installer, Pip:<br/>
+        <pre><code class="language-bash">pip install --upgrade pip</code></pre>
+      </li>
+      <li>Clone your team's repo onto the robot.</li>
+      <li>Install the dependencies for the project:<br/>
+        <pre><code class="language-bash">cd robot-tour-guide-f22-[TEAM]
+pip install -r requirements.txt</code></pre>
+      </li>
+      <li>Get the path planning executable from Project 3. This file gets placed in the <code>build</code> directory of the Project 3 repository and is called <code>robot_plan_path</code>. Place this file in the <code>bin</code> folder in your Project 4 repository.</li>
+      <li>Get the model from your Colab notebook. Place it in your repository. Update the variable <code>PATH_TO_MODEL</code> in the file <code>robot_tour_guide.py</code> to contain the path to the file.</li>
+    </ol>
+
+    <p>Now you are ready to start coding!</p>
+
+    <h4 id="robot_code">Robot Code</h4>
+
+    <p>A number of helper functions have been created for you. You must follow the steps in <a href="#robot_setup">Robot Setup</a> before writing or running any code.</p>
+
+    <p><strong>Robot Functions:</strong>
+      The Robot helper allows you to drive the robot, plan to and execute a path, and turn to a goal. Use this functionality as follows:
+    </p>
+    <pre><code class="language-python">robot = Robot()  # This variable is defined for you in the template.
+robot.plan_to_pose(x, y)    # Use this to drive to a goal location.
+robot.turn_to_theta(theta)  # Use this to turn to a goal angle.</code></pre>
+
+  <p><strong>Camera Functions:</strong>
+    The camera helper looks for Post-It notes in the camera image, and returns a cropped and scaled image which is the correct size to pass through your classification algorithm. To use it, do:
+  </p>
+  <pre><code class="language-python">ch = CameraHandler()  # This variable is defined for you in the template.
+frame = ch.get_image()   # Get the image of a digit from the camera.</code></pre>
+
+  <p>If a digit is not detected in the frame, it will return <code class="language-python">None</code>. You should handle this case. To save the image to the folder <code>output</code>, pass <code class="language-python">save=True</code> to the above function. This might be useful for debugging.</p>
+
+  <p>To perform prediction on the frame using your model, do:</p>
+  <pre><code class="language-python">y_pred = model.predict([frame])[0]</code></pre>
 
 </section>
 
