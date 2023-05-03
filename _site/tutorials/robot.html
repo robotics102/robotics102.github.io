@@ -1,0 +1,455 @@
+<!DOCTYPE HTML>
+<!--
+  Editorial by HTML5 UP
+  html5up.net | @ajlkn
+  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    <title>ROB 102: Introduction to AI and Programming</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="shortcut icon" type="image/png" href="/images/icon.png"/>
+
+    <!-- Syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/stackoverflow-light.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
+  </head>
+  <body class="is-preload">
+
+    <!-- Wrapper -->
+      <div id="wrapper">
+
+        <!-- Main -->
+          <div id="main">
+            <div class="inner">
+
+            <!-- Header -->
+              <header id="header">
+                <a href="/index.html" class="logo"><strong>ROB 102:</strong> Introduction to AI and Programming</a>
+                <ul class="icons">
+                  <li><a href="https://um-fa22-rob102.slack.com" class="icon brands fa-slack" target="_blank"><span class="label">Slack</span></a></li>
+                  <li><a href="https://github.com/robotics102" class="icon brands fa-github" target="_blank"><span class="label">GitHub</span></a></li>
+                </ul>
+              </header>
+
+            <!-- Content -->
+              <div class="content">
+                <br>
+                <br>
+                <section>
+    <header class="main project">
+      <strong>Tutorial:</strong> Using the MBot-Omni Robot Platform
+    </header>
+
+    <p><span class="image right"><img src="/images/MBot_spotlight_square.jpg" alt="" /></span>
+      The <strong>MBot-Omni</strong> is an omnidrive robot platform which we will be programming in ROB 102. This
+      tutorial contains instructions on how to use it and program it.</p>
+
+    <p>This page has the following parts:</p>
+    <ul>
+      <li><a href="#sec_robot_care">Robot Usage &amp; Care</a></li>
+      <li><a href="#sec_robot_prog">Programming the Robot</a>
+        <ul>
+          <li><a href="#sec_conn_robot">Connecting to the robot</a></li>
+          <li><a href="#conn_video">Video tutorial</a></li>
+        </ul>
+      </li>
+      <li><a href="#localization">Mapping &amp; Localization</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ROBOT CARE -->
+<section id="sec_robot_care">
+  <header class="major">
+    <h2><a href="#sec_robot_care">Robot Usage &amp; Care</a></h2>
+  </header>
+  <div class="content">
+    <h3 id="sec_robot_on">Turning the robot on</h3>
+
+    <p>To turn the robot on, flick the switch on the power bank to ON. The red light on the Raspberry Pi should turn on.</p>
+
+    <h3 id="sec_robot_off">Turning the robot off</h3>
+
+    <p>To turn the robot off, first type <code>sudo shutdown now</code> in the terminal of the robot. This will shut down the Raspberry Pi.
+      One the lidar stops spinning, flick the switch on the power bank to OFF.</p>
+    <h3 id="sec_robot_net">Robot network</h3>
+
+    <p>
+      Each robot should be marked with a unique, three digit ID (001, 002, etc.). When turned on, the robot will connect to the MWireless WiFi network. This will only work on campus.
+    </p>
+
+    <h3 id="sec_robot_batt">Robot battery care</h3>
+
+    <ul>
+      <li><strong>Charging the batteries:</strong> Plug the battery into the power supply. Switch the battery to ON to
+        charge it. The power adapter will have a red light while it's charging, and it will turn green when done. Switch
+        the battery to OFF to store.</li>
+      <li>Batteries are shared across all robots. There are bins labelled &quot;CHARGED BATTERIES&quot; and
+        &quot;UNCHARGED BATTERIES.&quot; Batteries should be placed in the appropriate bin.</li>
+      <li>Always plug in uncharged batteries right away. They take a long time to charge.</li>
+      <li>When a battery has three of five green lights on, it should be replaced.</li>
+      <li><em>Tip:</em> When you aren't using the Lidar, unplug the Micro USB cord from its board to disconnect it from
+        the Raspberry Pi. When it spins, it draws a lot of power and drains the battery quickly.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PROGRAMMING ROBOT -->
+<section id="sec_robot_prog">
+  <header class="major">
+    <h2><a href="#sec_robot_prog">Programming the Robot</a></h2>
+  </header>
+  <div class="content">
+    <p>We will program the robot using VSCode's Remote Development extension. The extension allows us to connect to a
+      remote host in a VSCode window and write code on its filesystem.</p>
+
+    <h3>Prerequisites</h3>
+
+    <p>This tutorial assumes you have followed the instructions for installing <a href="setup.html#install_vscode">VSCode</a>.</p>
+
+    <h2 id="sec_conn_robot">Connecting to the robot</h2>
+
+    <h3>1. Add the Remote Development extension</h3>
+
+    <p>First, we need the VSCode Remote Development extension, which will allow us to connect VSCode to the robot's
+      environment. Open VSCode and click on the &quot;Extensions&quot; icon <span><img
+          src="https://raw.githubusercontent.com/microsoft/vscode-icons/master/icons/light/extensions.svg?sanitize=true"></span>
+      in the toolbar on the left. Search for &quot;Remote Development&quot; and select the extension called &quot;Remote
+      Development.&quot; Click &quot;Install&quot; to install it.</p>
+
+    <span class="image main"><img src="/images/tutorials/robot/install-remote-ext.jpg" alt=""
+        style="max-width:800px;" /></span>
+
+    <h3>2. Get the robot's IP address</h3>
+
+    <p>
+      Since the robot connects to MWireless, any device connected the same WiFi network can communicate with the robot. To connect, we need a unique identifier that tells us where to find the robot on the network, called an <i>IP address</i>.
+      When it connects, the robot will put its IP address <a href="https://github.com/rob102-staff/mbot-ip">in this GitHub repo</a>.
+      Look in the <strong>data</strong> folder for a file called <strong>mbot-omni-XXX.json</strong> (replace <strong>XXX</strong> with the ID of the robot).
+      The ID should be written on a label on the robot.
+      When you open this file, you will find the IP of the robot, as shown below. Copy it for the next step.
+    </p>
+
+    <span class="image main"><img src="/images/tutorials/robot/get_ip.png" alt=""
+        style="max-width:800px;" /></span>
+
+    <p>If the robot is connected and working properly, you should be able to see the web app by going to <strong>http://&lt;ROBOT-IP&gt;:8000</strong> (replace all of <strong>&lt;ROBOT-IP&gt;</strong> with your robot's IP address). You should be able to drive it around when you enable Drive Mode.</p>
+
+    <ul class="hint">
+      <li class="icon solid fa-cogs"><strong>Debugging Tip:</strong> Make sure that the file on GitHub is recent by checking the time that it was updated. The IP can change when rebooted. It can take a few minutes for the robot to boot up and connect, so be patient! If the IP is not updated after a few minutes, try restarting the robot.</li>
+    </ul>
+
+    <h3>3. Add the Raspberry Pi as a remote host</h3>
+
+    <p>
+      Now we will tell VSCode how to connect to the Raspberry Pi board on the robot.
+      To add the Raspberry Pi as a remote host in VSCode, click on the &quot;Remote Explorer&quot; in the toolbar on
+      the left. Then, select the + to add a new host:
+    </p>
+
+    <span class="image main"><img src="/images/tutorials/robot/remote-add-target.png" alt=""
+        style="max-width:400px;" /></span>
+
+    <p>In the box that appears, type in the following command (replace all of <code>&lt;ROBOT-IP&gt;</code> with the IP address of your robot):</p>
+    <pre><code class="language-bash">ssh pi@&lt;ROBOT-IP&gt;</code></pre>
+
+    <span class="image main"><img src="/images/tutorials/robot/remote-ssh-command.png" alt=""
+        style="max-width:600px;" /></span>
+
+    <p>Press Enter, then select the default configuration file when the option appears:</p>
+
+    <span class="image main"><img src="/images/tutorials/robot/remote-ssh-config.png" alt=""
+        style="max-width:600px;" /></span>
+
+    <h3>4. Connect to the Raspberry Pi</h3>
+
+    <p>To connect to the Raspberry Pi, open the &quot;Remote Explorer&quot; tab again, and select the new remote host
+      you just added. Click on the icon to the right of the address to connect to the host in a new window.</p>
+
+    <span class="image main"><img src="/images/tutorials/robot/remote-connect-host.png" alt=""
+        style="max-width:400px;" /></span>
+
+    <p>If you are already in a new VSCode window with no other files open, you can also right-click on the host address
+      to connect in the current window. You will be asked to select a platform. Select &quot;Linux&quot;.</p>
+
+    <span class="image main"><img src="/images/tutorials/robot/remote-platform-linux.png" alt=""
+        style="max-width:600px;" /></span>
+
+    <p>You will be asked for the password to the Raspberry Pi. The password is <b>iloverobots</b>.
+      The first time you connect, it will take a few minutes for VSCode to do some setup
+      on the Raspberry Pi. You should see the address of the Raspberry Pi on the bottom left of the VSCode window.</p>
+
+    <span class="image main"><img src="/images/tutorials/robot/remote-connected.png" alt=""
+        style="max-width:300px;" /></span>
+
+    <h3>5. Opening a terminal</h3>
+
+    <p>In the VSCode window which is connected to the robot, open a terminal by clicking on &quot;Terminal&quot; &gt;
+      &quot;New Terminal.&quot; A terminal will open on the Raspberry Pi. You can type command line commands in this
+      terminal.</p>
+
+    <span class="image main"><img src="/images/tutorials/robot/remote-connect-vsc.png" alt=""
+        style="max-width:800px;" /></span>
+
+    <h2 id="conn_video"> Video Tutorial</h2>
+
+    <p>This video tutorial goes through the process outlined above.</p>
+
+    <div style="display: flex; justify-content: center; align-items: center;">
+      <iframe style="display:block" width="560" height="315" src="https://www.youtube.com/embed/65J26m_rSxE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- WEB APP TUTORIAL -->
+<section id="localization">
+  <header class="major">
+    <h2><a href="#localization">SLAM Web App Tutorial</a></h2>
+  </header>
+  <div class="content">
+    <p>This tutorial will go over how to build a map of your current environment using SLAM</p>
+
+    <h3>Prerequisites</h3>
+
+    <p>This tutorial assumes that you have followed the tutorial "Connecting to your Robot" above, and should have your robot's IP Address</p>
+
+    <h3>1. Access SLAM WebAPP</h3>
+
+    <p>
+      First, we want to open the WebAPP. Using your robot's IP Address, type <strong>http://&lt;ROBOT-IP&gt;:8000</strong> (replace all of <strong>&lt;ROBOT-IP&gt;</strong> with your robot's IP address) in your browser. This should open the web app, shown below:
+    </p>
+
+    <span class="image main"><img src="/images/tutorials/robot/mapp_starting.png" alt=""
+        style="max-width:800px;" /></span>
+
+    <p>If the robot is connected and working properly, you should be able to see the green "Connected" sign.</p>
+
+    <ul class="hint">
+      <li class="icon solid fa-cogs"><strong>Debugging Tip:</strong> Make sure that the file on GitHub is recent by checking the time that it was updated. The IP can change when rebooted. It can take a few minutes for the robot to boot up and connect, so be patient! If the IP is not updated after a few minutes, try restarting the robot.</li>
+    </ul>
+
+    <h3>3. Build the map in Mapping Mode</h3>
+
+    <p>
+      Toggle <strong>Localization Mode</strong>. You should start seeing a map of the physical environment being built on the right. If you don't see this, make sure your LiDAR is spinning, and try restarting your robot. If these fixes don't work, come to an instructor.
+    </p>
+    <p>
+      You should then see the <strong>Mapping Mode</strong> switch. Place your robot in your physical environment, and when you are ready to start mapping, toggle this switch. This will give you a popup stating "This will overwrite the current map. Are you sure?". Press <strong>OK</strong>
+    </p>
+
+    <span class="image main"><img src="/images/tutorials/robot/mapping_mode.png" alt=""
+      style="max-width:800px;" /></span>
+
+    <p>
+      Now you should be ready to build your map. The idea is to drive around the physical space until you have an accurate reading of the physical environment with no missing borders. To drive around, toggle the <strong>Drive Mode</strong> switch
+    </p>
+
+    <ul class="hint">
+      <li class="icon solid fa-cogs"><strong>Driving Tips:</strong> Make sure you drive slowly and give the robot some time to build it's current environment before you drive again. Try to limit jerky movements and excessive turning, and forward and backwards movement works best. DO NOT bump into any of the obstacles. If you do, reset your map and try again. Another source of error could be that your wheels are not tight, but if that doesn't fix the problem when following the aforementioned tips, come to an instructor. </li>
+    </ul>
+
+    <p>
+      The image below shows a good mapping of the environment, where the map is consistent to the physical space. There are also no incomplete edges, or shifts.
+    </p>
+
+    <span class="image main"><img src="/images/tutorials/robot/good_map.png" alt=""
+      style="max-width:800px;" /></span>
+
+    <p>
+      The image below shows a bad mapping of the same environment above, where the map is inconsistent, and the edges are not clear.
+    </p>
+
+    <span class="image main"><img src="/images/tutorials/robot/bad_map.png" alt=""
+      style="max-width:800px;" /></span>
+
+    <p>
+      Once you have a good mapping of the environment, turn off mapping mode and click on the <strong>Download Map</strong> button, and you should have a saved map.
+    </p>
+
+
+    <h2 id="loc_video"> Video Tutorial</h2>
+
+    <p>This video tutorial goes through the process outlined above.</p>
+
+    <div style="display: flex; justify-content: center; align-items: center;">
+      <iframe style="display:block" width="560" height="315" src="https://www.youtube.com/watch?v=LzMrtliWKR8&ab_channel=LaasyaChukka" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+            </div>
+          </div>
+
+        <!-- Sidebar -->
+          <div id="sidebar">
+            <div class="inner">
+
+              <!-- Menu -->
+                <nav id="menu">
+                  <header class="major">
+                    <h2>Menu</h2>
+                  </header>
+                  <ul>
+                    <li><a href="/index.html">Home</a></li>
+                    <li>
+                      <span class="opener">Course Information</span>
+                      <ul>
+                        <li><a href="/index.html#schedule">Schedule</a></li>
+                        <li><a href="/index.html#office-hours">Office Hours</a></li>
+                        <li><a href="/index.html#staff">Course Staff</a></li>
+                        <li><a href="/syllabus.html">Syllabus</a></li>
+                        <li><a href="/activities.html">Asynchronous Activities</a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <span class="opener">Projects</span>
+                      <ul>
+                        <li><a href="/projects/a0.html">Project 0: Pocket Calculator</a></li>
+                        <li><a href="/projects/a1.html">Project 1: Wall Following</a></li>
+                        <li><a href="/projects/a2.html">Project 2: Bug Navigation</a></li>
+                        <li><a href="/projects/a3.html">Project 3: Path Planning</a></li>
+                        <li><a href="/projects/a4.html">Project 4: Machine Learning</a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <span class="opener active">Tutorials</span>
+                      <ul>
+                        <li><a href="/tutorials/setup.html">Computer Setup</a></li>
+                        <li><a href="/tutorials/git.html">Github</a></li>
+                        <li><a href="/tutorials/replit.html">Replit</a></li>
+                        <li><a href="/tutorials/robot.html">Using the MBot-Omni</a></li>
+                        <li><a href="/tutorials/app.html">Navigation Webapp</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="https://robotics102.github.io/nav-app/">Navigation Webapp</a></li>
+                  </ul>
+                </nav>
+
+              <!-- Section -->
+                <section>
+                  <header class="major">
+                    <h2>Course Times</h2>
+                  </header>
+                  <p>Lectures and labs</p>
+                  <ul class="contact">
+                    <li class="icon solid fa-chalkboard-teacher">TuTh 3-4:30 PM @ FRB 1060</li>
+                    <li class="icon solid fa-flask">
+                      F 10:30 AM-12:30 PM @ FRB 1060 <br/>
+                      F 12:30-2:30 PM @ FRB 1060 <br/>
+                      F 2:30-4:30 PM @ FRB 1060
+                    </li>
+                  </ul>
+                </section>
+
+              <!-- Footer -->
+                <!-- <footer id="footer">
+                  <p class="copyright">&copy; ROB 102. All rights reserved.</p>
+                </footer> -->
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    <!-- Scripts -->
+      <script src="/assets/js/jquery.min.js"></script>
+      <script src="/assets/js/browser.min.js"></script>
+      <script src="/assets/js/breakpoints.min.js"></script>
+      <script src="/assets/js/util.js"></script>
+      <script src="/assets/js/main.js"></script>
+      <script>hljs.highlightAll();</script>
+
+  </body>
+</html>
+
+              </div>
+
+            </div>
+          </div>
+
+        <!-- Sidebar -->
+          <div id="sidebar">
+            <div class="inner">
+
+              <!-- Menu -->
+                <nav id="menu">
+                  <header class="major">
+                    <h2>Menu</h2>
+                  </header>
+                  <ul>
+                    <li><a href="/index.html">Home</a></li>
+                    <li>
+                      
+                      <span class="opener">Course Information</span>
+                      
+                      <ul>
+                        <li><a href="/index.html#schedule">Schedule</a></li>
+                        <li><a href="/index.html#office-hours">Office Hours</a></li>
+                        <li><a href="/index.html#staff">Course Staff</a></li>
+                        <li><a href="/syllabus.html">Syllabus</a></li>
+                        <li><a href="/activities.html">Asynchronous Activities</a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      
+                      <span class="opener">Projects</span>
+                      
+                      <ul>
+                        <li><a href="/projects/a0.html">Project 0: Pocket Calculator</a></li>
+                        <li><a href="/projects/a1.html">Project 1: Wall Following</a></li>
+                        <li><a href="/projects/a2.html">Project 2: Bug Navigation</a></li>
+                        <li><a href="/projects/a3.html">Project 3: Path Planning</a></li>
+                        <li><a href="/projects/a4.html">Project 4: Machine Learning</a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      
+                      <span class="opener active">Tutorials</span>
+                      
+                      <ul>
+                        <li><a href="/tutorials/setup.html">Computer Setup</a></li>
+                        <li><a href="/tutorials/git.html">Github</a></li>
+                        <li><a href="/tutorials/replit.html">Replit</a></li>
+                        <li><a href="/tutorials/robot.html">Using the MBot-Omni</a></li>
+                        <li><a href="/tutorials/app.html">Navigation Webapp</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="https://robotics102.github.io/nav-app/">Navigation Webapp</a></li>
+                  </ul>
+                </nav>
+
+              <!-- Fixed Info -->
+                <section>
+                  <header class="major">
+                    <h2>Course Times</h2>
+                  </header>
+                  <p>Lectures and labs</p>
+                  <ul class="contact">
+                    <li class="icon solid fa-chalkboard-teacher">TuTh 3-4:30 PM @ FRB 1060</li>
+                    <li class="icon solid fa-flask">
+                      F 10:30 AM-12:30 PM @ FRB 1060 <br/>
+                      F 12:30-2:30 PM @ FRB 1060 <br/>
+                      F 2:30-4:30 PM @ FRB 1060
+                    </li>
+                  </ul>
+                </section>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!-- Scripts -->
+      <script src="/assets/js/jquery.min.js"></script>
+      <script src="/assets/js/browser.min.js"></script>
+      <script src="/assets/js/breakpoints.min.js"></script>
+      <script src="/assets/js/util.js"></script>
+      <script src="/assets/js/main.js"></script>
+      <script>hljs.highlightAll();</script>
+
+  </body>
+</html>
