@@ -4,3 +4,7 @@ node_modules/
 # Jekyll
 _site/
 Gemfile.lock
+
+# Personal computers
+.vscode/
+.DS_Store
