@@ -10,7 +10,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="/assets/css/main.css" />
-    <link rel="shortcut icon" type="image/png" href="/images/icon.png"/>
+    <link rel="shortcut icon" type="image/png" href="/assets/images/icon.png"/>
 
     <!-- Syntax highlighting -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/stackoverflow-light.min.css">
@@ -44,7 +44,7 @@
 
     <p>In this project, we will write a <strong>path planning algorithm</strong>, which will find the <emph>shortest</emph> path to the goal every time. When you've completed the project, you'll be able to find paths like this one:</p>
 
-    <span class="image main"><img src="/images/p3/bfs_path.png" alt="" style="max-width:600px;"/></span>
+    <span class="image main"><img src="/assets/images/p3/bfs_path.png" alt="" style="max-width:600px;"/></span>
 
     <p>We will use the same code base and web app that we did for <a href="a2.html">Project 2</a>. You can review the instructions for running the app and using the Docker container <a href="/tutorials/app.html">here</a>.</p>
 
@@ -339,7 +339,7 @@ return path;
       <li class="icon solid fa-cogs"><strong>Hint:</strong> The provided function <code>drivePath()</code> returns immediately after sending the path command to motion controller. That means your program will quit before the robot has reached the goal. If you wish to send another path to the robot or perform some processing when the robot has reached the goal, you can write code to wait until the robot has reached the goal before finishing.</li>
     </ul>
 
-    <p>Before you run the code, you should <a href="/labs/lab4_navigation_workflow.pdf">make a map</a> of the environment you want to run in. Once you have made a map, launch localization (with motion controller) as follows:</p>
+    <p>Before you run the code, you should <a href="/files/labs/lab4_navigation_workflow.pdf">make a map</a> of the environment you want to run in. Once you have made a map, launch localization (with motion controller) as follows:</p>
     <pre><code class="language-bash">~/botlab-bin/launch_botlab.sh -m [PATH/TO/MAP]</code></pre>
 
     <p>To compile and run path planning on the robot, connect to the robot using VSCode (as described in the <a href="/tutorials/robot.html#sec_robot_prog">robot tutorial</a>). Then, from inside the repository you cloned onto the robot, compile as follows:</p>

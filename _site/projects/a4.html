@@ -10,7 +10,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="/assets/css/main.css" />
-    <link rel="shortcut icon" type="image/png" href="/images/icon.png"/>
+    <link rel="shortcut icon" type="image/png" href="/assets/images/icon.png"/>
 
     <!-- Syntax highlighting -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/stackoverflow-light.min.css">
@@ -54,7 +54,7 @@
 
   <p>We will be writing algorithms to do image classification on the <a href="http://yann.lecun.com/exdb/mnist/" target="_blank">MNIST</a> dataset. MNIST consists of tiny 28&#215;28 pixel images of handwritten digits from 0 to 9. A few example images from each are shown below.</p>
 
-  <span class="image main"><img src="/images/p4/mnist.png" alt="" style="max-width:550px;"/></span>
+  <span class="image main"><img src="/assets/images/p4/mnist.png" alt="" style="max-width:550px;"/></span>
 
   <p>MNIST has 60,000 images to train a classification algorithm, each labelled with the correct digit. In addition, there are 10,000 images which are used for testing the accuracy of the algorithm. We will implement machine learning algorithms to classify images.</p>
 
@@ -193,7 +193,7 @@
 
     <p>In Part 1 of this project, you will implement a Nearest Neighbor classifier. The nearest neighbor algorithm takes a test image and finds the <em>closest</em> train image, which we call the image's nearest neighbor. Then, it assigns the test image the same label as its nearest neighbor. Here is an example of some MNIST images and their nearest neighbors:</p>
 
-    <span class="image main"><img src="/images/p4/nearest_neighbor_mnist.png" alt="" style="max-width:600px;"/></span>
+    <span class="image main"><img src="/assets/images/p4/nearest_neighbor_mnist.png" alt="" style="max-width:600px;"/></span>
 
     <p>Open the notebook <code>Nearest Neighbors.ipynb</code> using the Google Drive link provided, and save a copy in your Drive. The notebook is made up of <em>cells</em>, which can be text cells (in Markdown) or code cells (in Python). You can run a cell by pressing the play button (<i class="fas fa-play"></i>) in the top left corner of the cell.</p>
 
@@ -247,7 +247,7 @@
 8: [0, 2, 0]</code></pre>
 
     <p>This configuration corresponds to the following map:</p>
-    <span class="image main"><img src="/images/p4/maze_ex.jpg" alt="" style="max-width:650px;"/></span>
+    <span class="image main"><img src="/assets/images/p4/maze_ex.jpg" alt="" style="max-width:650px;"/></span>
     <p>The waypoints are labelled in blue circles, and correspond to the waypoints given in the course configuration. On the wall facing the given configuration, there will be a handwritten digit (as shown in the image). The digit tells the robot which waypoint to visit next. All waypoints in the configuration will have a handwritten digit at the corresponding map location.</p>
 
     <p>The robot will always start at <code>[0, 0, 0]</code>. A handwritten digit on the wall of the maze will tell the robot which waypoint to visit first. When the robot detects the digit <strong>&quot;0&quot;</strong>, it should return to the zero position, and stop execution (i.e. it should <i>not</i> travel back to the waypoint it detects at the origin). In the above example, the robot's trajectory should be: <strong>&quot;0&quot; &#8594; &quot;5&quot; &#8594; &quot;8&quot; &#8594; &quot;3&quot; &#8594; &quot;0&quot;</strong>.</p>
@@ -397,7 +397,7 @@ frame = ch.get_image()   # Get the image of a digit from the camera.</code></pre
                 </nav>
 
               <!-- Fixed Info -->
-                <section>
+                <!-- <section>
                   <header class="major">
                     <h2>Course Times</h2>
                   </header>
@@ -410,7 +410,7 @@ frame = ch.get_image()   # Get the image of a digit from the camera.</code></pre
                       F 2:30-4:30 PM @ FRB 1060
                     </li>
                   </ul>
-                </section>
+                </section> -->
 
             </div>
           </div>

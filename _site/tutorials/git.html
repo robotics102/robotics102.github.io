@@ -10,7 +10,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="/assets/css/main.css" />
-    <link rel="shortcut icon" type="image/png" href="/images/icon.png"/>
+    <link rel="shortcut icon" type="image/png" href="/assets/images/icon.png"/>
 
     <!-- Syntax highlighting -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/stackoverflow-light.min.css">
@@ -50,7 +50,7 @@
 
   <p>This tutorial assumes that you have Git installed on your computer. Installation instructions can be found in the <a href="setup.html#install_git">computer setup tutorial.</a></p>
 
-  <p>For a step-by-step guide to installing and using Git, designed to get you started on <a href="../projects/a0.html">Project 0</a>, see the <a href="../labs/lab1_coding_workflow.pdf">Lab 1 slides</a>.</p>
+  <p>For a step-by-step guide to installing and using Git, designed to get you started on <a href="../projects/a0.html">Project 0</a>, see the <a href="../files/labs/lab1_coding_workflow.pdf">Lab 1 slides</a>.</p>
 
   <ul>
     <li><a href="#sec_git">How Git Works</a></li>
@@ -77,7 +77,7 @@
 
   <p>Your repository is stored in the cloud, on <a href="https://github.com" target="_blank">github.com</a>. You create a local copy of the repository on your computer by <a href="#sec_clone">cloning</a> it. You can then modify the code in your own workspace. You can <a href="#sec_push">sync local changes to the remote repository</a> by adding them to the staging area, committing the change, then pushing them to the remote repository. You can sync changes from the remote repository to the local one by <a href="#sec_pull">pulling</a> them.</p>
 
-  <span class="image main"><img src="../images/tutorials/git/git_workflow.png" alt="" style="max-width:1000px;"/></span>
+  <span class="image main"><img src="../assets/images/tutorials/git/git_workflow.png" alt="" style="max-width:1000px;"/></span>
 
   <h3>What's the difference between Git and GitHub?</h3>
 
@@ -100,19 +100,19 @@
   <pre><code class="language-bash">git clone [ADDRESS]</code></pre>
 
   <p>Substitute <code>[ADDRESS]</code> with the address for the repository you wish to clone. You can get the address from the repository page on GitHub. On the repository page, click on the green button that says &quot;Code&quot; and select the clipboard icon to copy the link to the repository:</p>
-  <span class="image main"><img src="../images/p0/git-get-link.png" alt="" style="max-width:600px;"/></span>
+  <span class="image main"><img src="../assets/images/p0/git-get-link.png" alt="" style="max-width:600px;"/></span>
 
   <h3 id="sec_info">The status of a repository</h3>
 
   <p>The <code>status</code> command is one of the most useful commands. It tells you which branch you're on and whether you have any uncommitted changes or unpushed commits in your local repository. You should use it often to make sure you know what's been changed in the code. In a Git repository, type:</p>
   <pre><code class="language-bash">git status</code></pre>
 
-  <span class="image main"><img src="../images/tutorials/git/git_status.png" alt="" style="max-width:600px;"/></span>
+  <span class="image main"><img src="../assets/images/tutorials/git/git_status.png" alt="" style="max-width:600px;"/></span>
 
   <p>You can see how the files have been modified using the <code>diff</code> command:</p>
   <pre><code class="language-bash">git diff</code></pre>
 
-  <span class="image main"><img src="../images/tutorials/git/git_diff.png" alt="" style="max-width:600px;"/></span>
+  <span class="image main"><img src="../assets/images/tutorials/git/git_diff.png" alt="" style="max-width:600px;"/></span>
 
   <p>To see the changes to a single file, do <code>git diff [FILE_NAME]</code> (replace <code>[FILE_NAME]</code> with the file of interest).</p>
 
@@ -155,20 +155,20 @@
   <p>You can look at the tag and check that your most recent code is included with the following command:</p>
   <pre><code class="language-bash">git show p0-v1</code></pre>
 
-    <span class="image main"><img src="../images/p0/git-tag-show.png" alt="" style="max-width:600px;"/></span>
+    <span class="image main"><img src="../assets/images/p0/git-tag-show.png" alt="" style="max-width:600px;"/></span>
 
     <p>Finally, push your tag to GitHub:</p>
     <pre><code class="language-bash">git push origin p0-v1</code></pre>
 
     <p><strong>Make sure your tag was pushed correctly.</strong> You can do this by navigating to the repository in your browser and clicking on the tag icon:</p>
-    <span class="image main"><img src="../images/p0/git-nav-tag.png" alt=""/></span>
+    <span class="image main"><img src="../assets/images/p0/git-nav-tag.png" alt=""/></span>
 
     <p>You can also view the code associated with the tag by selecting it from the &quot;Code&quot; tab of the repository:</p>
-    <span class="image main"><img src="../images/p0/git-view-code-tag.png" alt="" style="max-width:400px;"/></span>
+    <span class="image main"><img src="../assets/images/p0/git-view-code-tag.png" alt="" style="max-width:400px;"/></span>
 
   <h3 id="sec_branch">Branching</h3>
 
-  <p>See <a href="../labs/lab5_potential_field_nav.pdf">Lab 5 slides</a>.</p>
+  <p>See <a href="../files/labs/lab5_potential_field_nav.pdf">Lab 5 slides</a>.</p>
 
 </section>
 
@@ -344,7 +344,7 @@
                 </nav>
 
               <!-- Fixed Info -->
-                <section>
+                <!-- <section>
                   <header class="major">
                     <h2>Course Times</h2>
                   </header>
@@ -357,7 +357,7 @@
                       F 2:30-4:30 PM @ FRB 1060
                     </li>
                   </ul>
-                </section>
+                </section> -->
 
             </div>
           </div>

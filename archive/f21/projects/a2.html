@@ -10,7 +10,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="/assets/css/main.css" />
-    <link rel="shortcut icon" type="image/png" href="/images/icon.png"/>
+    <link rel="shortcut icon" type="image/png" href="/assets/images/icon.png"/>
 
     <!-- Syntax highlighting -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/stackoverflow-light.min.css">
@@ -44,7 +44,7 @@
 
     <p>In <a href="a1.html">Project 1</a>, we saw that we can control the robot to maintain a goal distance to the wall by correcting the control signals based on the observed sensor data. Now, we want the robot to be able to autonomously navigate to a goal location.</p>
 
-    <p><span class="image left"><img src="/images/p2/potential_field.png" alt=""/></span>
+    <p><span class="image left"><img src="/assets/images/p2/potential_field.png" alt=""/></span>
       In Project 2, we will accomplish autonomous navigation using <strong>potential field control</strong>. We can imagine that our goal is a magnet, pulling the robot towards it. We can treat obstacles like repelling forces, pushing the robot away. If we combine these two forces, we might get a potential field that looks like the example on the left. To get to the goal, our robot can follow the path of least resistance, moving in the direction of the strongest force at its location at each time step.</p>
 
     <p>For this project, you will write code in C++ to calculate the potential fields the robot needs to reach a goal without colliding with any obstacles. You will be given a map which tells you where the obstacles are, along with a start and goal position. </p>
@@ -187,7 +187,7 @@
 
     <h3 id="code_robot">Running Potential Field Navigation on the Robot</h3>
 
-    <p>The code to perform potential field navigation on the robot is in <code>src/robot_potential_field.cpp</code>. Before you run the code, you should <a href="/labs/lab4_navigation_workflow.pdf">make a map</a> of the environment you want to run in. Then, run the localization using the map you just made (see <a href="/labs/lab5_potential_field_nav.pdf">Lab 5</a>).</p>
+    <p>The code to perform potential field navigation on the robot is in <code>src/robot_potential_field.cpp</code>. Before you run the code, you should <a href="/files/labs/lab4_navigation_workflow.pdf">make a map</a> of the environment you want to run in. Then, run the localization using the map you just made (see <a href="/files/labs/lab5_potential_field_nav.pdf">Lab 5</a>).</p>
 
     <p>To compile and run potential field navigation on the robot, connect to the robot using VSCode (as described in the <a href="/tutorials/robot.html#sec_robot_prog">robot tutorial</a>). Then, from inside the repository you cloned onto the robot for Project 2, compile as follows:</p>
     <pre><code class="language-bash">cd build
@@ -287,7 +287,7 @@ int8_t threshold;                       // Threshold to check if a cell is occup
 std::vector&lt;int8_t&gt; cell_odds;          // The odds that a cell is occupied.
 std::vector&lt;float&gt; obstacle_distances;  // The distance from each cell to the nearest obstacle.
 };</code></pre>
-        The member variables <code>width</code> and <code>height</code> store the graph width and height, in cells. The variables <code>origin_x</code> and <code>origin_y</code> correspond to the global position in meters of the cell <code>(0, 0)</code>. This allows us to determine where the origin of the map is. The variable <code>meters_per_cell</code> contains the size of each cell, in meters. Finally, the <code>cell_odds</code> variable is a vector containing the odds value of each cell. The odds value and organization of the graph was covered in <a href="/labs/lab4_navigation_workflow.pdf">Lab 4</a>.
+        The member variables <code>width</code> and <code>height</code> store the graph width and height, in cells. The variables <code>origin_x</code> and <code>origin_y</code> correspond to the global position in meters of the cell <code>(0, 0)</code>. This allows us to determine where the origin of the map is. The variable <code>meters_per_cell</code> contains the size of each cell, in meters. Finally, the <code>cell_odds</code> variable is a vector containing the odds value of each cell. The odds value and organization of the graph was covered in <a href="/files/labs/lab4_navigation_workflow.pdf">Lab 4</a>.
       </li>
     </ul>
 
@@ -315,7 +315,7 @@ std::vector&lt;float&gt; obstacle_distances;  // The distance from each cell to 
 
     <p>Information about the map for a particular environment is stored in a provided struct called <code>GridGraph</code>, described in <a href="#code_utils_gridgraph">the code overview</a>. You can visualize the available maps using the <a href="/tutorials/app.html">web app</a>.</p>
 
-    <p>You should complete the functions <code>cellToIdx()</code> and <code>idxToCell()</code>, which convert between cells and indices as discussed in <a href="/labs/lab4_navigation_workflow.pdf">Lab 4</a>. You can use these functions for the following parts of the project.</p>
+    <p>You should complete the functions <code>cellToIdx()</code> and <code>idxToCell()</code>, which convert between cells and indices as discussed in <a href="/files/labs/lab4_navigation_workflow.pdf">Lab 4</a>. You can use these functions for the following parts of the project.</p>
 
     <ul class="todo">
       <li class="icon solid fa-laptop-code">
@@ -369,7 +369,7 @@ make
 
     <p>In this part, you will implement a distance transform, which will calculate the distance from each cell to the nearest obstacle. This part can be implemented entirely on your computer in the Docker, using the web app (no robot needed). It should look something like the image below. The grey cells represent smaller distances to the nearest obstacle, and the white cells represent higher distances.</p>
 
-    <span class="image main"><img src="/images/p2/dist_tf.png" alt="" style="max-width:600px;"/></span>
+    <span class="image main"><img src="/assets/images/p2/dist_tf.png" alt="" style="max-width:600px;"/></span>
 
     <p>We will be implementing a <strong>binary distance transform</strong>, which calculates the distance from each cell to the nearest occupied cell. For occupied cells, the distance should be zero.</p>
 
@@ -454,7 +454,7 @@ make
     <h3 id="sec_euclidean_dt">Advanced Extension: Euclidean Distance Transform</h3>
 
     <p>
-      <strong>Notes on the algorithm:</strong> <a href="/lectures/fast_euclidean_dt.pdf">Fast Euclidean Distance Transform</a>.
+      <strong>Notes on the algorithm:</strong> <a href="/files/lectures/fast_euclidean_dt.pdf">Fast Euclidean Distance Transform</a>.
       The notes describe an algorithm presented in a research paper which is available <a href="http://people.cs.uchicago.edu/~pff/papers/dt.pdf">here</a>.
     </p>
 

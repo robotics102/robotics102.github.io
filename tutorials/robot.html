@@ -8,7 +8,7 @@ tutorial: true
       <strong>Tutorial:</strong> Using the MBot-Omni Robot Platform
     </header>
 
-    <p><span class="image right"><img src="/images/MBot_spotlight_square.jpg" alt="" /></span>
+    <p><span class="image right"><img src="/assets/images/MBot_spotlight_square.jpg" alt="" /></span>
       The <strong>MBot-Omni</strong> is an omnidrive robot platform which we will be programming in ROB 102. This
       tutorial contains instructions on how to use it and program it.</p>
 
@@ -85,7 +85,7 @@ tutorial: true
       in the toolbar on the left. Search for &quot;Remote Development&quot; and select the extension called &quot;Remote
       Development.&quot; Click &quot;Install&quot; to install it.</p>
 
-    <span class="image main"><img src="/images/tutorials/robot/install-remote-ext.jpg" alt=""
+    <span class="image main"><img src="/assets/images/tutorials/robot/install-remote-ext.jpg" alt=""
         style="max-width:800px;" /></span>
 
     <h3>2. Get the robot's IP address</h3>
@@ -98,7 +98,7 @@ tutorial: true
       When you open this file, you will find the IP of the robot, as shown below. Copy it for the next step.
     </p>
 
-    <span class="image main"><img src="/images/tutorials/robot/get_ip.png" alt=""
+    <span class="image main"><img src="/assets/images/tutorials/robot/get_ip.png" alt=""
         style="max-width:800px;" /></span>
 
     <p>If the robot is connected and working properly, you should be able to see the web app by going to <strong>http://&lt;ROBOT-IP&gt;:8000</strong> (replace all of <strong>&lt;ROBOT-IP&gt;</strong> with your robot's IP address). You should be able to drive it around when you enable Drive Mode.</p>
@@ -115,18 +115,18 @@ tutorial: true
       the left. Then, select the + to add a new host:
     </p>
 
-    <span class="image main"><img src="/images/tutorials/robot/remote-add-target.png" alt=""
+    <span class="image main"><img src="/assets/images/tutorials/robot/remote-add-target.png" alt=""
         style="max-width:400px;" /></span>
 
     <p>In the box that appears, type in the following command (replace all of <code>&lt;ROBOT-IP&gt;</code> with the IP address of your robot):</p>
     <pre><code class="language-bash">ssh pi@&lt;ROBOT-IP&gt;</code></pre>
 
-    <span class="image main"><img src="/images/tutorials/robot/remote-ssh-command.png" alt=""
+    <span class="image main"><img src="/assets/images/tutorials/robot/remote-ssh-command.png" alt=""
         style="max-width:600px;" /></span>
 
     <p>Press Enter, then select the default configuration file when the option appears:</p>
 
-    <span class="image main"><img src="/images/tutorials/robot/remote-ssh-config.png" alt=""
+    <span class="image main"><img src="/assets/images/tutorials/robot/remote-ssh-config.png" alt=""
         style="max-width:600px;" /></span>
 
     <h3>4. Connect to the Raspberry Pi</h3>
@@ -134,20 +134,20 @@ tutorial: true
     <p>To connect to the Raspberry Pi, open the &quot;Remote Explorer&quot; tab again, and select the new remote host
       you just added. Click on the icon to the right of the address to connect to the host in a new window.</p>
 
-    <span class="image main"><img src="/images/tutorials/robot/remote-connect-host.png" alt=""
+    <span class="image main"><img src="/assets/images/tutorials/robot/remote-connect-host.png" alt=""
         style="max-width:400px;" /></span>
 
     <p>If you are already in a new VSCode window with no other files open, you can also right-click on the host address
       to connect in the current window. You will be asked to select a platform. Select &quot;Linux&quot;.</p>
 
-    <span class="image main"><img src="/images/tutorials/robot/remote-platform-linux.png" alt=""
+    <span class="image main"><img src="/assets/images/tutorials/robot/remote-platform-linux.png" alt=""
         style="max-width:600px;" /></span>
 
     <p>You will be asked for the password to the Raspberry Pi. The password is <b>iloverobots</b>.
       The first time you connect, it will take a few minutes for VSCode to do some setup
       on the Raspberry Pi. You should see the address of the Raspberry Pi on the bottom left of the VSCode window.</p>
 
-    <span class="image main"><img src="/images/tutorials/robot/remote-connected.png" alt=""
+    <span class="image main"><img src="/assets/images/tutorials/robot/remote-connected.png" alt=""
         style="max-width:300px;" /></span>
 
     <h3>5. Opening a terminal</h3>
@@ -156,7 +156,7 @@ tutorial: true
       &quot;New Terminal.&quot; A terminal will open on the Raspberry Pi. You can type command line commands in this
       terminal.</p>
 
-    <span class="image main"><img src="/images/tutorials/robot/remote-connect-vsc.png" alt=""
+    <span class="image main"><img src="/assets/images/tutorials/robot/remote-connect-vsc.png" alt=""
         style="max-width:800px;" /></span>
 
     <h2 id="conn_video"> Video Tutorial</h2>
@@ -187,7 +187,7 @@ tutorial: true
       First, we want to open the WebAPP. Using your robot's IP Address, type <strong>http://&lt;ROBOT-IP&gt;:8000</strong> (replace all of <strong>&lt;ROBOT-IP&gt;</strong> with your robot's IP address) in your browser. This should open the web app, shown below:
     </p>
 
-    <span class="image main"><img src="/images/tutorials/robot/mapp_starting.png" alt=""
+    <span class="image main"><img src="/assets/images/tutorials/robot/mapp_starting.png" alt=""
         style="max-width:800px;" /></span>
 
     <p>If the robot is connected and working properly, you should be able to see the green "Connected" sign.</p>
@@ -205,7 +205,7 @@ tutorial: true
       You should then see the <strong>Mapping Mode</strong> switch. Place your robot in your physical environment, and when you are ready to start mapping, toggle this switch. This will give you a popup stating "This will overwrite the current map. Are you sure?". Press <strong>OK</strong>
     </p>
 
-    <span class="image main"><img src="/images/tutorials/robot/mapping_mode.png" alt=""
+    <span class="image main"><img src="/assets/images/tutorials/robot/mapping_mode.png" alt=""
       style="max-width:800px;" /></span>
 
     <p>
@@ -220,14 +220,14 @@ tutorial: true
       The image below shows a good mapping of the environment, where the map is consistent to the physical space. There are also no incomplete edges, or shifts.
     </p>
 
-    <span class="image main"><img src="/images/tutorials/robot/good_map.png" alt=""
+    <span class="image main"><img src="/assets/images/tutorials/robot/good_map.png" alt=""
       style="max-width:800px;" /></span>
 
     <p>
       The image below shows a bad mapping of the same environment above, where the map is inconsistent, and the edges are not clear.
     </p>
 
-    <span class="image main"><img src="/images/tutorials/robot/bad_map.png" alt=""
+    <span class="image main"><img src="/assets/images/tutorials/robot/bad_map.png" alt=""
       style="max-width:800px;" /></span>
 
     <p>

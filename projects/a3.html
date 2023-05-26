@@ -12,7 +12,7 @@ project: true
 
   <p>In this project, we will write a <strong>path planning algorithm</strong>, which will find a path to any goal in a map. When you've completed the project, you'll be able to find paths like this one:</p>
 
-  <!-- <span class="image main"><img src="/images/p3/bfs_path.png" alt="" style="max-width:600px;"/></span> -->
+  <!-- <span class="image main"><img src="/assets/images/p3/bfs_path.png" alt="" style="max-width:600px;"/></span> -->
 
   <p>This project will have two components: an individual component where you plan paths throughout a map of Michigan, and a group component where you plan paths in a robot map.</p>
 
@@ -70,9 +70,9 @@ project: true
     <li><strong>Fork the Replit Project</strong> (one teammate). On our class Replit team, select the project &quot;Project 3: Path Planning&quot; from the list. You will be prompted to join or create a new group. Select the option to create a new group. Make sure you tell your teammate(s) your Replit username.</li>
     <li><strong>Join the Replit Project</strong> (other teammate(s)). Join the group that your teammate has created by selecting their username.</li>
     <li><strong>Connect your GitHub repo</strong>. Your new project on Replit should be empty. You will connect it to your existing project repo on GitHub. To do this, click on the Version Control panel and select the option to connect to an existing repo:
-      <span class="image main"><img src="/images/p3/connect_git.png" alt="" style="max-width:600px;"/></span>
+      <span class="image main"><img src="/assets/images/p3/connect_git.png" alt="" style="max-width:600px;"/></span>
     Paste the address of your repo in the popup that appears and click the button to pull the changes from the repo.
-      <span class="image main"><img src="/images/p3/select_repo.png" alt="" style="max-width:500px;"/></span>
+      <span class="image main"><img src="/assets/images/p3/select_repo.png" alt="" style="max-width:500px;"/></span>
     </li>
     <li><strong>Delete the file <code>tmp.txt</code> from the Replit project.</strong> This is there because Replit does not allow empty repositories.</li>
   </ol>
@@ -156,7 +156,7 @@ project: true
     The Michigan map we will be using looks like this:
   </p>
 
-  <span class="image main"><img src="/images/p3/michigan.png" alt="" style="max-width:600px;"/></span>
+  <span class="image main"><img src="/assets/images/p3/michigan.png" alt="" style="max-width:600px;"/></span>
 
   <p>
     The graph data is stored in a text file called <code>mi_graph.txt</code>. It contains a list of cities, which are nodes in the graph, followed by a list of edges between the nodes. The edges are denoted by the names of the two connected cities, followed by the distance in miles between the cities.
@@ -452,7 +452,7 @@ visit_list.erase(visit_list.begin() + min_score_idx);</code></pre>
   The output should look something like the image below.
   The grey cells represent smaller distances to the nearest obstacle, and the white cells represent higher distances.</p>
 
-  <!-- <span class="image main"><img src="/images/p2/dist_tf.png" alt="" style="max-width:600px;"/></span> -->
+  <!-- <span class="image main"><img src="/assets/images/p2/dist_tf.png" alt="" style="max-width:600px;"/></span> -->
 
   <p>If you have completed this advanced extension, you can use function <code>checkCollisionFast()</code> in your path planning algorithms.</p>
 
@@ -471,10 +471,10 @@ visit_list.erase(visit_list.begin() + min_score_idx);</code></pre>
   <p>
     To get the advanced extension point, you should implement a much faster algorithm for computing the distance transform, but which computes the Manhattan distance from each unoccupied cell to the nearest occupied cell.
     The 2D Distance Transform is discribed in <a href="https://youtu.be/5vI76u17-UE">this video lecture</a>
-    [<a href="/lectures/rob102_07_distance_transform.pdf">Slides</a>].
+    [<a href="/files/lectures/rob102_07_distance_transform.pdf">Slides</a>].
     There is also an accompanying example which can be completed in Replit:
-    [<a href="/lectures/in-class/files/dt.cpp">Template Code</a>]
-    [<a href="/lectures/in-class/rob102_08_inclass_distance_transform.pdf">Slides</a>].
+    [<a href="/files/lectures/in-class/files/dt.cpp">Template Code</a>]
+    [<a href="/files/lectures/in-class/rob102_08_inclass_distance_transform.pdf">Slides</a>].
   </p>
 
   <p>
@@ -492,7 +492,7 @@ visit_list.erase(visit_list.begin() + min_score_idx);</code></pre>
   <h3 id="dt_euclidean">Distance Transform (Euclidean)</h3>
 
   <p>
-    <strong>Notes on the algorithm:</strong> <a href="/lectures/fast_euclidean_dt.pdf">Fast Euclidean Distance Transform</a>.
+    <strong>Notes on the algorithm:</strong> <a href="/files/lectures/fast_euclidean_dt.pdf">Fast Euclidean Distance Transform</a>.
     The notes describe an algorithm presented in a research paper which is available <a href="http://people.cs.uchicago.edu/~pff/papers/dt.pdf">here</a>.
   </p>
 
@@ -564,7 +564,7 @@ int8_t threshold;                       // Threshold to check if a cell is occup
 std::vector&lt;int8_t&gt; cell_odds;          // The odds that a cell is occupied.
 std::vector&lt;float&gt; obstacle_distances;  // The distance from each cell to the nearest obstacle.
 };</code></pre>
-      The member variables <code>width</code> and <code>height</code> store the graph width and height, in cells. The variables <code>origin_x</code> and <code>origin_y</code> correspond to the global position in meters of the cell <code>(0, 0)</code>. This allows us to determine where the origin of the map is. The variable <code>meters_per_cell</code> contains the size of each cell, in meters. Finally, the <code>cell_odds</code> variable is a vector containing the odds value of each cell. The odds value and organization of the graph was covered in <a href="/labs/lab4_navigation_workflow.pdf">Lab 4</a>.
+      The member variables <code>width</code> and <code>height</code> store the graph width and height, in cells. The variables <code>origin_x</code> and <code>origin_y</code> correspond to the global position in meters of the cell <code>(0, 0)</code>. This allows us to determine where the origin of the map is. The variable <code>meters_per_cell</code> contains the size of each cell, in meters. Finally, the <code>cell_odds</code> variable is a vector containing the odds value of each cell. The odds value and organization of the graph was covered in <a href="/files/labs/lab4_navigation_workflow.pdf">Lab 4</a>.
     </li>
   </ul>
 
