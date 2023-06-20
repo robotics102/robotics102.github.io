@@ -1285,6 +1285,12 @@ ol {
   padding-left: 1.25em; }
   ol li {
     padding-left: 0.25em; }
+  ol li ol {
+    margin: 0em;
+  }
+  ol li ul {
+    margin: 0em;
+  }
   ol li pre {
     margin: 0.5em 0;
   }
@@ -1296,6 +1302,9 @@ ul {
   ul li {
     padding-left: 0.5em; }
   ul li ul {
+    margin: 0em;
+  }
+  ul li ol {
     margin: 0em;
   }
   ul li pre {
