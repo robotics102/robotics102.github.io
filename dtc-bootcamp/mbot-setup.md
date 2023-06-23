@@ -69,7 +69,8 @@ At this stage, the Raspberry Pi is not connected to WiFi so we will need to conf
     Enter your credentials when prompted. If on a personal network, connect using the network dropdown menu.
 
 3. **Get the system utilities repo on the robot.** We will clone a repo onto the robot which has a number of scripts to install necessary dependencies.
-    1. Get the robot's IP address. You will need to use the monitor and keyboard. Open a terminal then type `ifconfig` to get the IP.
+    1. Get the robot's IP address. You will need to use the monitor and keyboard. Open a terminal then type `ifconfig wlan0` to get the IP:
+        <span class="image centered"><img src="/assets/images/dtc/robot-ifconfig.png" alt="" style="max-width:500px;"/></span>
     2. Connect to the robot in a VSCode Remote session from your laptop. Instructions are [here](/tutorials/robot.html#sec_robot_prog).
     3. Clone the repo `mbot_sys_utils` onto the robot. Open a terminal in the VSCode remote session, then do:
         ```bash
@@ -133,7 +134,7 @@ At this point, the robot should publish its IP to the registry each time it turn
 
     1. First, unplug the Robotics Control Board by disconnecting the barrel plug from the battery (leave the USB that powers the RPi plugged in). Also unplug the USB that connects the Pico to the Raspberry Pi.
     2. We will now put the Pico in flashing mode. Hold down the white `BOOTSEL` button on the Pico board (it's near the USB port). With the button held down, plug the Pico's USB cord back into the Raspberry Pi. Then release the button. The Pico should now show up as a device in NoMachine (see below).
-        <span class="image main"><img src="/assets/images/dtc/pop-up-plug-in.png" alt="" style="max-width:800px;"/></span>
+        <span class="image centered"><img src="/assets/images/dtc/pop-up-plug-in.png" alt="" style="max-width:800px;"/></span>
     3. Plug the barrel plug that powers the Robotics Control Board back into the battery.
     4. Place the MBot on the floor in a spot with at least 2 feet of clear space all around the robot.
     5. Open the Pico device folder in NoMachine. Drag and drop the script `mbot_calibrate_omni.uf2` into the folder. The Pico will reboot automatically, and will then run its calibration routine. *Don't touch the robot while it does this procedure.*

@@ -1264,6 +1264,12 @@ input[type="radio"] + label:before {
       margin-left: auto;
       margin-right: auto;
       width: 100%; }
+  .image.centered {
+    display: block;
+    width: 100%; }
+    .image.centered img {
+      margin-left: auto;
+      margin-right: auto}
 
 a.image {
   overflow: hidden; }
