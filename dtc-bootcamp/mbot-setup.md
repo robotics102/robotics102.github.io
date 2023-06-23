@@ -38,6 +38,11 @@ Before you begin, install the following on your laptop:
 * [VSCode](/tutorials/setup.html)
 * NoMachine (tutorial coming soon)
 
+The robot username and password are:
+
+&emsp;&emsp;**Username:** `mbot` <br/>
+&emsp;&emsp;**Password:** `i<3robots!`
+
 <hr class="major" />
 
 <header class="major" id="flash-image">
