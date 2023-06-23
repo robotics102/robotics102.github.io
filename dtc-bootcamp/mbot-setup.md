@@ -3,13 +3,28 @@ layout: default
 title: MBot Setup - Robotics 102
 ---
 
-## MBot System Setup
+<header class="main project">
+    <strong>Tutorial:</strong> MBot System Setup
+</header>
 
 This guide will walk you through setting up all the code and automated services that allow the robot to run. This guide should be followed once before students begin their course projects. All project instructions assume that the robots have been setup following the steps outlined here.
 
 The Robotics 102 philosophy is that students should be able to get up and running with the robots with as few obstacles as possible. At UM, instructional aides setup the robots for the students. Each offering of the course should choose which installation steps, if any, will be the responsibility of the students. It is beneficial to create an image with the desired setup to save time.
 
-#### Prerequisites
+#### Contents
+
+* [Prerequisites](#prerequisites)
+* [Step 1: Flashing the Image](#flash-image)
+* [Step 2: Configuring the Robot](#configure-rpi)
+* [Step 3: Calibrating and Flashing the MBot](#calibrate-firmware)
+* [Step 4: Install the MBot Code](#install-code)
+* [Testing the Setup](#testing)
+
+<hr class="major" />
+
+<header class="major" id="prerequisites">
+    <h3><a href="#prerequisites">Prerequisites</a></h3>
+</header>
 
 For this setup, you will need:
 * A 16 or 32 GB SD card
@@ -23,7 +38,11 @@ Before you begin, install the following on your laptop:
 * [VSCode](/tutorials/setup.html)
 * NoMachine (tutorial coming soon)
 
-### Flashing the Image
+<hr class="major" />
+
+<header class="major" id="flash-image">
+    <h3><a href="#flash-image">Step 1: Flashing the Image</a></h3>
+</header>
 
 In this step, we will get a Raspberry Pi OS image on the robot.
 
@@ -31,7 +50,9 @@ In this step, we will get a Raspberry Pi OS image on the robot.
 2. **Download the [base Raspberry Pi OS image](https://drive.google.com/drive/folders/1oP-9gXUPYl2bXEoIO8-tfV6_PLIMskaB?usp=drive_link) for the MBot to your computer.** This is the standard 64-bit RPi OS image, but we have added a couple configurations (username, password, config changes, and a WiFi script).
 3. **Flash the image to a blank SD card using Balena Etcher.**
 
-### Configuring the robot
+<header class="major" id="configure-rpi">
+    <h3><a href="#configure-rpi">Step 2: Configuring the robot</a></h3>
+</header>
 
 At this stage, the Raspberry Pi is not connected to WiFi so we will need to configure it using a monitor, keyboard, and mouse.
 
@@ -61,6 +82,7 @@ At this stage, the Raspberry Pi is not connected to WiFi so we will need to conf
 4. **Install dependencies and services.**
     1. Install the dependencies, including LCM and NoMachine.
         ```bash
+        cd mbot_sys_utils/
         sudo ./install_scripts/install_mbot_dependencies.sh
         ./install_scripts/install_lcm.sh
         sudo ./install_scripts/install_nomachine.sh
@@ -79,12 +101,12 @@ At this stage, the Raspberry Pi is not connected to WiFi so we will need to conf
         You can also setup a home WiFi connection in this file, and update the IP registry repo. The defaults will work.
     3. Install the udev rules for the Lidar and Robotics Control Board:
         ```bash
-        cd udev_rules
+        cd ~/mbot_sys_utils/udev_rules
         ./install_rules.sh
         ```
     4. Install the services needed to start the networking and report the robot's IP:
         ```bash
-        cd services
+        cd ~/mbot_sys_utils/services
         ./install_mbot_services.sh
         ```
 
@@ -94,7 +116,9 @@ At this stage, the Raspberry Pi is not connected to WiFi so we will need to conf
 
 At this point, the robot should publish its IP to the registry each time it turns on. The IP might change occasionally. You can now use VSCode, SSH, or NoMachine to interface with the MBot by using the IP it reports to the registry. You should not need the monitor or keyboard and mouse anymore.
 
-### Calibrating and Flashing the MBot
+<header class="major" id="calibrate-firmware">
+    <h3><a href="#calibrate-firmware">Step 3: Calibrating and Flashing the MBot</a></h3>
+</header>
 
 1. **Get the Pico firmware.**
     1. Connect to the MBot in NoMachine. You will need the robot's IP, which you can get from the [MBot IP registry](https://github.com/MBot-Project-Development/mbot_ip_registry).
@@ -118,7 +142,9 @@ At this point, the robot should publish its IP to the registry each time it turn
     1. Repeat steps 1-3 from the calibration instructions to put the Pico into flashing mode.
     2. Open the Pico device folder in NoMachine. Drag and drop the script `mbot.uf2` into the folder. The Pico will reboot automatically.
 
-### Install the MBot Code
+<header class="major" id="install-code">
+    <h3><a href="#install-code">Step 4: Install the MBot Code</a></h3>
+</header>
 
 This step will pull all the code utilities for the MBot Web App, SLAM, sensor drivers, and communication with the Robotics Control Board.
 
@@ -138,8 +164,9 @@ This step will pull all the code utilities for the MBot Web App, SLAM, sensor dr
     1. The installation requires you to install a program called NPM first. To do this, do:
         ```bash
         curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+        source ~/.bashrc  # Reload to apply changes.
         ```
-        You will have to open a new terminal after installation for the `nvm` command to be available. Install the latest version of NodeJS (as of this writing, the latest version is 18):
+        Install the latest version of NodeJS (as of this writing, the latest version is 18):
         ```bash
         nvm install 18
         ```
@@ -172,6 +199,10 @@ At this point, if the firmware is flashed and the serial server is running, you 
     ./scripts/install.sh
     ```
     Again, this installs the binaries and services needed to run SLAM and the motor controller.
+
+<header class="major" id="testing">
+    <h3><a href="#testing">Testing the Setup</a></h3>
+</header>
 
 We're done! You should test your setup by making sure you can drive the robot around and create a map in the web app.
 

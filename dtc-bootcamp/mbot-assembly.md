@@ -3,7 +3,7 @@ layout: default
 title: MBot Assembly - Robotics 102
 ---
 
-# MBot Omni Assembly Guide
+## MBot Assembly Guide
 
 The MBot Omni Bot is made up of 3 sections i.e the bottom plate, middle plate and the top plate. This guide will walk you through on how to assemble each of the 3 plates. 
 
