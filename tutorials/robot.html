@@ -14,6 +14,7 @@ tutorial: true
 
     <p>This page has the following parts:</p>
     <ul>
+      <li><a href="#quickstart">MBot Quick Start</a></li>
       <li><a href="#sec_robot_care">Robot Usage &amp; Care</a></li>
       <li><a href="#sec_robot_prog">Programming the Robot</a>
         <ul>
@@ -23,7 +24,44 @@ tutorial: true
       </li>
       <li><a href="#localization">Mapping &amp; Localization</a></li>
     </ul>
-  </div>
+</section>
+
+<section id="quickstart">
+  <header class="major">
+    <h2><a href="#quickstart">MBot Quick Start</a></h2>
+  </header>
+  <!-- <div class="content"> -->
+    <p>A fully setup robot should be drivable through the MBot Web App. This guide will show you how to drive around your MBot!</p>
+
+    <ul>
+      <li>
+        <strong>Turn the robot on.</strong>
+        For instructions, check <a href="#sec_robot_on">here</a>.
+      </li>
+      <li id="get-robot-ip">
+        <strong>Get your robot's IP.</strong>
+        The robot should publish its IP to an IP registry when it starts up. The default IP registry is <a href="https://github.com/MBot-Project-Development/mbot_ip_registry" target="_blank">this GitHub repository</a>.
+        <i>Note: Double check the registry with your course staff if you aren't sure.</i>
+        <br/>
+        The robot pushes its IP to a file called <code>data/mbot[-GROUP]-XXX.json</code> corresponding to the robot's name and ID. The name should match the label on the robot. Get the robot's IP from the data folder:
+        <span class="image centered"><img src="/assets/images/tutorials/robot/get_ip.png" alt=""
+          style="max-width:800px;" /></span>
+      </li>
+      <li>
+        <strong>Connect to the MBot Web App.</strong>
+        Each MBot is hosting its own web app. You can access it by typing the IP from the previous step into your browser.
+      </li>
+      <li>
+        <strong>Drive the robot!</strong>
+        Toggle &quot;Drive Mode&quot; on the web app side panel to activate it. Use your keyboard keys AWSDQE to drive the robot. W and S will move backwards and forwards, A and D will move left and right (on omnidrive robots only), and Q and E will rotate the robot.
+      </li>
+    </ul>
+
+    <ul class="hint">
+      <li class="icon solid fa-cogs"><strong>Debugging Tip:</strong> Make sure that the file in the IP registry is recent by checking the time that it was updated. The IP can change when rebooted. It can take a few minutes for the robot to boot up and connect, so be patient! If the IP is not updated after a few minutes, try restarting the robot.</li>
+    </ul>
+
+  <!-- </div> -->
 </section>
 
 <!-- ROBOT CARE -->
@@ -43,7 +81,7 @@ tutorial: true
     <h3 id="sec_robot_net">Robot network</h3>
 
     <p>
-      Each robot should be marked with a unique, three digit ID (001, 002, etc.). When turned on, the robot will connect to the MWireless WiFi network. This will only work on campus.
+      Each robot should be marked with a unique, three digit ID, plus a prefix (001, 002, etc.). When turned on, the robot will connect to the MWireless WiFi network. This will only work on campus.
     </p>
 
     <h3 id="sec_robot_batt">Robot battery care</h3>
@@ -73,7 +111,9 @@ tutorial: true
 
     <h3>Prerequisites</h3>
 
-    <p>This tutorial assumes you have followed the instructions for installing <a href="setup.html#install_vscode">VSCode</a>.</p>
+    <p>This tutorial assumes you have followed the instructions for installing <a href="setup.html#install_vscode">VSCode</a>. You will need a laptop connected to the same WiFi as the robot (this is MWireless on the UM campus).</p>
+
+    <p>You will also need to <a href="#sec_robot_on">turn the robot on</a> and <a href="#get-robot-ip">get its IP address</a>.</p>
 
     <h2 id="sec_conn_robot">Connecting to the robot</h2>
 
@@ -88,26 +128,26 @@ tutorial: true
     <span class="image main"><img src="/assets/images/tutorials/robot/install-remote-ext.jpg" alt=""
         style="max-width:800px;" /></span>
 
-    <h3>2. Get the robot's IP address</h3>
+    <!-- <h3>2. Get the robot's IP address</h3> -->
 
-    <p>
+    <!-- <p>
       Since the robot connects to MWireless, any device connected the same WiFi network can communicate with the robot. To connect, we need a unique identifier that tells us where to find the robot on the network, called an <i>IP address</i>.
       When it connects, the robot will put its IP address <a href="https://github.com/MBot-Project-Development/mbot_ip_registry">in an MBot IP registry GitHub repo</a>.
       Look in the <strong>data</strong> folder for a file called <strong>mbot-omni-XXX.json</strong> (replace <strong>XXX</strong> with the ID of the robot).
       The ID should be written on a label on the robot.
       When you open this file, you will find the IP of the robot, as shown below. Copy it for the next step.
-    </p>
+    </p> -->
 
-    <span class="image main"><img src="/assets/images/tutorials/robot/get_ip.png" alt=""
-        style="max-width:800px;" /></span>
+    <!-- <span class="image main"><img src="/assets/images/tutorials/robot/get_ip.png" alt=""
+        style="max-width:800px;" /></span> -->
 
-    <p>If the robot is connected and working properly, you should be able to see the web app by going to <strong>http://&lt;ROBOT-IP&gt;:8000</strong> (replace all of <strong>&lt;ROBOT-IP&gt;</strong> with your robot's IP address). You should be able to drive it around when you enable Drive Mode.</p>
+    <!-- <p>If the robot is connected and working properly, you should be able to see the web app by going to <strong>http://&lt;ROBOT-IP&gt;:8000</strong> (replace all of <strong>&lt;ROBOT-IP&gt;</strong> with your robot's IP address). You should be able to drive it around when you enable Drive Mode.</p> -->
 
-    <ul class="hint">
+    <!-- <ul class="hint">
       <li class="icon solid fa-cogs"><strong>Debugging Tip:</strong> Make sure that the file on GitHub is recent by checking the time that it was updated. The IP can change when rebooted. It can take a few minutes for the robot to boot up and connect, so be patient! If the IP is not updated after a few minutes, try restarting the robot.</li>
-    </ul>
+    </ul> -->
 
-    <h3>3. Add the Raspberry Pi as a remote host</h3>
+    <h3>2. Add the Raspberry Pi as a remote host</h3>
 
     <p>
       Now we will tell VSCode how to connect to the Raspberry Pi board on the robot.
@@ -118,8 +158,10 @@ tutorial: true
     <span class="image main"><img src="/assets/images/tutorials/robot/remote-add-target.png" alt=""
         style="max-width:400px;" /></span>
 
-    <p>In the box that appears, type in the following command (replace all of <code>&lt;ROBOT-IP&gt;</code> with the IP address of your robot):</p>
-    <pre><code class="language-bash">ssh pi@&lt;ROBOT-IP&gt;</code></pre>
+    <p>In the box that appears, type in the following command:</p>
+    <pre><code class="language-bash">ssh &lt;ROBOT-USER&gt;@&lt;ROBOT-IP&gt;</code></pre>
+    <p>Replace all of <code>&lt;ROBOT-IP&gt;</code> with the IP address of your robot, and all of <code>&lt;ROBOT-USER&gt;</code> with the robot's username. The username is <code>mbot</code> by default. Check with course staff if you aren't sure.
+    </p>
 
     <span class="image main"><img src="/assets/images/tutorials/robot/remote-ssh-command.png" alt=""
         style="max-width:600px;" /></span>
@@ -129,10 +171,10 @@ tutorial: true
     <span class="image main"><img src="/assets/images/tutorials/robot/remote-ssh-config.png" alt=""
         style="max-width:600px;" /></span>
 
-    <h3>4. Connect to the Raspberry Pi</h3>
+    <h3>3. Connect to the Raspberry Pi</h3>
 
     <p>To connect to the Raspberry Pi, open the &quot;Remote Explorer&quot; tab again, and select the new remote host
-      you just added. Click on the icon to the right of the address to connect to the host in a new window.</p>
+      you just added. If it doesn't appear, press the refresh button. Click on the icon to the right of the address to connect to the host in a new window.</p>
 
     <span class="image main"><img src="/assets/images/tutorials/robot/remote-connect-host.png" alt=""
         style="max-width:400px;" /></span>
@@ -143,14 +185,14 @@ tutorial: true
     <span class="image main"><img src="/assets/images/tutorials/robot/remote-platform-linux.png" alt=""
         style="max-width:600px;" /></span>
 
-    <p>You will be asked for the password to the Raspberry Pi. The password is <b>iloverobots</b>.
+    <p>You will be asked for the password to the Raspberry Pi. The default password is <b>i&lt;3robots!</b>.
       The first time you connect, it will take a few minutes for VSCode to do some setup
       on the Raspberry Pi. You should see the address of the Raspberry Pi on the bottom left of the VSCode window.</p>
 
     <span class="image main"><img src="/assets/images/tutorials/robot/remote-connected.png" alt=""
         style="max-width:300px;" /></span>
 
-    <h3>5. Opening a terminal</h3>
+    <h3>4. Opening a terminal</h3>
 
     <p>In the VSCode window which is connected to the robot, open a terminal by clicking on &quot;Terminal&quot; &gt;
       &quot;New Terminal.&quot; A terminal will open on the Raspberry Pi. You can type command line commands in this
@@ -191,10 +233,6 @@ tutorial: true
         style="max-width:800px;" /></span>
 
     <p>If the robot is connected and working properly, you should be able to see the green "Connected" sign.</p>
-
-    <ul class="hint">
-      <li class="icon solid fa-cogs"><strong>Debugging Tip:</strong> Make sure that the file on GitHub is recent by checking the time that it was updated. The IP can change when rebooted. It can take a few minutes for the robot to boot up and connect, so be patient! If the IP is not updated after a few minutes, try restarting the robot.</li>
-    </ul>
 
     <h3>3. Build the map in Mapping Mode</h3>
 
@@ -244,89 +282,3 @@ tutorial: true
     </div>
   </div>
 </section>
-
-            </div>
-          </div>
-
-        <!-- Sidebar -->
-          <div id="sidebar">
-            <div class="inner">
-
-              <!-- Menu -->
-                <nav id="menu">
-                  <header class="major">
-                    <h2>Menu</h2>
-                  </header>
-                  <ul>
-                    <li><a href="/index.html">Home</a></li>
-                    <li>
-                      <span class="opener">Course Information</span>
-                      <ul>
-                        <li><a href="/index.html#schedule">Schedule</a></li>
-                        <li><a href="/index.html#office-hours">Office Hours</a></li>
-                        <li><a href="/index.html#staff">Course Staff</a></li>
-                        <li><a href="/syllabus.html">Syllabus</a></li>
-                        <li><a href="/activities.html">Asynchronous Activities</a></li>
-                      </ul>
-                    </li>
-                    <li>
-                      <span class="opener">Projects</span>
-                      <ul>
-                        <li><a href="/projects/a0.html">Project 0: Pocket Calculator</a></li>
-                        <li><a href="/projects/a1.html">Project 1: Wall Following</a></li>
-                        <li><a href="/projects/a2.html">Project 2: Bug Navigation</a></li>
-                        <li><a href="/projects/a3.html">Project 3: Path Planning</a></li>
-                        <li><a href="/projects/a4.html">Project 4: Machine Learning</a></li>
-                      </ul>
-                    </li>
-                    <li>
-                      <span class="opener active">Tutorials</span>
-                      <ul>
-                        <li><a href="/tutorials/setup.html">Computer Setup</a></li>
-                        <li><a href="/tutorials/git.html">Github</a></li>
-                        <li><a href="/tutorials/replit.html">Replit</a></li>
-                        <li><a href="/tutorials/robot.html">Using the MBot-Omni</a></li>
-                        <li><a href="/tutorials/app.html">Navigation Webapp</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="https://robotics102.github.io/nav-app/">Navigation Webapp</a></li>
-                  </ul>
-                </nav>
-
-              <!-- Section -->
-                <section>
-                  <header class="major">
-                    <h2>Course Times</h2>
-                  </header>
-                  <p>Lectures and labs</p>
-                  <ul class="contact">
-                    <li class="icon solid fa-chalkboard-teacher">TuTh 3-4:30 PM @ FRB 1060</li>
-                    <li class="icon solid fa-flask">
-                      F 10:30 AM-12:30 PM @ FRB 1060 <br/>
-                      F 12:30-2:30 PM @ FRB 1060 <br/>
-                      F 2:30-4:30 PM @ FRB 1060
-                    </li>
-                  </ul>
-                </section>
-
-              <!-- Footer -->
-                <!-- <footer id="footer">
-                  <p class="copyright">&copy; ROB 102. All rights reserved.</p>
-                </footer> -->
-
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    <!-- Scripts -->
-      <script src="/assets/js/jquery.min.js"></script>
-      <script src="/assets/js/browser.min.js"></script>
-      <script src="/assets/js/breakpoints.min.js"></script>
-      <script src="/assets/js/util.js"></script>
-      <script src="/assets/js/main.js"></script>
-      <script>hljs.highlightAll();</script>
-
-  </body>
-</html>
