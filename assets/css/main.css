@@ -1319,6 +1319,8 @@ ul {
       ul.alt li:first-child {
         border-top: 0;
         padding-top: 0; }
+li p:last-child {
+  margin: 0; }
 
 dl {
   margin: 0 0 2em 0; }
