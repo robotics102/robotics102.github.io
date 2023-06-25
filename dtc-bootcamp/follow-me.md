@@ -43,7 +43,13 @@ Once you have accepted the assignment, clone the repository you created on the r
 ```bash
 git clone <ADDRESS>
 ```
-Substitute **&lt;ADDRESS&gt;** with the address for your repo, found on GitHub. Open the folder of the repository you just cloned in VSCode.
+Substitute **&lt;ADDRESS&gt;** with the address for your repo, found on GitHub. You can get the address from your repo page on GitHub:
+
+<span class="image centered"><img src="/assets/images/dtc/get-git-address.png" alt="" style="max-width:600px;"/></span>
+
+Open the folder of the repository you just cloned in VSCode by cliking &quot;File&quot; &gt; &quot;Open Folder...&quot; then typing in the name of the repo you cloned:
+
+<span class="image centered"><img src="/assets/images/dtc/open-project-folder.png" alt="" style="max-width:500px;"/></span>
 
 <hr class="major" />
 
