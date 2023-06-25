@@ -56,6 +56,18 @@
                   <ul>
                     <li><a href="/index.html">Home</a></li>
                     <li>
+                      {% if page.dtc == true %}
+                      <span class="opener active">DTC Bootcamp</span>
+                      {% else %}
+                      <span class="opener">DTC Bootcamp</span>
+                      {% endif %}
+                      <ul>
+                        <li><a href="/dtc-bootcamp/">Home</a></li>
+                        <li><a href="/dtc-bootcamp/follow-me">Activity: Follow Me</a></li>
+                        <li><a href="/dtc-bootcamp/mbot-setup">Guide: MBot Setup</a></li>
+                      </ul>
+                    </li>
+                    <li>
                       {% if page.course_information == true %}
                       <span class="opener active">Course Information</span>
                       {% else %}

@@ -1,6 +1,7 @@
 ---
 layout: default
 title: MBot Setup - Robotics 102
+dtc: true
 ---
 
 <header class="main project">

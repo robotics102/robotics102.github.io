@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Follow Me Activity - Robotics 102 DTC
+dtc: true
 ---
 
 <header class="main project">
