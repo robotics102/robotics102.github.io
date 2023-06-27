@@ -9,7 +9,7 @@ dtc: true
 </header>
 
 <!-- <span class="image right"><img src="/dtc-bootcamp/assemblyImages/omni.JPG" alt="" /></span> -->
-This guide will walk you through the steps needed to assemble the MBot Omni. The MBot Omni Bot is comprised of 3 sections i.e the bottom plate, middle plate and the top plate. Each of these plates are assembled separately first, before attaching them together to create the MBot Omni.
+This guide will walk you through the steps needed to assemble the MBot Omni. The MBot Omni Bot is comprised of 3 sections i.e the [bottom plate](#bottom), [middle plate](#middle) and the [top plate](#top). Each of these plates are assembled separately first, before attaching them together to create the MBot Omni.
 
 <span class="image centered"><img src="assemblyImages/omni.JPG" alt="" style="max-width:300px;"/></span>
 
@@ -99,7 +99,7 @@ This guide will walk you through the steps needed to assemble the MBot Omni. The
     <h3><a href="#middle">Middle Assembly</a></h3>
 </header>
 
-<span class="image centered"><img src="assemblyImages/middlePlate/1.jpg" alt="" style="max-width:600px;"/></span>
+<span class="image centered"><img src="assemblyImages/middlePlate/13.jpg" alt="" style="max-width:600px;"/></span>
 
 #### Required Components:
 - 1 X Middle Acrylic Plate
@@ -115,17 +115,18 @@ This guide will walk you through the steps needed to assemble the MBot Omni. The
 
 1. Carefully peel off the protective plastic on both sides of the thermal pads that come packaged with the heatsink case.  Stick them onto the three chips shown on the Raspberry Pi, or directly onto the heatsink.  There are 3 spots for the thermal pads and the thermal pads are precut to the required shape.
 
-    <span class="image centered"><img src="assemblyImages/middlePlate/1.jpg" alt="" style="max-width:600px;"/></span>
+    <span class="image centered"><img src="assemblyImages/middlePlate/1.jpg" alt="" style="max-width:300px;"/></span>
 
 2. Insert the camera data cable that comes packaged with the camera into the RPi’s camera connector.  You will pull up the black plastic clamping piece, and slide the cable in with the metal contacts pointing away from the black plastic clamping piece.  Ensure it is properly seated and push down on the black plastic clamping piece to keep in place.  You should just barely see the contacts above the top of the connector.
-    <span class="image centered"><img src="assemblyImages/middlePlate/2.jpg" alt="" style="max-width:600px;"/></span>
-    <span class="image centered"><img src="assemblyImages/middlePlate/3.jpg" alt="" style="max-width:600px;"/></span>
+    <span class="image centered"><img src="assemblyImages/middlePlate/2.jpg" alt="" style="max-width:300px;"/></span>
+    <span class="image centered"><img src="assemblyImages/middlePlate/3.jpg" alt="" style="max-width:300px;"/></span>
 
 3. Thread the camera data cable through the corresponding slot on the heatsink case top.
-    <span class="image centered"><img src="assemblyImages/middlePlate/4.jpg" alt="" style="max-width:600px;"/></span>
+    <span class="image centered"><img src="assemblyImages/middlePlate/4.jpg" alt="" style="max-width:300px;"/></span>
 
 4. Screw the bottom of the heatsink case onto the RPi with two of the included M2.5 socket cap screws through holes on two opposite corners of the case.  We will screw longer screws into the other two holes to mount the case to the middle plate.
-    <span class="image centered"><img src="assemblyImages/middlePlate/5.jpg" alt="" style="max-width:600px;"/></span>
+
+    <span class="image centered"><img src="assemblyImages/middlePlate/5.jpg" alt="" style="max-width:400px;"/></span>
 
 5. With the black piece of the connector pulled out on the camera, insert the Raspberry Pi ribbon cable into the camera PCB as shown (metal contacts facing toward the camera side, blue side on the rear), and then close the black connector.
 <span class="image centered"><img src="assemblyImages/middlePlate/6.JPG" alt="" style="max-width:600px;"/></span>
@@ -172,16 +173,22 @@ This guide will walk you through the steps needed to assemble the MBot Omni. The
 #### Top Assembly Steps
 
 1. Fish the RPLidar USB Interface through the opening in the top plate and align with holes shown below.
+ 
 
-2. Using 4 2M screws and nuts, screw the USB interface to the top plate. 
+<span class="image centered"><img src="assemblyImages/topPlate/2.jpg" alt="" style="max-width:600px;"/></span>
 
-3. Place the RPLidar on top of the top plate and align with the holes as shown below.
 
-4. Using4 2.5M - 8 mm screw, secure the RPLidar to the top plate. 
+2. Using two 2M screws and nuts, screw the USB interface on the bottom side of the top plate.
+<span class="image centered"><img src="assemblyImages/topPlate/3.jpg" alt="" style="max-width:600px;"/></span>
 
-5. Attach a MircoUSB cable to the USB interface. 
+3. Place the RPLidar on top of the top plate and align with the holes as shown below.  Using four 2.5MX8 mm screw, secure the RPLidar to the top plate. 
 
-6. Using a Zip tie secure the USB cable to the top plate.
+<span class="image centered"><img src="assemblyImages/topPlate/4.jpg" alt="" style="max-width:600px;"/></span>
+
+4. Attach a MircoUSB cable to the USB interface. Using a Zip tie secure the USB cable to the top plate.
+
+<span class="image centered"><img src="assemblyImages/topPlate/5.jpg" alt="" style="max-width:600px;"/></span>
+
 
 
 ***
