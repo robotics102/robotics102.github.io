@@ -11,7 +11,7 @@ dtc: true
 <!-- <span class="image right"><img src="/dtc-bootcamp/assemblyImages/omni.JPG" alt="" /></span> -->
 This guide will walk you through the steps needed to assemble the MBot Omni. The MBot Omni Bot is comprised of 3 sections i.e the bottom plate, middle plate and the top plate. Each of these plates are assembled separately first, before attaching them together to create the MBot Omni.
 
-<span class="image centered"><img src="/dtc-bootcamp/assemblyImages/omni.JPG" alt="" style="max-width:300px;"/></span>
+<span class="image centered"><img src="assemblyImages/omni.JPG" alt="" style="max-width:300px;"/></span>
 
 ***
 
@@ -19,7 +19,8 @@ This guide will walk you through the steps needed to assemble the MBot Omni. The
     <h3><a href="#bottom">Bottom Assembly</a></h3>
 </header>
 
-<span class="image centered"><img src="/dtc-bootcamp/assemblyImages/bottomPlate.JPG" alt="" style="max-width:800px;"/></span>
+<span class="image centered"><img src="assemblyImages/bottomPlate.JPG" alt="" style="max-width:800px;"/></span>
+
 
 #### Required Components:
 - 1 X Bottom Acrylic Plate
@@ -27,30 +28,45 @@ This guide will walk you through the steps needed to assemble the MBot Omni. The
 - 3 X 3D Printed Motor Mounts
 - 3 X Motor Cables
 - 1 X Robotics Control Board
-- 4 X 2.5M - 8mm Nylon Standoffs
+- 4 X 2.5M-8mm Nylon Standoffs
 - 3 X Omni-wheel Sets
 - 4 X 1.5in Aluminum 4-40 Standoffs
 
-![Bottom components](assemblyImages/bottomComponents.JPG)
+
 
 #### Assembly Steps
-1. Insert the Motors into the 3D Printed Motor Mounts with the Encoder header pins facing left or right.
-<center><img src="assemblyImages/motorInMotorMount.JPG" width="70%"></center>
-2.  Align the motor holes with the holes of the Motor Mount. Attach the Motor with the Mount using two 2.5M X 8mm screws.
+1. Align unthreaded holes in motor vertically to the holes in the motor mount, with the motor connector on the left side of the mount (while facing motor shaft), and fasten two (2) M2.5x5 bolts to secure motor to mount. NOTE: connector GND pin should be at the top
 
-<center><img src="assemblyImages/motorInMotorMountwith Screws.JPG" width="70%"></center>
+<span class="image centered"><img src="assemblyImages/bottomPlate/2.JPG" alt="" style="max-width:400px;"/></span>
 
-3. Repeat Steps 1 & 2 to for the remain 2 Motors & Motor Mounts.
-<center><img src="assemblyImages/3motorAndMotorMount.JPG" width="70%"></center>
 
-4. Note the forward direction of the bottom the plate as show here.
-<center><img src="assemblyImages/bottomPlateforwardDirection.JPG" width="70%"></center>
 
-5. Attach the first Motor Mount to the bottom plate facing in the backward direction. Using 4 2.5M X 8mm screws secure the Motor Mount to the plate.
+2.  Connect motor harness to motor pins, ensuring the green wire is connected to the GND pin
 
-6. Repeat this step by attaching the Left & Right Motor Mounts.
+<span class="image centered"><img src="assemblyImages/bottomPlate/3.JPG" alt="" style="max-width:400px;"/></span>
 
-7. Flip the plate over and attach four 2.5M - 8mm Nylon Standoffs in the holes shown below. Using 2.5M X 6mm screws attach the standoffs to the board. Note there are 4 additional holes in the plate that are meant for a newer version of the Robotics Control Board. Ensure you are have the correct version of the Robotics Control Board.
+3. Repeat Steps 1 & 2 to for the remaining 2 Motors & Motor Mounts.
+
+4. Next we will assembly the Robotics Control Board.
+
+<span class="image centered"><img src="assemblyImages/bottomPlate/4.JPG" alt="" style="max-width:400px;"/></span>
+
+5. Fasten four (4) M2.5x5 bolts through PCB mounting holes and into M2.5x8 nylon standoffs.
+
+<span class="image centered"><img src="assemblyImages/bottomPlate/5.JPG" alt="" style="max-width:400px;"/></span>
+
+5. Insert either male end of the DC battery cable into PCB power receptacle, and micro-USB connector into PICO microcontroller.
+
+<span class="image centered"><img src="assemblyImages/bottomPlate/6.JPG" alt="" style="max-width:400px;"/></span>
+
+6. We will now attach the motors and the Robotics Control Board to the bottom acrylic plate.
+
+<span class="image centered"><img src="assemblyImages/bottomPlate/7.JPG" alt="" style="max-width:400px;"/></span>
+
+7. Fasten three (3) motor assemblies to the bottom-side of the yellow acrylic plate with four (4) M2.5x8 bolts each, threading into the heat-set inserts on the mounts. NOTE: the “front” or “forward” direction of the robot as shown.
+
+<span class="image centered"><img src="assemblyImages/bottomPlate/8.JPG" alt="" style="max-width:400px;"/></span>
+
 
 8. Secure the Robotics Control Board to the Nylon Standoffs using four 2.5M - 6 mm screws. Ensure that the Motor header pins are facing the forward direction of the plate.
 
