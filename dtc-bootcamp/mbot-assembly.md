@@ -178,7 +178,7 @@ This guide will walk you through the steps needed to assemble the MBot Omni. The
     <span class="image centered"><img src="assemblyImages/topPlate/2.jpg" alt="" style="max-width:600px;"/></span>
 
 
-2. Using two 2M screws and nuts, screw the USB interface on the bottom side of the top plate.
+2. Using two M2 screws and nuts, screw the USB interface on the bottom side of the top plate.
     <span class="image centered"><img src="assemblyImages/topPlate/3.jpg" alt="" style="max-width:600px;"/></span>
 
 3. Place the RPLidar on top of the top plate and align with the holes as shown below.  Using four 2.5MX8 mm screw, secure the RPLidar to the top plate. 
