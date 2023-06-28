@@ -37,7 +37,7 @@ For this setup, you will need:
 
 Before you begin, install the following on your laptop:
 * [VSCode](/tutorials/setup.html)
-* NoMachine (tutorial coming soon)
+* NoMachine (download from [NoMachine website](https://www.nomachine.com/))
 
 The robot username and password are:
 
