@@ -10,7 +10,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="/assets/css/main.css" />
-    <link rel="shortcut icon" type="image/png" href="/images/icon.png"/>
+    <link rel="shortcut icon" type="image/png" href="/assets/images/icon.png"/>
 
     <!-- Syntax highlighting -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/stackoverflow-light.min.css">
@@ -46,7 +46,7 @@
 
   <p>We will be writing algorithms to do image classification on the <a href="http://yann.lecun.com/exdb/mnist/" target="_blank">MNIST</a> dataset. MNIST consists of tiny 28&#215;28 pixel images of handwritten digits from 0 to 9. A few example images from each are shown below.</p>
 
-  <span class="image main"><img src="/images/p4/mnist.png" alt="" style="max-width:550px;"/></span>
+  <span class="image main"><img src="/assets/images/p4/mnist.png" alt="" style="max-width:550px;"/></span>
 
   <p>MNIST has 60,000 images to train a classification algorithm, each labelled with the correct digit. In addition, there are 10,000 images which are used for testing the accuracy of the algorithm. We will implement three machine learning algorithms to classify images: <a href="#nearest_neighbor">nearest neighbors</a>, <a href="#linear_classifier">linear classification</a>, and a <a href="#neural_net">neural network</a>.</p>
 
@@ -116,7 +116,7 @@
 notebook()</code></pre>
     <p>A webpage should open on your default browser with the home page for the Jupyter notebook server you just launched. Navigate to the repository you just cloned for Project 4. The page will look something like this:</p>
 
-    <span class="image main"><img src="/images/p4/jupyter_server.png" alt="" style="max-width:800px;"/></span>
+    <span class="image main"><img src="/assets/images/p4/jupyter_server.png" alt="" style="max-width:800px;"/></span>
 
     <p>Click on the notebook file, <code>intro_to_julia.ipynb</code> to launch it. To stop the Jupyter notebook server, do <code>Ctrl-C</code> (on Mac, do <code>Cmd-C</code>).</p>
 
@@ -151,19 +151,19 @@ notebook()</code></pre>
 
     <p>In Part 1 of this project, you will implement a Nearest Neighbor classifier. The nearest neighbor algorithm takes a test image and finds the <em>closest</em> train image, which we call the image's nearest neighbor. Then, it assigns the test image the same label as its nearest neighbor. Here is an example of some MNIST images and their nearest neighbors:</p>
 
-    <span class="image main"><img src="/images/p4/nearest_neighbor_mnist.png" alt="" style="max-width:600px;"/></span>
+    <span class="image main"><img src="/assets/images/p4/nearest_neighbor_mnist.png" alt="" style="max-width:600px;"/></span>
 
     <h4>Notebook setup</h4>
 
     <p>Open the notebook <code>nearest_neighbors.ipynb</code> by double-clicking it in the web browser. The notebook is made up of <em>cells</em>, which can be text cells (in Markdown) or code cells (in Julia). You can run a cell by selecting the cell and pressing &nbsp;<i class="fas fa-play"></i>&nbsp;<b>Run</b>.</p>
 
-    <span class="image main"><img src="/images/p4/run_cell.png" alt=""/></span>
+    <span class="image main"><img src="/assets/images/p4/run_cell.png" alt=""/></span>
 
     <p>You need to run a cell before you use anything it defines in another cell. For example, you should always run the imports cell when you start the notebook. Similarly, you must run a cell which defines a variable or function before running a cell that uses it. Start by running the import cell at the top of the notebook <code>nearest_neighbors.ipynb</code> to import some dependencies we'll need later on.</p>
 
     <p>The second cell in the notebook loads the MNIST data, provided by the &quot;MLDatasets&quot; Julia library. Run this cell now. The first time you load the data, you'll see a message like this:</p>
 
-    <span class="image main"><img src="/images/p4/download_mnist.png" alt="" style="max-width:800px;"/></span>
+    <span class="image main"><img src="/assets/images/p4/download_mnist.png" alt="" style="max-width:800px;"/></span>
 
     <p>Type <code>y</code> into the box that appears at the top and press enter to download the data in
     the default directory. It will take a few minutes for the data to download.</p>

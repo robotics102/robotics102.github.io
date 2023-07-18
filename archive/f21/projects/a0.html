@@ -10,7 +10,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="/assets/css/main.css" />
-    <link rel="shortcut icon" type="image/png" href="/images/icon.png"/>
+    <link rel="shortcut icon" type="image/png" href="/assets/images/icon.png"/>
 
     <!-- Syntax highlighting -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/stackoverflow-light.min.css">
@@ -65,24 +65,24 @@
 
   <p>You will see a page that looks like this (make sure you are signed in to your account on <a href="https://github.com">github.com</a>):</p>
 
-  <span class="image main"><img src="/images/p0/accept_assign.png" alt="" style="max-width:600px;"/></span>
+  <span class="image main"><img src="/assets/images/p0/accept_assign.png" alt="" style="max-width:600px;"/></span>
 
   <p>Click <b>Accept this assignment</b>. You will see a page like this, telling you the repository is being created:</p>
 
-  <span class="image main"><img src="/images/p0/git_assign_wait.png" alt="" style="max-width:600px;"/></span>
+  <span class="image main"><img src="/assets/images/p0/git_assign_wait.png" alt="" style="max-width:600px;"/></span>
 
   <p>Wait a few seconds, then click refresh. You should see a link to your repository. Note that you can also find your repository by going to the <a href="https://github.com/orgs/robotics102/repositories">repositories page on the ROB 102 GitHub</a> and looking for a repository named <code>p0-intro-cpp-[your-user]</code> (with your username instead of <code>[your-user]</code>).</p>
 
-  <span class="image main"><img src="/images/p0/git-assign-ready.png" alt="" style="max-width:600px;"/></span>
+  <span class="image main"><img src="/assets/images/p0/git-assign-ready.png" alt="" style="max-width:600px;"/></span>
 
   <p>Click the link to navigate to your repository on GitHub. You should see a repository with the template code, which looks something like this:</p>
 
-  <span class="image main"><img src="/images/p0/git-repo.png" alt="" style="max-width:800px;"/></span>
+  <span class="image main"><img src="/assets/images/p0/git-repo.png" alt="" style="max-width:800px;"/></span>
 
   <h3>Cloning the Repository</h3>
 
   <p>You will now clone the repository you just created onto your computer. On the repository page, click on the green button that says &quot;Code&quot; and select the clipboard icon to copy the link to the repository:</p>
-  <span class="image main"><img src="/images/p0/git-get-link.png" alt="" style="max-width:600px;"/></span>
+  <span class="image main"><img src="/assets/images/p0/git-get-link.png" alt="" style="max-width:600px;"/></span>
 
   <p>Open a terminal (in Windows, open Git Bash). Navigate to the folder where you want to store the code for this course with the command <code>cd</code>. For example, you might create a folder called &quot;rob102-code&quot;. Make sure to take note of where you are storing the code so you can find it later! After this folder is created, in the terminal, type:</p>
   <pre><code>cd Documents/rob102-code</code></pre>
@@ -90,7 +90,7 @@
   <pre><code class="language-bash">git clone &lt;ADDRESS&gt;</code></pre>
   <p>Substitute the address to your repository, which you just copied. The first time you use Git, a window should appear asking you to log in. Click the option to log in from your browser and enter your username and password. When you're done, the repository should clone from your terminal. If you type <code>ls</code> into your terminal, you will see the folder containing the code you just cloned.</p>
 
-  <span class="image main"><img src="/images/p0/git-clone.png" alt="" style="max-width:600px;"/></span>
+  <span class="image main"><img src="/assets/images/p0/git-clone.png" alt="" style="max-width:600px;"/></span>
 
   <p>Once you have the code on your computer, open VSCode and select &quot;File&quot; &gt; &quot;Open Folder...&quot; (just &quot;Open...&quot; on Mac) and navigate to where you stored your code. Select the folder and click &quot;Select Folder&quot;. Now you should see all the files in VSCode in the file explorer on the left. You can click on any file to view and edit it.</p>
 
@@ -106,16 +106,16 @@
     <p>You can look at the tag and check that your most recent code is included with the following command:</p>
     <pre><code class="language-bash">git show p0-v1</code></pre>
 
-    <span class="image main"><img src="/images/p0/git-tag-show.png" alt="" style="max-width:600px;"/></span>
+    <span class="image main"><img src="/assets/images/p0/git-tag-show.png" alt="" style="max-width:600px;"/></span>
 
     <p>Finally, push your tag to GitHub:</p>
     <pre><code class="language-bash">git push origin p0-v1</code></pre>
 
     <p><strong>Make sure your tag was pushed correctly.</strong> You can do this by navigating to the repository in your browser and clicking on the tag icon:</p>
-    <span class="image main"><img src="/images/p0/git-nav-tag.png" alt=""/></span>
+    <span class="image main"><img src="/assets/images/p0/git-nav-tag.png" alt=""/></span>
 
     <p>You can also view the code associated with the tag by selecting it from the &quot;Code&quot; tab of the repository:</p>
-    <span class="image main"><img src="/images/p0/git-view-code-tag.png" alt="" style="max-width:400px;"/></span>
+    <span class="image main"><img src="/assets/images/p0/git-view-code-tag.png" alt="" style="max-width:400px;"/></span>
 
     <h3>Updating your submission</h3>
 
@@ -131,7 +131,7 @@
   <pre><code class="language-bash">./docker_run</code></pre>
   <p>A container called <code>rob102-cpp-intro</code> will start and the terminal will now be in open in the container. Your VSCode environment should look something like this:</p>
 
-  <span class="image main"><img src="/images/p0/vscode-env.png" alt=""/></span>
+  <span class="image main"><img src="/assets/images/p0/vscode-env.png" alt=""/></span>
 
   <p>The directory <code>src</code> is <em>mounted</em> in the Docker container. Essentially, this means that the folder <code>/code/src/</code> in the Docker container mirrors the folder <code>intro-cpp/src/</code> on your computer. When you edit the files in VSCode, those changes will be reflected in the Docker container. This means you can write your code normally in VSCode, and compile and run it in the container, without having to restart it or copy over your code.</p>
 
@@ -141,7 +141,7 @@
 
   <p>Another way to stop the container is using the Docker containers tab which comes with the Docker Explorer VSCode extension. Right-click on the running container and select &quot;Stop&quot;:</p>
 
-  <span class="image main"><img src="/images/p0/docker-stop.png" alt="" style="max-width:400px;"/></span>
+  <span class="image main"><img src="/assets/images/p0/docker-stop.png" alt="" style="max-width:400px;"/></span>
 
   <hr class="major" />
 

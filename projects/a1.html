@@ -1,109 +1,78 @@
-<!DOCTYPE HTML>
-<!--
-  Editorial by HTML5 UP
-  html5up.net | @ajlkn
-  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-  <head>
-    <title>ROB 102: Project 1</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="/assets/css/main.css" />
-    <link rel="shortcut icon" type="image/png" href="/images/icon.png"/>
+---
+layout: default
+project: true
+---
 
-    <!-- Syntax highlighting -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/stackoverflow-light.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
-  </head>
-  <body class="is-preload">
+<div class="content">
+<section>
+  <header class="main project">
+    <strong>Project 1:</strong> Wall Following
+  </header>
 
-    <!-- Wrapper -->
-      <div id="wrapper">
+  <p><font size="+2"><strong>Due September 29th, 2022 at 11:59 PM.</strong></font></p>
 
-        <!-- Main -->
-          <div id="main">
-            <div class="inner">
+  <p><span class="image right"><img src="/assets/images/p1/wall_follow.png" alt=""/></span>
+    In this project, you will program the MBot-Omni to autonomously follow a wall in C++. You will be writing the code directly on the robot.
+  </p>
 
-              <!-- Header -->
-              <header id="header">
-                <a href="/index.html" class="logo"><strong>ROB 102:</strong> Introduction to AI and Programming</a>
-                <ul class="icons">
-                  <li><a href="https://um-fa22-rob102.slack.com" class="icon brands fa-slack" target="_blank"><span class="label">Slack</span></a></li>
-                  <li><a href="https://github.com/robotics102" class="icon brands fa-github" target="_blank"><span class="label">GitHub</span></a></li>
-                </ul>
-              </header>
+  <p>This project will be done in teams of two. The instructors will assign teammates.</p>
 
-              <section>
-  <div class="content">
-    <header class="main project">
-      <strong>Project 1:</strong> Wall Following
-    </header>
-
-    <p><font size="+2"><strong>Due September 29th, 2022 at 11:59 PM.</strong></font></p>
-
-    <p><span class="image right"><img src="/images/p1/wall_follow.png" alt=""/></span>
-      In this project, you will program the MBot-Omni to autonomously follow a wall in C++. You will be writing the code directly on the robot.
-    </p>
-
-    <p>This project will be done in teams of two. The instructors will assign teammates.</p>
-
-    <ul>
-      <li><a href="#getting_code">Getting the Code</a>
-      <li><a href="#submitting">Submitting the Assignment</a></li>
-      <li><a href="#code">Code Overview</a></li>
-      <li><a href="#proj_desc">Project Description</a>
-        <ul>
-          <li><a href="#sec_square">Part 1: Drive Square</a></li>
-          <li><a href="#sec_wall_follow">Part 2: Wall Following (Bang-Bang Control)</a></li>
-          <!-- <li><a href="#sec_p_control">Advanced Extension: Wall Following (P-Control)</a></li> -->
-        </ul>
-      </li>
-      <li><a href="#website">Project Website</a></li>
-      <li><a href="#tasks">Task Summary</a></li>
-    </ul>
+  <ul>
+    <li><a href="#getting_code">Getting the Code</a>
+    <li><a href="#submitting">Submitting the Assignment</a></li>
+    <li><a href="#code">Code Overview</a></li>
+    <li><a href="#proj_desc">Project Description</a>
+      <ul>
+        <li><a href="#sec_square">Part 1: Drive Square</a></li>
+        <li><a href="#sec_wall_follow">Part 2: Wall Following (Bang-Bang Control)</a></li>
+        <!-- <li><a href="#sec_p_control">Advanced Extension: Wall Following (P-Control)</a></li> -->
+      </ul>
+    </li>
+    <li><a href="#website">Project Website</a></li>
+    <li><a href="#tasks">Task Summary</a></li>
+  </ul>
 
 
-    <hr class="major" />
+  <hr class="major" />
 
-    <h2 id="getting_code">Getting the Code</h2>
+  <h2 id="getting_code">Getting the Code</h2>
 
-    <p>One repository per team will be created for this project. Both teammates will have access to the repository and will be able to view it and make changes. Both teammates will share ownership of the code and receive credit for writing the code through the license file.</p>
+  <p>One repository per team will be created for this project. Both teammates will have access to the repository and will be able to view it and make changes. Both teammates will share ownership of the code and receive credit for writing the code through the license file.</p>
 
-    <p><strong>The invite link to accept the assignment on Github Classroom can be found on Slack.</strong></p>
+  <p><strong>The invite link to accept the assignment on Github Classroom can be found on Slack.</strong></p>
 
-    <p>The first teammate to accept will need to create a new team. The team must be named <strong>team &#35;&#35;</strong>.  Replace <strong>&#35;&#35;</strong> with the team number assigned to you (for example, team 01, team 11, etc.). The next teammate should join the team from the list of existing teams.</p>
+  <p>The first teammate to accept will need to create a new team. The team must be named <strong>team &#35;&#35;</strong>.  Replace <strong>&#35;&#35;</strong> with the team number assigned to you (for example, team 01, team 11, etc.). The next teammate should join the team from the list of existing teams.</p>
 
-    <span class="image main"><img src="/images/p1/git_create_team.png" alt="" style="max-width:600px;"/></span>
+  <span class="image main"><img src="/assets/images/p1/git_create_team.png" alt="" style="max-width:600px;"/></span>
 
-    <p>You will be cloning the repository <em>on the robot's Raspberry Pi</em>.
-      See the <a href="/tutorials/robot.html#sec_conn_robot">robot tutorial</a> for instructions on how to open a remote VSCode session connected to the robot. Once you are connected to the robot, in VSCode, open a terminal. This should be a terminal in the robot's Raspberry Pi. Then, clone the repository in the home directory:</p>
-    <pre><code class="language-bash">git clone &lt;ADDRESS&gt;</code></pre>
-    <p>Substitute <strong>&ltADDRESS&gt</strong> with the git address found on github. Open the folder of the repository you just cloned in VSCode using the instructions in the <a href="/tutorials/robot.html#sec_code_robot">tutorial</a>.</p>
+  <p>You will be cloning the repository <em>on the robot's Raspberry Pi</em>.
+    See the <a href="/tutorials/robot.html#sec_conn_robot">robot tutorial</a> for instructions on how to open a remote VSCode session connected to the robot. Once you are connected to the robot, in VSCode, open a terminal. This should be a terminal in the robot's Raspberry Pi. Then, clone the repository in the home directory:</p>
+  <pre><code class="language-bash">git clone &lt;ADDRESS&gt;</code></pre>
+  <p>Substitute <strong>&ltADDRESS&gt</strong> with the git address found on github. Open the folder of the repository you just cloned in VSCode using the instructions in the <a href="/tutorials/robot.html#sec_code_robot">tutorial</a>.</p>
 
-    <hr class="major" />
+  <hr class="major" />
 
-    <h2 id="submitting">Submitting your assignment</h2>
+  <h2 id="submitting">Submitting your assignment</h2>
 
-    <p>
-      Your submission for this assignment should include your code and a website portfolio of your project.
-      The website should feature video demonstrations of your robot completing each of the two parts of this assignment and a brief discussion.
-      The link to your website should be placed in the README of your GitHub repository.
-      For details about what should be on the website, see <a href="#website">Project Website</a>.
-      You should make one submission for your team. Teammates will be graded together.
-      Your most recently pushed commit will be graded. You should push your code to the repository.</p>
-    </p>
+  <p>
+    Your submission for this assignment should include your code and a website portfolio of your project.
+    The website should feature video demonstrations of your robot completing each of the two parts of this assignment and a brief discussion.
+    The link to your website should be placed in the README of your GitHub repository.
+    For details about what should be on the website, see <a href="#website">Project Website</a>.
+    You should make one submission for your team. Teammates will be graded together.
+    Your most recently pushed commit will be graded. You should push your code to the repository.</p>
+  </p>
 
-    <p><strong>Modify the LICENSE.txt file to include the names of all teammates.</strong> Make sure the change is committed
-      to your repository. </p>
+  <p><strong>Modify the LICENSE.txt file to include the names of all teammates.</strong> Make sure the change is committed
+    to your repository. </p>
 
-    <ul class="todo">
-      <li class="icon solid fa-laptop-code">
-        <strong id="todo0">P1.0 (1 point):</strong> In the file <code>LICENSE.txt</code>, replace
-        <code>&lt;COPYRIGHT HOLDER&gt;</code> with the names of all teammates, separated by commas. Replace
-        <code>&lt;YEAR&gt;</code> with the current year.
-      </li>
-    </ul>
+  <ul class="todo">
+    <li class="icon solid fa-laptop-code">
+      <strong id="todo0">P1.0 (1 point):</strong> In the file <code>LICENSE.txt</code>, replace
+      <code>&lt;COPYRIGHT HOLDER&gt;</code> with the names of all teammates, separated by commas. Replace
+      <code>&lt;YEAR&gt;</code> with the current year.
+    </li>
+  </ul>
 
   </div>
 
@@ -348,90 +317,3 @@ make</code></pre>
   </ul>
 
 </section>
-
-
-            </div>
-          </div>
-
-        <!-- Sidebar -->
-          <div id="sidebar">
-            <div class="inner">
-
-              <!-- Menu -->
-                <nav id="menu">
-                  <header class="major">
-                    <h2>Menu</h2>
-                  </header>
-                  <ul>
-                    <li><a href="/index.html">Home</a></li>
-                    <li>
-                      <span class="opener">Course Information</span>
-                      <ul>
-                        <li><a href="/index.html#schedule">Schedule</a></li>
-                        <li><a href="/index.html#office-hours">Office Hours</a></li>
-                        <li><a href="/index.html#staff">Course Staff</a></li>
-                        <li><a href="/syllabus.html">Syllabus</a></li>
-                        <li><a href="/activities.html">Asynchronous Activities</a></li>
-                      </ul>
-                    </li>
-                    <li>
-                      <span class="opener active">Projects</span>
-                      <ul>
-                        <li><a href="/projects/a0.html">Project 0: Pocket Calculator</a></li>
-                        <li><a href="/projects/a1.html">Project 1: Wall Following</a></li>
-                        <li><a href="/projects/a2.html">Project 2: Bug Navigation</a></li>
-                        <li><a href="/projects/a3.html">Project 3: Path Planning</a></li>
-                        <li><a href="/projects/a4.html">Project 4: Machine Learning</a></li>
-                      </ul>
-                    </li>
-                    <li>
-                      <span class="opener">Tutorials</span>
-                      <ul>
-                        <li><a href="/tutorials/setup.html">Computer Setup</a></li>
-                        <li><a href="/tutorials/git.html">Github</a></li>
-                        <li><a href="/tutorials/replit.html">Replit</a></li>
-                        <li><a href="/tutorials/robot.html">Using the MBot-Omni</a></li>
-                        <li><a href="/tutorials/app.html">Navigation Webapp</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="https://robotics102.github.io/nav-app/">Navigation Webapp</a></li>
-                  </ul>
-                </nav>
-
-              <!-- Section -->
-                <section>
-                  <header class="major">
-                    <h2>Course Times</h2>
-                  </header>
-                  <p>Lectures and labs</p>
-                  <ul class="contact">
-                    <li class="icon solid fa-chalkboard-teacher">TuTh 3-4:30 PM @ FRB 1060</li>
-                    <li class="icon solid fa-flask">
-                      F 10:30 AM-12:30 PM @ FRB 1060 <br/>
-                      F 12:30-2:30 PM @ FRB 1060 <br/>
-                      F 2:30-4:30 PM @ FRB 1060
-                    </li>
-                  </ul>
-                </section>
-
-              <!-- Footer -->
-                <!-- <footer id="footer">
-                  <p class="copyright">&copy; ROB 102. All rights reserved.</p>
-                </footer> -->
-
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    <!-- Scripts -->
-      <script src="/assets/js/jquery.min.js"></script>
-      <script src="/assets/js/browser.min.js"></script>
-      <script src="/assets/js/breakpoints.min.js"></script>
-      <script src="/assets/js/util.js"></script>
-      <script src="/assets/js/main.js"></script>
-      <script>hljs.highlightAll();</script>
-
-  </body>
-</html>
