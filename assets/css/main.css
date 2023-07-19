@@ -2034,27 +2034,12 @@ button,
 
 /* Wrapper */
 #wrapper {
-  display: -moz-flex;
-  display: -webkit-flex;
-  display: -ms-flex;
-  display: flex;
-  -moz-flex-direction: row-reverse;
-  -webkit-flex-direction: row-reverse;
-  -ms-flex-direction: row-reverse;
-  flex-direction: row-reverse;
   min-height: 100vh; }
 
 /* Main */
 #main {
-  -moz-flex-grow: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-grow: 1;
-  flex-grow: 1;
-  -moz-flex-shrink: 1;
-  -webkit-flex-shrink: 1;
-  -ms-flex-shrink: 1;
-  flex-shrink: 1;
-  width: 100%; }
+  position: static;
+  margin-left: 405px; }
   #main > .inner {
     padding: 0 6em 0.1em 6em ;
     margin: 0 auto;
@@ -2065,11 +2050,15 @@ button,
       #main > .inner > section:first-of-type {
         border-top: 0 !important; }
   @media screen and (max-width: 1680px) {
+    #main {
+      margin-left: 370px; }
     #main > .inner {
       padding: 0 5em 0.1em 5em ; }
       #main > .inner > section {
         padding: 5em 0 3em 0 ; } }
   @media screen and (max-width: 1280px) {
+    #main {
+      margin-left: 0; }
     #main > .inner {
       padding: 0 4em 0.1em 4em ; }
       #main > .inner > section {
@@ -2081,64 +2070,24 @@ button,
         padding: 3em 0 1em 0 ; } }
 
 /* Sidebar */
-#search form {
-  text-decoration: none;
-  position: relative; }
-  #search form:before {
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    display: inline-block;
-    font-style: normal;
-    font-variant: normal;
-    text-rendering: auto;
-    line-height: 1;
-    text-transform: none !important;
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 900; }
-  #search form:before {
-    -moz-transform: scaleX(-1);
-    -webkit-transform: scaleX(-1);
-    -ms-transform: scaleX(-1);
-    transform: scaleX(-1);
-    color: #7f888f;
-    content: '\f002';
-    cursor: default;
-    display: block;
-    font-size: 1.5em;
-    height: 2em;
-    line-height: 2em;
-    opacity: 0.325;
-    position: absolute;
-    right: 0;
-    text-align: center;
-    top: 0;
-    width: 2em; }
-  #search form input[type="text"] {
-    padding-right: 2.75em; }
-
 #sidebar {
-  -moz-flex-grow: 0;
-  -webkit-flex-grow: 0;
-  -ms-flex-grow: 0;
-  flex-grow: 0;
-  -moz-flex-shrink: 0;
-  -webkit-flex-shrink: 0;
-  -ms-flex-shrink: 0;
-  flex-shrink: 0;
   -moz-transition: margin-left 0.5s ease, box-shadow 0.5s ease;
   -webkit-transition: margin-left 0.5s ease, box-shadow 0.5s ease;
   -ms-transition: margin-left 0.5s ease, box-shadow 0.5s ease;
   transition: margin-left 0.5s ease, box-shadow 0.5s ease;
   background-color: #f5f6f7;
   font-size: 0.9em;
-  position: relative;
-  width: 26em; }
+  position: fixed;
+  top: 0;
+  z-index: 0;
+  height: 100%;
+  width: 405px; }
   #sidebar h2 {
     font-size: 1.38889em; }
   #sidebar > .inner {
     padding: 2.22222em 2.22222em 2.44444em 2.22222em ;
     position: relative;
-    width: 26em; }
+    width: 405px; }
     #sidebar > .inner > * {
       border-bottom: solid 2px rgba(210, 215, 217, 0.75);
       margin: 0 0 3.5em 0;
@@ -2165,7 +2114,7 @@ button,
     border: 0;
     display: block;
     height: 7.5em;
-    left: 26em;
+    left: 405px;
     line-height: 7.5em;
     outline: 0;
     overflow: hidden;
@@ -2198,27 +2147,27 @@ button,
       top: 0;
       width: inherit; }
   #sidebar.inactive {
-    margin-left: -26em; }
+    margin-left: -405px; }
   @media screen and (max-width: 1680px) {
     #sidebar {
-      width: 24em; }
+      width: 370px; }
       #sidebar > .inner {
         padding: 1.66667em 1.66667em 1.33333em 1.66667em ;
-        width: 24em; }
+        width: 370px; }
         #sidebar > .inner > .alt {
           margin: -1.66667em 0 3.33333em -1.66667em;
           padding: 1.66667em;
           width: calc(100% + 3.33333em); }
       #sidebar .toggle {
         height: 6.25em;
-        left: 24em;
+        left: 370px;
         line-height: 6.25em;
         text-indent: 5em;
         width: 5em; }
         #sidebar .toggle:before {
           font-size: 1.5rem; }
       #sidebar.inactive {
-        margin-left: -24em; } }
+        margin-left: -370px; } }
   @media screen and (max-width: 1280px) {
     #sidebar {
       box-shadow: 0 0 5em 0 rgba(0, 0, 0, 0.175);
