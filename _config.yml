@@ -15,3 +15,12 @@
 # in the templates via {{ site.myvariable }}.
 
 title: "ROB 102: Introduction to AI and Programming"
+
+collections:
+  courses:
+defaults:
+  - scope:
+      path: ''
+      type: courses
+    values:
+      layout: courses

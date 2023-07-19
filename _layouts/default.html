@@ -53,6 +53,9 @@
                   <header class="major">
                     <h2>Menu</h2>
                   </header>
+
+                  {% assign current_courses = site.courses | where: 'active', true %}
+
                   <ul>
                     <li><a href="/index.html">Home</a></li>
                     <li>
@@ -70,21 +73,35 @@
                       </ul>
                     </li>
                     <li>
-                      {% if page.course_information == true %}
-                      <span class="opener active">Course Information</span>
-                      {% else %}
-                      <span class="opener">Course Information</span>
-                      {% endif %}
+                      <span class="opener">Current Offerings</span>
                       <ul>
-                        <li><a href="/index.html#schedule">Schedule</a></li>
-                        <li><a href="/index.html#office-hours">Office Hours</a></li>
-                        <li><a href="/index.html#staff">Course Staff</a></li>
-                        <li><a href="/syllabus.html">Syllabus</a></li>
-                        <li><a href="/activities.html">Asynchronous Activities</a></li>
+                        {% for course in current_courses %}
+                          <li><a href="{{ course.website }}" target="_blank">
+                            {% if course.short-name %}
+                            {{ course.short-name }}
+                            {% else %}
+                              {{ course.institution }} ({{ course.semester }})
+                            {% endif %}
+                          </a></li>
+                        {% endfor %}
                       </ul>
                     </li>
                     <li>
-                      {% if page.project == true %}
+                      {% if page.parent == 'Modules' %}
+                      <span class="opener active">Modules</span>
+                      {% else %}
+                      <span class="opener">Modules</span>
+                      {% endif %}
+                      <ul>
+                        <li><a href="/modules/module0">Module 0</a></li>
+                        <li><a href="/modules/module1">Module 1</a></li>
+                        <li><a href="/modules/module2">Module 2</a></li>
+                        <li><a href="/modules/module3">Module 3</a></li>
+                        <li><a href="/modules/module4">Module 4</a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      {% if page.parent == 'Projects' %}
                       <span class="opener active">Projects</span>
                       {% else %}
                       <span class="opener">Projects</span>

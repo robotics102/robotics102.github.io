@@ -1,0 +1,11 @@
+<div class="course">
+    {% if page.website %}
+        <a href="{{ page.website }}" target="_blank" rel="noopener noreferrer">{{ page.institution }}</a>,
+    {% else %}
+        {{ page.institution }},
+    {% endif %}
+    {{ page.semester }}
+    {% if page.course-code %}
+        ({{ page.course-code }})
+    {% endif %}
+</div>
