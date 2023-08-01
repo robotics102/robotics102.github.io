@@ -4,19 +4,24 @@ title: Follow Me Activity - Robotics 102 DTC
 dtc: true
 ---
 
-<header class="main project">
-    <!-- <h2>Follow Me Activity</h2> -->
-    <strong>Activity:</strong> Follow Me
-    <p style="font-size: 0.5em;">DTC Summer Bootcamp (Day 1)</p>
-</header>
+# Activity: Follow Me
+{: .no_toc .has-sub }
+
+DTC Summer Bootcamp (Day 1)
+{: .sub-head }
 
 This is our first activity on the MBot! We will implement a Bang-Bang controller to get the robot to follow the nearest object.
 
-<hr class="major" />
+### Contents
+{: .no_toc }
 
-<header class="major" id="prerequisites">
-    <h3><a href="#prerequisites">Prerequisites</a></h3>
-</header>
+* TOC
+{:toc}
+
+---
+
+## Prerequisites
+{: .line}
 
 Grab a robot with a fully charged battery.
 Before you begin, you will need to have followed these guides on your laptop:
@@ -24,11 +29,10 @@ Before you begin, you will need to have followed these guides on your laptop:
 * Install VSCode ([tutorial](/tutorials/setup.html))
 * Connect to the MBot with VSCode remote ([tutorial](/tutorials/robot.html#sec_robot_prog))
 
-<hr class="major" />
+---
 
-<header class="major" id="get-code">
-    <h3><a href="#get-code">Getting the Code</a></h3>
-</header>
+## Getting the Code
+{: .line}
 
 We will use GitHub Classroom to get the code. Use the link below to accept the assignment.
 
@@ -51,11 +55,10 @@ Open the folder of the repository you just cloned in VSCode by cliking &quot;Fil
 
 <span class="image centered"><img src="/assets/images/dtc/open-project-folder.png" alt="" style="max-width:500px;"/></span>
 
-<hr class="major" />
+---
 
-<header class="major" id="code">
-    <h3><a href="#code">Code Overview</a></h3>
-</header>
+## Code Overview
+{: .line}
 
 The code you just cloned has some template files to help you get started. Details on how to compile the code and the code layout are below.
 
@@ -100,11 +103,10 @@ Run them from the command line, in the `build/` folder, to test your code for th
     </li> -->
 </ul>
 
-<hr class="major" />
+---
 
-<header class="major" id="code">
-    <h3><a href="#follow-me">Follow Me Activity</a></h3>
-</header>
+## Follow Me Activity
+{: .line}
 
 We will write code to make the robot follow the nearest object. We will implement a 1D version which follows the object in front of it, and a 2D version that follows the nearest object in any direction.
 

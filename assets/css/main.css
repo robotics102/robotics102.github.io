@@ -143,7 +143,7 @@ p {
 h1, h2, h3, h4, h5, h6 {
   color: #3d4449;
   font-family: "Roboto Slab", serif;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.5;
   margin: 0 0 1em 0; }
   h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
@@ -152,7 +152,7 @@ h1, h2, h3, h4, h5, h6 {
     border-bottom: 0; }
 
 h1 {
-  font-size: 4em;
+  font-size: 2.5em;
   margin: 0 0 0.5em 0;
   line-height: 1.3; }
 
@@ -171,18 +171,26 @@ h5 {
 h6 {
   font-size: 0.7em; }
 
-@media screen and (max-width: 1680px) {
-  h1 {
-    font-size: 3.5em; } }
+h1.line, h2.line, h3.line {
+  display: inline-block;
+  border-bottom: solid 3px #FFCB05;
+  padding: 0 0.75em 0.5em 0;
+}
 
-@media screen and (max-width: 980px) {
-  h1 {
-    font-size: 3.25em; } }
+h1.has-sub {
+  margin-bottom: 0.0;
+}
+
+.sub-head {
+  font-family: "Roboto Slab", serif;
+  font-size: 1em;
+  font-weight: 400;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+
 
 @media screen and (max-width: 736px) {
-  h1 {
-    font-size: 2em;
-    line-height: 1.4; }
   h2 {
     font-size: 1.5em; } }
 
