@@ -22,14 +22,6 @@ In the context of autonomous navigation, Robotics 102 will provide concrete exam
 
 Robotics 102 is a new course being offered as part of the emerging Michigan Robotics Undergraduate Program. Robotics 102 for Fall 2021 is part of a new Distributed Teaching Collaborative offered in collaboration with Berea College.
 
-## Course Plan
-| Lecture | Topic                                                              | Materials                                                                                            | In-Class Activity        | Assignments Due                                                                          |
-|---------|--------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|--------------------------|------------------------------------------------------------------------------------------|
-| 0       | Initialization                         | [Slides](https://github.com/robotics102/robotics102.github.io/blob/main/files/lectures/rob102_00_initialization_compressed.pdf)     |    |    |
-| 1       | Hello World - Our first C++ Program    | [Video](https://youtu.be/nKu9H-CeptI) / [Slides](https://github.com/robotics102/robotics102.github.io/blob/main/files/lectures/rob102_01_helloworld_compresed.pdf)  | [Slides](https://drive.google.com/file/d/1wZhSNOOD4FJSiBcD6ofljEjlr1_OJYTf/view?usp=sharing)   |    |
-| 2       | C++ Operators and Variables            | [Video](https://youtu.be/Vvys7lZa764) / [Slides](https://drive.google.com/file/d/1qU9Q2rwbDCqP-k8oOfH-e7AnPy5AmhsO/view?usp=sharing) |    |    |
-| 3       | C++ Functions.                         | [Video](https://youtu.be/ZarKDScV_DQ) / [Slides](https://github.com/robotics102/robotics102.github.io/blob/main/files/lectures/rob102_03_functions_selected_compressed.pdf)  | [Slides](https://drive.google.com/file/d/1wZhSNOOD4FJSiBcD6ofljEjlr1_OJYTf/view?usp=sharing)   |    |
-
 ## Editing this website
 
 Change the _content_ in the `_src/content` folder. Then run the script:
@@ -52,6 +44,7 @@ To add a new page, modify `_src/page_index.yml`.
 - Tommy Cohn
 
 ## For more
+- [HelloRob Distributed Teaching Collaborative](http://hellorob.org)
 - [ROB 102 Course Information for those at U-M](https://robotics.umich.edu/academic-program/course-offerings/rob102/)
 - [University of Michigan Robotics Institute](https://robotics.umich.edu)
 - [Michigan Robotics Twitter](http://twitter.com/umrobotics)
