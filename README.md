@@ -1,10 +1,10 @@
 # Robotics 102: Introduction to AI and Programming
 
-This webpage redirects to the [HelloRob Course](https://hellorob.org).
+This webpage is associated with the [HelloRob Course](https://hellorob.org).
 
 ## Credits
-- Chad Jenkins, Associate Director of Undergraduate Programs, Michigan Robotics
-- Jana Pavlasek, Director, Michigan Robotics
+- Chad Jenkins, Lead Course Creator and Developer, University of Michigan
+- Jana Pavlasek, Co-Lead Course Creator and Developer, University of Michigan
 - Jasmine Jones, Berea College
 - Jan Pearce, Berea College
 - Tom Gao
@@ -13,6 +13,10 @@ This webpage redirects to the [HelloRob Course](https://hellorob.org).
 - Madhav Achar
 - Liz Olson
 - Tommy Cohn
+- Joseph Taylor
+- Isaad Madhavaram
+- Justin Boverhof
+- Brinda Kapani
 
 ## For more
 - [HelloRob Distributed Teaching Collaborative](http://hellorob.org)
